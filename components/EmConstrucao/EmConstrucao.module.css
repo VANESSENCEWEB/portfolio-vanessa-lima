@@ -1,0 +1,35 @@
+/* Página provisória "Em construção" */
+.secao {
+  /* altura da tela menos a navbar (svh = altura real no celular) */
+  min-height: calc(100svh - var(--altura-nav));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem var(--margem);
+}
+.titulo {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(3rem, 12vw, 9rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+.ponto {
+  color: var(--cor-destaque);
+}
+.texto {
+  margin: 0;
+  color: var(--cor-texto-suave);
+}
+.voltar {
+  align-self: flex-start;
+  margin-top: 1rem;
+  color: var(--cor-destaque);
+  font-weight: 700;
+  text-decoration: none;
+}
+.voltar:hover {
+  text-decoration: underline;
+}

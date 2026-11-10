@@ -2,12 +2,14 @@
    app/layout.jsx — a "moldura" de TODAS as páginas
    ---------------------------------------------------------
    Tudo que está aqui aparece em todas as páginas do site:
-   a tag <html>, as fontes e o tema.
+   a tag <html>, as fontes, o tema e a Navbar.
    Cada página (app/page.jsx, app/sobre/page.jsx...) entra
    no lugar do {children}.
    ========================================================= */
 import { Anton, Caveat_Brush, Manrope } from "next/font/google";
 import { CHAVE_TEMA } from "@/lib/tema";
+import { TemaProvider } from "@/components/TemaProvider";
+import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
 
 /* ---------- FONTES ----------
@@ -86,11 +88,16 @@ export default function RootLayout({ children }) {
         <script dangerouslySetInnerHTML={{ __html: scriptTema }} />
       </head>
       <body>
-        {/* Link escondido para quem navega pelo teclado pular direto ao conteúdo */}
-        <a href="#conteudo" className="pular-para-conteudo">
-          Pular para o conteúdo
-        </a>
-        <main id="conteudo">{children}</main>
+        {/* TemaProvider "envolve" o site: qualquer parte dele pode
+            saber o tema e trocar (ex.: o botão sol/lua da Navbar) */}
+        <TemaProvider>
+          {/* Link escondido para quem navega pelo teclado pular direto ao conteúdo */}
+          <a href="#conteudo" className="pular-para-conteudo">
+            Pular para o conteúdo
+          </a>
+          <Navbar />
+          <main id="conteudo">{children}</main>
+        </TemaProvider>
       </body>
     </html>
   );

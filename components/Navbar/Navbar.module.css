@@ -1,0 +1,365 @@
+/* =========================================================
+   Navbar.module.css
+   ---------------------------------------------------------
+   ".module.css" = CSS Module: as classes daqui só valem para a
+   Navbar (o Next cria nomes únicos), então nunca brigam com
+   outro componente. No JSX usamos assim: className={styles.logo}
+   ========================================================= */
+
+/* ---------- Barra fixa no topo ----------
+   position: sticky → acompanha a rolagem.
+   backdrop-filter → desfoca o que passa por baixo (efeito vidro). */
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--cor-fundo) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--cor-linha);
+  transition: background 0.5s ease;
+}
+
+.nav {
+  height: var(--altura-nav);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0 var(--margem);
+  animation: descer 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* ---------- 1. Logo ---------- */
+.logo {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.logoPonto {
+  display: inline-block;
+  color: var(--cor-destaque);
+  transition: transform 0.3s ease;
+}
+.logo:hover .logoPonto {
+  transform: translateY(-4px); /* o ponto "pula" no hover */
+}
+
+/* ---------- 2. Links (computador) ---------- */
+.links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.link {
+  position: relative;
+  padding-bottom: 4px;
+  color: var(--cor-texto-suave);
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+/* Linha fina que cresce da esquerda no hover */
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--cor-destaque);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s ease;
+}
+.link:hover,
+.link:focus-visible,
+.linkAtivo {
+  color: var(--cor-texto);
+}
+.link:hover::after,
+.link:focus-visible::after,
+.linkAtivo::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---------- 3. Ações ---------- */
+.acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.redesDesktop {
+  display: flex;
+  gap: 0.6rem;
+}
+
+/* Botões redondos de ícone (GitHub, LinkedIn, tema) */
+.icone {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--cor-linha);
+  background: transparent;
+  color: var(--cor-texto);
+  cursor: pointer;
+  transition:
+    border-color 0.25s,
+    color 0.25s,
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+.icone:hover {
+  border-color: var(--cor-destaque);
+  color: var(--cor-destaque);
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 4px rgba(232, 70, 43, 0.12),
+    0 0 18px rgba(232, 70, 43, 0.3);
+}
+.icone:active {
+  transform: scale(0.92);
+}
+
+/* Tema: mostra o sol no escuro e a lua no claro */
+.tema svg {
+  transition: transform 0.4s ease;
+}
+.tema:hover svg {
+  transform: rotate(25deg);
+}
+.lua {
+  display: none;
+}
+:global([data-tema="claro"]) .sol {
+  display: none;
+}
+:global([data-tema="claro"]) .lua {
+  display: block;
+}
+
+/* "Vamos conversar": pílula que enche de vermelho no hover */
+.cta {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.4rem;
+  padding: 0.65rem 1.15rem;
+  border: 1px solid var(--cor-linha);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    border-color 0.3s,
+    color 0.3s;
+}
+.ctaFundo {
+  position: absolute;
+  inset: 0;
+  background: var(--cor-destaque);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.ctaTexto,
+.ctaSeta {
+  position: relative;
+  z-index: 1;
+}
+.ctaSeta {
+  color: var(--cor-destaque);
+  transition:
+    transform 0.25s ease,
+    color 0.3s;
+}
+.cta:hover {
+  border-color: var(--cor-destaque);
+  color: #fff;
+}
+.cta:hover .ctaFundo {
+  transform: scaleX(1);
+}
+.cta:hover .ctaSeta {
+  color: #fff;
+  transform: translate(3px, -3px);
+}
+
+/* ---------- 4. Hambúrguer ----------
+   Duas linhas que viram um "X" quando o menu abre. */
+.hamburguer {
+  display: none; /* só aparece no tablet/celular (ver lá embaixo) */
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--cor-linha);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+.hamburguer span {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  height: 1.5px;
+  background: var(--cor-texto);
+  transition:
+    transform 0.35s ease,
+    top 0.35s ease;
+}
+.hamburguer span:first-child {
+  top: 16px;
+}
+.hamburguer span:last-child {
+  top: 24px;
+}
+.hamburguerAberto span:first-child {
+  top: 20px;
+  transform: rotate(45deg);
+}
+.hamburguerAberto span:last-child {
+  top: 20px;
+  transform: rotate(-45deg);
+}
+
+/* ---------- Painel do menu no celular ---------- */
+.painel {
+  position: fixed;
+  top: var(--altura-nav);
+  left: 0;
+  right: 0;
+  height: calc(100dvh - var(--altura-nav));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem var(--margem) 2.5rem;
+  background: var(--cor-fundo);
+  overflow-y: auto;
+  /* Fechado: escondido acima, sem receber cliques */
+  clip-path: inset(0 0 100% 0);
+  visibility: hidden;
+  transition:
+    clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1),
+    visibility 0s 0.5s;
+}
+.painelAberto {
+  clip-path: inset(0 0 0 0);
+  visibility: visible;
+  transition: clip-path 0.5s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.painelLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.painelLinks li {
+  border-bottom: 1px solid var(--cor-linha);
+  /* Cada link entra um pouco depois do outro (--ordem vem do JSX) */
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+  transition-delay: calc(0.15s + var(--ordem) * 0.06s);
+}
+.painelAberto .painelLinks li {
+  opacity: 1;
+  transform: none;
+}
+.painelLinks a {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 0;
+  font-family: var(--display);
+  font-size: clamp(2rem, 9vw, 3.2rem);
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    color 0.2s,
+    padding-left 0.3s;
+}
+.painelLinks a:hover,
+.painelLinks a.linkAtivo {
+  color: var(--cor-destaque);
+  padding-left: 0.5rem;
+}
+.painelLinks a.linkAtivo::after {
+  content: none;
+}
+.painelNumero {
+  font-family: var(--texto);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--cor-texto-suave);
+}
+
+.painelRodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+}
+.painelRedes {
+  display: flex;
+  gap: 0.6rem;
+}
+.painelRodape .cta {
+  margin-left: 0;
+}
+
+/* Animação de entrada da barra */
+@keyframes descer {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- RESPONSIVO ---------- */
+
+/* Notebook pequeno: aperta o espaço entre os links */
+@media (max-width: 1200px) {
+  .links {
+    gap: 1.3rem;
+  }
+}
+
+/* Tablet e celular: some o menu de cima, aparece o hambúrguer */
+@media (max-width: 1024px) {
+  .links,
+  .redesDesktop,
+  .ctaDesktop {
+    display: none;
+  }
+  .hamburguer {
+    display: block;
+  }
+}
+
+/* Celular bem pequeno */
+@media (max-width: 380px) {
+  .logo {
+    font-size: 1.3rem;
+  }
+}
