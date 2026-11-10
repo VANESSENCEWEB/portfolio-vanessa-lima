@@ -10,7 +10,7 @@ Criei o projeto com o comando oficial do Next.js (`create-next-app`), em JavaScr
 
 ![Página padrão do Next.js](progresso/2026-11-10-etapa-00-projeto-criado.png)
 
----
+---npm
 
 ## Etapa 1 — Base visual (10/11/2026)
 
@@ -22,3 +22,19 @@ Criei o projeto com o comando oficial do Next.js (`create-next-app`), em JavaScr
 - O `next/font` carrega as fontes sem o texto "pular".
 
 ![Base visual com as 3 fontes](progresso/2026-11-10-etapa-01-base-visual.png)
+
+
+---
+
+## Etapa 2 — Navbar e tema (10/11/2026)
+
+**O que fiz:** barra de navegação fixa com efeito vidro, links do menu, ícones do GitHub e LinkedIn, botão de tema claro/escuro que lembra a escolha, menu hambúrguer no celular e páginas provisórias.
+
+**O que aprendi:**
+- Componentes: separei a Navbar em pedaços pequenos (LinksRedes, BotaoTema, BotaoConversar).
+- `"use client"`: é preciso quando o componente tem clique ou estado.
+- `useState` guarda se o menu está aberto; `useEffect` trava a rolagem e escuta a tecla Esc.
+- Segurança: links externos com `rel="noopener noreferrer"`.
+
+![Navbar no computador](progresso/2026-11-10-etapa-02-navbar.png)
+![Menu aberto no celular](progresso/2026-11-10-etapa-02-menu-celular.png)
