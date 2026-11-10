@@ -36,5 +36,4 @@ Criei o projeto com o comando oficial do Next.js (`create-next-app`), em JavaScr
 - `useState` guarda se o menu está aberto; `useEffect` trava a rolagem e escuta a tecla Esc.
 - Segurança: links externos com `rel="noopener noreferrer"`.
 
-![Navbar no computador](progresso/2026-11-10-etapa-02-navbar.png)
-![Menu aberto no celular](progresso/2026-11-10-etapa-02-menu-celular.png)
+![Navbar no computador e no celular](progresso/2026-11-10-etapa-02-navbar.png)
