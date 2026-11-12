@@ -1,0 +1,51 @@
+/* Página 404 — mesmo clima editorial da Hero */
+.secao {
+  position: relative;
+  min-height: calc(100svh - var(--altura-nav));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.1rem;
+  padding-block: 4rem;
+  overflow: hidden; /* o 404 gigante não cria rolagem lateral */
+}
+
+/* "404" enorme e bem apagado, atrás do texto */
+.numero {
+  position: absolute;
+  right: -0.05em;
+  bottom: -0.15em;
+  z-index: -1;
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(10rem, 42vw, 30rem);
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--cor-linha); /* só o contorno */
+  user-select: none;
+}
+
+.titulo {
+  margin: 0;
+  max-width: 12ch;
+  font-family: var(--display);
+  font-size: clamp(3rem, 11vw, 7.5rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+.ponto {
+  color: var(--cor-destaque);
+}
+.texto {
+  margin: 0;
+  max-width: 48ch;
+  color: var(--cor-texto-suave);
+  line-height: 1.65;
+}
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}

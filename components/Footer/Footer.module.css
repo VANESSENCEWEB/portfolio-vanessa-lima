@@ -1,0 +1,95 @@
+/* =========================================================
+   Footer.module.css — mobile-first: tudo empilhado no
+   celular; colunas lado a lado a partir de 768px
+   ========================================================= */
+.rodape {
+  margin-top: clamp(3rem, 8vw, 6rem);
+  padding-block: clamp(3.5rem, 9vw, 6rem) 2rem;
+  border-top: 1px solid var(--cor-linha);
+}
+
+/* 1. Chamada */
+.chamada {
+  display: grid;
+  gap: 1rem;
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+  border-bottom: 1px solid var(--cor-linha);
+}
+.titulo {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(3rem, 12vw, 8rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+.ponto {
+  color: var(--cor-destaque);
+}
+.email {
+  justify-self: start;
+  font-size: clamp(1.05rem, 2.6vw, 1.5rem);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--cor-destaque);
+  text-underline-offset: 6px;
+  overflow-wrap: anywhere; /* o e-mail quebra no celular pequeno em vez de vazar */
+  transition: color 0.2s;
+}
+.email:hover {
+  color: var(--cor-destaque);
+}
+
+/* 2. Colunas */
+.colunas {
+  display: grid;
+  gap: 2.2rem;
+  padding-block: clamp(2.5rem, 6vw, 3.5rem);
+}
+.lista {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 32px; /* área de toque confortável */
+  color: var(--cor-texto-suave);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.link:hover {
+  color: var(--cor-destaque);
+}
+.texto {
+  margin: 0.9rem 0 0;
+  color: var(--cor-texto-suave);
+  line-height: 1.7;
+}
+
+/* 3. Linha final */
+.base {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cor-linha);
+  color: var(--cor-texto-suave);
+  font-size: 0.85rem;
+}
+.base p {
+  margin: 0;
+}
+
+/* Tablet em diante: três colunas */
+@media (min-width: 768px) {
+  .colunas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

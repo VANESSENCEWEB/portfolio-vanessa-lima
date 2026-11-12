@@ -1,0 +1,10 @@
+# Pastas e arquivos que o Prettier NÃO deve formatar
+# (gerados automaticamente ou de terceiros)
+node_modules
+.next
+out
+build
+coverage
+package-lock.json
+public
+docs/progresso

@@ -1,0 +1,15 @@
+/* Container: centraliza e limita a largura */
+.container {
+  width: 100%;
+  /* 1600px: em telas comuns (até 1440) o conteúdo começa na mesma
+     linha do logo da Navbar; só em telas gigantes ele para de crescer */
+  max-width: 1600px;
+  margin-inline: auto; /* centraliza */
+  padding-inline: var(--margem); /* respiro nas laterais */
+}
+.estreita {
+  max-width: 820px; /* ~70 letras por linha: leitura confortável */
+}
+.larga {
+  max-width: none; /* ocupa a tela toda (ex.: faixas de imagem) */
+}

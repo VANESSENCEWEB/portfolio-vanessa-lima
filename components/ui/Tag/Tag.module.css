@@ -1,0 +1,18 @@
+/* Tag: pílula pequena em caixa alta */
+.tag {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--cor-linha);
+  border-radius: 999px;
+  color: var(--cor-texto-suave);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.destaque {
+  border-color: var(--cor-destaque);
+  color: var(--cor-destaque);
+}

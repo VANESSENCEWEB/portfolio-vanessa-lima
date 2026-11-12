@@ -1,0 +1,30 @@
+/* TituloSecao: rótulo + título grande + descrição */
+.cabecalho {
+  display: grid;
+  gap: 0.9rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+.titulo {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400; /* a Anton só tem um peso */
+  line-height: 0.95;
+  text-transform: uppercase;
+  text-wrap: balance; /* quebra as linhas de forma equilibrada */
+}
+.grande {
+  font-size: clamp(2.6rem, 8vw, 6rem);
+}
+.medio {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+.ponto {
+  color: var(--cor-destaque);
+}
+.descricao {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--cor-texto-suave);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.65;
+}

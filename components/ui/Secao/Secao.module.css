@@ -1,0 +1,9 @@
+/* Secao: muito respiro em cima e embaixo (visual editorial) */
+.secao {
+  padding-block: clamp(4rem, 10vw, 8rem);
+  /* ao pular para /#id, a navbar fixa não cobre o título */
+  scroll-margin-top: var(--altura-nav);
+}
+.comLinha {
+  border-top: 1px solid var(--cor-linha);
+}

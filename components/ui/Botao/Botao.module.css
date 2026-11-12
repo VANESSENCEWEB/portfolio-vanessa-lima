@@ -1,0 +1,108 @@
+/* =========================================================
+   Botao — pílula com borda fina; o fundo vermelho "enche"
+   da esquerda para a direita no hover (mesmo efeito do
+   "Vamos conversar" da Navbar)
+   ========================================================= */
+.botao {
+  position: relative;
+  isolation: isolate; /* o ::before fica atrás do texto, sem vazar */
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px; /* área de toque mínima recomendada no celular */
+  padding: 0.75rem 1.4rem;
+  border: 1px solid var(--cor-linha);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--cor-texto);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+/* Fundo que enche no hover */
+.botao::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--cor-destaque);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.botao:hover::before,
+.botao:focus-visible::before {
+  transform: scaleX(1);
+}
+.botao:hover,
+.botao:focus-visible {
+  border-color: var(--cor-destaque);
+  color: #fff;
+}
+.botao:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Variantes ---------- */
+
+/* Primário: já começa vermelho */
+.primario {
+  border-color: var(--cor-destaque);
+  background: var(--cor-destaque);
+  color: #fff;
+}
+.primario::before {
+  background: var(--cor-texto); /* no hover enche com a cor do texto */
+}
+.primario:hover,
+.primario:focus-visible {
+  color: var(--cor-fundo);
+  border-color: var(--cor-texto);
+}
+
+/* Secundário: só o contorno (é o estilo base) */
+
+/* Fantasma: sem borda, só texto sublinhado no hover */
+.fantasma {
+  border-color: transparent;
+  padding-inline: 0.25rem;
+}
+.fantasma::before {
+  content: none;
+}
+.fantasma:hover,
+.fantasma:focus-visible {
+  border-color: transparent;
+  color: var(--cor-destaque);
+}
+
+/* ---------- Tamanhos ---------- */
+.grande {
+  padding: 1rem 1.9rem;
+  font-size: 1.05rem;
+}
+
+/* ---------- Seta ---------- */
+.seta {
+  color: var(--cor-destaque);
+  transition:
+    transform 0.25s ease,
+    color 0.3s ease;
+}
+.primario .seta,
+.botao:hover .seta,
+.botao:focus-visible .seta {
+  color: inherit;
+}
+.botao:hover .seta {
+  transform: translateX(3px);
+}
