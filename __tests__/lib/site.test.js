@@ -1,7 +1,7 @@
 /* Testes de lib/site.js, lib/jsonLd.js e lib/classes.js */
 import { describe, expect, it } from "vitest";
 import { normalizarUrl, urlCompleta, URL_SITE } from "@/lib/site";
-import { criarJsonLdPessoa, serializarJsonLd } from "@/lib/jsonLd";
+import { criarJsonLdPaginaSobre, criarJsonLdPessoa, serializarJsonLd } from "@/lib/jsonLd";
 import { juntarClasses } from "@/lib/classes";
 import { PESSOA } from "@/data/perfil";
 
@@ -32,6 +32,14 @@ describe("JSON-LD", () => {
     expect(ficha["@type"]).toBe("Person");
     expect(ficha.name).toBe(PESSOA.nome);
     expect(ficha.sameAs).toEqual([PESSOA.redes.github, PESSOA.redes.linkedin]);
+  });
+
+  it("a página Sobre é uma ProfilePage que aponta para a Person", () => {
+    const ficha = criarJsonLdPaginaSobre();
+    expect(ficha["@type"]).toBe("ProfilePage");
+    expect(ficha.url).toBe(`${URL_SITE}/sobre`);
+    expect(ficha.mainEntity["@type"]).toBe("Person");
+    expect(ficha.mainEntity).not.toHaveProperty("@context"); // só um @context, no topo
   });
 
   it("serializarJsonLd impede fechar a tag </script> (segurança)", () => {
