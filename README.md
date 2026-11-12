@@ -60,6 +60,7 @@ As decisões técnicas, com o porquê de cada uma, estão em [`docs/DECISOES.md`
 - Menu hambúrguer acessível no celular/tablet (fecha com `Esc` e ao trocar de página)
 - Tema **claro/escuro**: segue o sistema, lembra a escolha e não "pisca" ao abrir
 - Rodapé com contato, páginas e redes em todas as páginas
+- Página **Sobre**: bio, foto, habilidades, **todas as tecnologias e módulos usados neste app** (com o papel de cada um e a versão lida do `package.json`) e "como este site foi feito"
 - Página **404** personalizada
 - SEO técnico: `sitemap.xml`, `robots.txt`, imagem de compartilhamento (Open Graph) e JSON-LD
 
@@ -69,18 +70,19 @@ As decisões técnicas, com o porquê de cada uma, estão em [`docs/DECISOES.md`
 
 ## 🛠️ Tecnologias
 
-| Tecnologia                                                                      | Versão | Para quê                                                   |
-| ------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------- |
-| [Next.js](https://nextjs.org/) (App Router)                                     | 16     | Rotas por pasta, metadata/SEO, fontes e imagens otimizadas |
-| [React](https://react.dev/)                                                     | 19     | Componentes e interatividade                               |
-| JavaScript                                                                      | ES2023 | Linguagem do projeto                                       |
-| CSS Modules + variáveis CSS                                                     | —      | Estilos isolados por componente; tema trocando variáveis   |
-| `next/font/google`                                                              | —      | Anton, Caveat Brush e Manrope servidas pelo próprio site   |
-| `next/og`                                                                       | —      | Gera a imagem de compartilhamento a partir de JSX          |
-| [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/) | 5 / 16 | Testes de componentes, dados e SEO                         |
-| [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)                | 9 / 3  | Qualidade e padronização do código                         |
-| [Playwright](https://playwright.dev/)                                           | 1      | Prints desktop + celular do diário (`npm run mockup`)      |
-| [Vercel](https://vercel.com/)                                                   | —      | Hospedagem com deploy automático a cada push               |
+| Tecnologia                                                                      | Versão | Para quê                                                          |
+| ------------------------------------------------------------------------------- | ------ | ----------------------------------------------------------------- |
+| [Next.js](https://nextjs.org/) (App Router)                                     | 16     | Rotas por pasta, metadata/SEO, fontes e imagens otimizadas        |
+| [React](https://react.dev/)                                                     | 19     | Componentes e interatividade                                      |
+| JavaScript                                                                      | ES2023 | Linguagem do projeto                                              |
+| CSS Modules + variáveis CSS                                                     | —      | Estilos isolados por componente; tema trocando variáveis          |
+| `next/font/google`                                                              | —      | Anton, Caveat Brush e Manrope servidas pelo próprio site          |
+| `next/image`                                                                    | —      | Foto da página Sobre em AVIF/WebP no tamanho certo para cada tela |
+| `next/og`                                                                       | —      | Gera a imagem de compartilhamento a partir de JSX                 |
+| [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/) | 5 / 16 | Testes de componentes, dados e SEO                                |
+| [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)                | 9 / 3  | Qualidade e padronização do código                                |
+| [Playwright](https://playwright.dev/)                                           | 1      | Prints desktop + celular do diário (`npm run mockup`)             |
+| [Vercel](https://vercel.com/)                                                   | —      | Hospedagem com deploy automático a cada push                      |
 
 ---
 
@@ -123,9 +125,11 @@ portfolio-vanessa-lima/
 ├── components/
 │   ├── ui/                     → design system (Container, Secao, TituloSecao, Botao, Tag, Card)
 │   ├── Navbar/ · Footer/       → barra de navegação e rodapé
+│   ├── ListaTecnologias/       → lista de tecnologias agrupadas (página Sobre)
 │   ├── EmConstrucao/           → página provisória
 │   └── TemaProvider.jsx        → controle do tema claro/escuro
-├── data/perfil.js              → TODOS os textos do site (e o SEO)
+├── data/perfil.js              → textos gerais do site (e o SEO)
+├── data/sobre.js               → textos e listas da página Sobre
 ├── lib/                        → funções pequenas (tema, endereço do site, JSON-LD, classes)
 ├── __tests__/                  → testes automatizados (espelha as pastas acima)
 ├── docs/                       → DECISOES.md, DIARIO.md e prints em progresso/
@@ -172,21 +176,24 @@ Abra [http://localhost:3000](http://localhost:3000).
 
 Os testes ficam em `__tests__/`, espelhando as pastas do projeto.
 
-| Arquivo                            | O que garante                                                                    |
-| ---------------------------------- | -------------------------------------------------------------------------------- |
-| `components/ui/Botao.test.jsx`     | Vira botão, link interno, link externo seguro ou mailto conforme o `href`        |
-| `components/ui/Card.test.jsx`      | Um link só por cartão, título no nível certo, tags em lista acessível            |
-| `components/ui/Layout.test.jsx`    | Container, TituloSecao (níveis), Secao com `aria-labelledby`, Tag                |
-| `components/Footer.test.jsx`       | Landmark de rodapé, e-mail, links do menu, redes com `noopener noreferrer`, ano  |
-| `components/Navbar.test.jsx`       | Links, página ativa, hambúrguer (`aria-expanded`), `Esc`, fecha ao trocar página |
-| `components/TemaProvider.test.jsx` | Lê, alterna e salva o tema                                                       |
-| `app/not-found.test.jsx`           | 404 com um só `h1` e caminhos de volta                                           |
-| `app/seo.test.js`                  | Sitemap com todas as páginas e endereços completos; robots apontando o sitemap   |
-| `lib/site.test.js`                 | Endereço do site, JSON-LD `Person` e proteção contra `</script>`                 |
-| `data/perfil.test.js`              | Todo link do menu tem página (sem 404) e o SEO tem tamanho bom                   |
+| Arquivo                                | O que garante                                                                                       |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `components/ui/Botao.test.jsx`         | Vira botão, link interno, link externo seguro ou mailto conforme o `href`                           |
+| `components/ui/Card.test.jsx`          | Um link só por cartão, título no nível certo, tags em lista acessível                               |
+| `components/ui/Layout.test.jsx`        | Container, TituloSecao (níveis), Secao com `aria-labelledby`, Tag                                   |
+| `components/Footer.test.jsx`           | Landmark de rodapé, e-mail, links do menu, redes com `noopener noreferrer`, ano                     |
+| `app/sobre.test.jsx`                   | Página Sobre: um só `h1`, foto com `alt`, 4 seções nomeadas, links seguros, JSON-LD `ProfilePage`   |
+| `data/sobre.test.js`                   | **Todo pacote do `package.json` e todo módulo `next/...` importado está explicado na página Sobre** |
+| `components/ListaTecnologias.test.jsx` | Grupos com `h3`, papel de cada item e versão só de quem é pacote                                    |
+| `components/Navbar.test.jsx`           | Links, página ativa, hambúrguer (`aria-expanded`), `Esc`, fecha ao trocar página                    |
+| `components/TemaProvider.test.jsx`     | Lê, alterna e salva o tema                                                                          |
+| `app/not-found.test.jsx`               | 404 com um só `h1` e caminhos de volta                                                              |
+| `app/seo.test.js`                      | Sitemap com todas as páginas e endereços completos; robots apontando o sitemap                      |
+| `lib/site.test.js`                     | Endereço do site, JSON-LD `Person` e proteção contra `</script>`                                    |
+| `data/perfil.test.js`                  | Todo link do menu tem página (sem 404) e o SEO tem tamanho bom                                      |
 
 ```bash
-npm test          # 10 arquivos · 65 testes
+npm test          # 13 arquivos · 102 testes
 npm run coverage  # relatório em coverage/index.html
 ```
 
@@ -197,7 +204,7 @@ npm run coverage  # relatório em coverage/index.html
 | Área               | Como é tratado                                                                                                                                                  |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Acessibilidade** | Teclado, "Pular para o conteúdo", `aria-current`, `aria-expanded`, seções nomeadas, avisos "(abre em nova aba)", área de toque ≥ 44 px                          |
-| **SEO**            | `title.template`, `metadataBase`, `canonical` por página, Open Graph + imagem gerada, `sitemap.xml`, `robots.txt`, JSON-LD `Person`                             |
+| **SEO**            | `title.template`, `metadataBase`, `canonical` por página, Open Graph + imagem gerada, `sitemap.xml`, `robots.txt`, JSON-LD `Person` e `ProfilePage`             |
 | **Segurança**      | Cabeçalhos HTTP (`X-Frame-Options`, `HSTS`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`), sem `X-Powered-By`, `noopener noreferrer`, `.env*` fora do Git |
 | **Desempenho**     | Server Components por padrão, fontes servidas pelo próprio site com `next/font`                                                                                 |
 | **Qualidade**      | ESLint (Next + React Hooks + jsx-a11y), Prettier e testes automatizados                                                                                         |
@@ -217,7 +224,7 @@ Hospedado na **[Vercel](https://vercel.com/)**: a cada `git push` na branch `mai
 - [x] Base visual, Navbar, tema claro/escuro e páginas provisórias
 - [x] Ferramentas: ESLint, Prettier, Vitest e deploy na Vercel
 - [x] Design system, Footer, 404 e SEO técnico
-- [ ] Página **Sobre** (com todas as tecnologias e módulos usados no app)
+- [x] Página **Sobre** (com todas as tecnologias e módulos usados no app)
 - [ ] Páginas **Experiência Acadêmica** e **Experiência Profissional**
 - [ ] Página **Projetos** com a API pública do GitHub
 - [ ] Home completa: hero com vídeo e seções com animação ao rolar

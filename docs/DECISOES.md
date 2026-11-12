@@ -80,3 +80,15 @@ Formato: contexto → decisão → consequência. A mais nova fica no fim.
 ## 14. API pública do GitHub em Projetos (planejado — Dia 5)
 
 - **Por quê:** pública, sem chave obrigatória, mostra os repositórios reais. Token opcional só no servidor (`GITHUB_TOKEN`, nunca `NEXT_PUBLIC_`).
+
+## 15. Página Sobre com a lista de tecnologias "à prova de esquecimento" (11/11)
+
+- **Contexto:** a seção "Tecnologias e módulos usados neste app" é obrigatória e precisa estar completa. Lista escrita à mão fica desatualizada no primeiro `npm install`.
+- **Decisão:** a lista mora em `data/sobre.js` (`TECNOLOGIAS_DO_APP`), com o papel de cada item; a **versão** é lida direto do `package.json` (`versaoDe()`); e o teste `__tests__/data/sobre.test.js` **falha** se algum pacote do `package.json` ou algum módulo `next/...` importado no código não estiver explicado.
+- **Consequência:** instalou um pacote novo (ex.: Playwright, no Dia 7)? O teste avisa e a página continua honesta.
+
+## 16. Foto com `next/image` e JSON-LD `ProfilePage` na Sobre (11/11)
+
+- **Decisão:** a foto usa `next/image` com `sizes` e `priority` (é a maior imagem da tela); a página ganha um JSON-LD `ProfilePage` que reaproveita a ficha `Person` do layout.
+- **Por quê:** a foto chega em AVIF/WebP no tamanho certo para cada tela (melhor LCP) e o Google entende que `/sobre` é a página de perfil da Vanessa.
+- **Acessibilidade:** um só `h1` ("Sobre mim"), seções ligadas aos títulos por `aria-labelledby`, pares rótulo/valor em `<dl>` e passos em `<ol>`.
