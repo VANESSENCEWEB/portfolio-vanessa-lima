@@ -37,3 +37,20 @@ Criei o projeto com o comando oficial do Next.js (`create-next-app`), em JavaScr
 - Segurança: links externos com `rel="noopener noreferrer"`.
 
 ![Navbar no computador e no celular](progresso/2026-11-10-etapa-02-navbar.png)
+
+
+---
+
+## Etapa 3 — Página Sobre (12/11/2026)
+
+**O que fiz:** a página `/sobre` de verdade, no lugar do "Em construção": minha foto, bio, resumo rápido, habilidades e a seção "Tecnologias e módulos usados neste app", com o papel de cada tecnologia e a versão lida do `package.json`. Também escrevi como este site foi feito, em 6 passos.
+
+**O que aprendi:**
+- `next/image`: carrega a foto no tamanho certo para cada tela e em formato leve (AVIF/WebP).
+- Separar conteúdo e layout: os textos ficam em `data/sobre.js`, e a página só os mostra.
+- Um teste que protege a lista: se eu instalar um pacote novo e esquecer de explicá-lo na página, o `npm test` falha.
+- JSON-LD `ProfilePage`: um texto escondido na página que diz ao Google que ela é o meu perfil.
+- HTML com significado: `<dl>` para pares rótulo/valor e `<ol>` para passos em ordem.
+- Segurança: links externos com `rel="noopener noreferrer"` e `<` trocado por `\u003c` no JSON-LD, para ninguém fechar a tag `</script>`.
+
+![Página Sobre no computador e no celular](progresso/2026-11-12-etapa-03-sobre.png)
