@@ -1,94 +1,267 @@
-# Decisões técnicas
+Decisões técnicas
 
-Registro das escolhas importantes do projeto e **por que** foram feitas.
+Registro das escolhas importantes do projeto e por que foram feitas.
 Formato: contexto → decisão → consequência. A mais nova fica no fim.
 
----
 
-## 1. Next.js 16 com App Router, em JavaScript
 
-- **Decisão:** projeto criado com `create-next-app` (Next 16, React 19), sem TypeScript.
-- **Por quê:** cada pasta em `app/` vira um endereço; SEO, fontes e imagens já vêm prontos; deploy direto na Vercel. JavaScript porque estou aprendendo React e quis focar nos conceitos da biblioteca.
-- **Consequência:** sem checagem de tipos. Compensamos com ESLint e testes.
+1. Next.js 16 com App Router, em JavaScript
 
-## 2. CSS Modules + variáveis CSS (sem biblioteca de UI)
 
-- **Decisão:** um `.module.css` por componente; cores, fontes e espaçamentos em variáveis no `globals.css`.
-- **Por quê:** a classe de um componente nunca afeta outro; o tema muda só trocando o atributo `data-tema` no `<html>`; zero dependência extra.
 
-## 3. Textos em `data/perfil.js`
 
-- **Decisão:** todo texto do site (inclusive o SEO) num arquivo só.
-- **Por quê:** conteúdo separado do layout. Um teste garante que todo link do `MENU` tem página.
 
-## 4. Server Components por padrão
+Decisão: projeto criado com create-next-app (Next 16, React 19), sem TypeScript.
 
-- **Decisão:** sem `"use client"`, a não ser em quem tem clique ou estado (Navbar, TemaProvider).
-- **Por quê:** o HTML chega pronto, com menos JavaScript no navegador: mais rápido e melhor para o Google.
 
-## 5. Tema sem "piscar" + `useSyncExternalStore`
 
-- **Decisão:** um script fixo no `<head>` coloca `data-tema` antes da página aparecer; o `TemaProvider` lê esse atributo com `useSyncExternalStore`.
-- **Por quê:** sem "piscada" ao abrir; o atributo do `<html>` é a única fonte da verdade; sem `setState` dentro de `useEffect` (o ESLint do Next 16 aponta como erro).
+Por quê: cada pasta em app/ vira um endereço; SEO, fontes e imagens já vêm prontos; deploy direto na Vercel. JavaScript porque estou aprendendo React e quis focar nos conceitos da biblioteca.
 
-## 6. Fontes com `next/font/google` (10/11)
 
-- **Decisão:** Anton, Caveat Brush e Manrope pelo `next/font/google`, no lugar dos arquivos `.woff2` do projeto antigo.
-- **Por quê:** o Next baixa as fontes no build e serve pelo próprio site: nada de pedido ao Google no navegador da visitante (privacidade) e sem "pulo" do texto.
 
-## 7. ESLint (flat config) + Prettier (10/11)
+Consequência: sem checagem de tipos. Compensamos com ESLint e testes.
 
-- **Decisão:** `eslint-config-next/core-web-vitals` + `eslint-config-prettier`; Prettier com `.prettierrc`.
-- **Por quê:** ESLint acha **erros** (hooks, acessibilidade, imagens); Prettier cuida da **aparência**. ESLint 9 porque os plugins do `eslint-config-next` ainda não suportam o 10.
+2. CSS Modules + variáveis CSS (sem biblioteca de UI)
 
-## 8. Vitest + Testing Library, testes em `__tests__/` (10/11)
 
-- **Decisão:** Vitest com `jsdom`; testes numa pasta própria, espelhando `components/`, `app/`, `lib/` e `data/`.
-- **Por quê:** dentro de `app/` todo arquivo pode virar rota; com os testes separados o código do site fica limpo. A Testing Library testa como uma pessoa usa a tela (pelo nome que o leitor de tela lê).
-- **Exigência:** Node 22.12+ (registrado em `engines`).
 
-## 9. Design system próprio em `components/ui/` (10/11)
 
-- **Decisão:** seis componentes base (Container, Secao, TituloSecao, Botao, Tag, Card), cada um na sua pasta com `.module.css`.
-- **Por quê:** as páginas dos próximos dias montam tudo com as mesmas peças: visual consistente e menos código repetido.
-- **Detalhes:** o `Botao` decide sozinho entre `<button>`, `<Link>` e `<a>` pelo `href` (quem leva a outro lugar é link, quem faz algo é botão). O `Card` inteiro é clicável com **um** link só (o `::after` do link do título cobre o cartão), para o leitor de tela não ouvir vários links repetidos.
 
-## 10. SEO técnico com os arquivos especiais do App Router (10/11)
+Decisão: um .module.css por componente; cores, fontes e espaçamentos em variáveis no globals.css.
 
-- **Decisão:** `metadataBase` + `title.template` no layout; `canonical` em cada página (nunca no layout, senão todas diriam "sou a Home"); `app/sitemap.js` montado a partir do `MENU`; `app/robots.js`; `app/opengraph-image.jsx` gerando a imagem com `next/og`; JSON-LD `Person` no layout.
-- **Por quê:** o Next gera as tags e os arquivos sozinho e eles nunca ficam desatualizados em relação às páginas.
-- **Segurança:** o JSON-LD troca `<` por `<`, para nenhum texto conseguir fechar a tag `</script>`.
-- **Endereço:** `NEXT_PUBLIC_SITE_URL` é opcional; sem ela vale `https://portfolio-vanessa-lima.vercel.app` (`lib/site.js`).
 
-## 11. Ano do rodapé com `"use cache"` (10/11)
 
-- **Contexto:** o `next.config.mjs` vem com `cacheComponents: true`. Nesse modo o build **recusa** `new Date()` direto num componente (a página pronta ficaria "congelada" sem o Next saber).
-- **Decisão:** `lib/ano.js` com a diretiva `"use cache"`; o `Footer` virou `async` e espera o ano.
-- **Consequência:** o build passa e o ano é recalculado de tempos em tempos (vira sozinho em janeiro).
+Por quê: a classe de um componente nunca afeta outro; o tema muda só trocando o atributo data-tema no <html>; zero dependência extra.
 
-## 12. Cabeçalhos de segurança (10/11)
+3. Textos em data/perfil.js
 
-- **Decisão:** `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy` e `Strict-Transport-Security` em todas as rotas; `poweredByHeader: false`.
-- **Por quê:** impedem o site de ser embutido em outro (clickjacking), bloqueiam recursos que ele não usa e não anunciam a tecnologia do servidor.
 
-## 13. Hero completa vai para o Dia 6 (10/11)
 
-- **Contexto:** o projeto recomeçou do zero em 10/11; a Hero do projeto antigo (vídeo, digitação, contador) ainda não foi trazida.
-- **Decisão:** trazer a Hero junto com a Home completa no Dia 6, já usando os componentes base.
-- **Por quê:** o Dia 2 já tinha a recuperação das ferramentas (Prettier, Vitest) além do design system; juntar a Hero com a Home evita mexer duas vezes na mesma página.
 
-## 14. API pública do GitHub em Projetos (planejado — Dia 5)
 
-- **Por quê:** pública, sem chave obrigatória, mostra os repositórios reais. Token opcional só no servidor (`GITHUB_TOKEN`, nunca `NEXT_PUBLIC_`).
+Decisão: todo texto do site (inclusive o SEO) num arquivo só.
 
-## 15. Página Sobre com a lista de tecnologias "à prova de esquecimento" (11/11)
 
-- **Contexto:** a seção "Tecnologias e módulos usados neste app" é obrigatória e precisa estar completa. Lista escrita à mão fica desatualizada no primeiro `npm install`.
-- **Decisão:** a lista mora em `data/sobre.js` (`TECNOLOGIAS_DO_APP`), com o papel de cada item; a **versão** é lida direto do `package.json` (`versaoDe()`); e o teste `__tests__/data/sobre.test.js` **falha** se algum pacote do `package.json` ou algum módulo `next/...` importado no código não estiver explicado.
-- **Consequência:** instalou um pacote novo (ex.: Playwright, no Dia 7)? O teste avisa e a página continua honesta.
 
-## 16. Foto com `next/image` e JSON-LD `ProfilePage` na Sobre (11/11)
+Por quê: conteúdo separado do layout. Um teste garante que todo link do MENU tem página.
 
-- **Decisão:** a foto usa `next/image` com `sizes` e `priority` (é a maior imagem da tela); a página ganha um JSON-LD `ProfilePage` que reaproveita a ficha `Person` do layout.
-- **Por quê:** a foto chega em AVIF/WebP no tamanho certo para cada tela (melhor LCP) e o Google entende que `/sobre` é a página de perfil da Vanessa.
-- **Acessibilidade:** um só `h1` ("Sobre mim"), seções ligadas aos títulos por `aria-labelledby`, pares rótulo/valor em `<dl>` e passos em `<ol>`.
+4. Server Components por padrão
+
+
+
+
+
+Decisão: sem "use client", a não ser em quem tem clique ou estado (Navbar, TemaProvider).
+
+
+
+Por quê: o HTML chega pronto, com menos JavaScript no navegador: mais rápido e melhor para o Google.
+
+5. Tema sem "piscar" + useSyncExternalStore
+
+
+
+
+
+Decisão: um script fixo no <head> coloca data-tema antes da página aparecer; o TemaProvider lê esse atributo com useSyncExternalStore.
+
+
+
+Por quê: sem "piscada" ao abrir; o atributo do <html> é a única fonte da verdade; sem setState dentro de useEffect (o ESLint do Next 16 aponta como erro).
+
+6. Fontes com next/font/google (10/11)
+
+
+
+
+
+Decisão: Anton, Caveat Brush e Manrope pelo next/font/google, no lugar dos arquivos .woff2 do projeto antigo.
+
+
+
+Por quê: o Next baixa as fontes no build e serve pelo próprio site: nada de pedido ao Google no navegador da visitante (privacidade) e sem "pulo" do texto.
+
+7. ESLint (flat config) + Prettier (10/11)
+
+
+
+
+
+Decisão: eslint-config-next/core-web-vitals + eslint-config-prettier; Prettier com .prettierrc.
+
+
+
+Por quê: ESLint acha erros (hooks, acessibilidade, imagens); Prettier cuida da aparência. ESLint 9 porque os plugins do eslint-config-next ainda não suportam o 10.
+
+8. Vitest + Testing Library, testes em __tests__/ (10/11)
+
+
+
+
+
+Decisão: Vitest com jsdom; testes numa pasta própria, espelhando components/, app/, lib/ e data/.
+
+
+
+Por quê: dentro de app/ todo arquivo pode virar rota; com os testes separados o código do site fica limpo. A Testing Library testa como uma pessoa usa a tela (pelo nome que o leitor de tela lê).
+
+
+
+Exigência: Node 22.12+ (registrado em engines).
+
+9. Design system próprio em components/ui/ (10/11)
+
+
+
+
+
+Decisão: seis componentes base (Container, Secao, TituloSecao, Botao, Tag, Card), cada um na sua pasta com .module.css.
+
+
+
+Por quê: as páginas dos próximos dias montam tudo com as mesmas peças: visual consistente e menos código repetido.
+
+
+
+Detalhes: o Botao decide sozinho entre <button>, <Link> e <a> pelo href (quem leva a outro lugar é link, quem faz algo é botão). O Card inteiro é clicável com um link só (o ::after do link do título cobre o cartão), para o leitor de tela não ouvir vários links repetidos.
+
+10. SEO técnico com os arquivos especiais do App Router (10/11)
+
+
+
+
+
+Decisão: metadataBase + title.template no layout; canonical em cada página (nunca no layout, senão todas diriam "sou a Home"); app/sitemap.js montado a partir do MENU; app/robots.js; app/opengraph-image.jsx gerando a imagem com next/og; JSON-LD Person no layout.
+
+
+
+Por quê: o Next gera as tags e os arquivos sozinho e eles nunca ficam desatualizados em relação às páginas.
+
+
+
+Segurança: o JSON-LD troca < por <, para nenhum texto conseguir fechar a tag </script>.
+
+
+
+Endereço: NEXT_PUBLIC_SITE_URL é opcional; sem ela vale https://portfolio-vanessa-lima.vercel.app (lib/site.js).
+
+11. Ano do rodapé com "use cache" (10/11)
+
+
+
+
+
+Contexto: o next.config.mjs vem com cacheComponents: true. Nesse modo o build recusa new Date() direto num componente (a página pronta ficaria "congelada" sem o Next saber).
+
+
+
+Decisão: lib/ano.js com a diretiva "use cache"; o Footer virou async e espera o ano.
+
+
+
+Consequência: o build passa e o ano é recalculado de tempos em tempos (vira sozinho em janeiro).
+
+12. Cabeçalhos de segurança (10/11)
+
+
+
+
+
+Decisão: X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy e Strict-Transport-Security em todas as rotas; poweredByHeader: false.
+
+
+
+Por quê: impedem o site de ser embutido em outro (clickjacking), bloqueiam recursos que ele não usa e não anunciam a tecnologia do servidor.
+
+13. Hero completa vai para o Dia 6 (10/11)
+
+
+
+
+
+Contexto: o projeto recomeçou do zero em 10/11; a Hero do projeto antigo (vídeo, digitação, contador) ainda não foi trazida.
+
+
+
+Decisão: trazer a Hero junto com a Home completa no Dia 6, já usando os componentes base.
+
+
+
+Por quê: o Dia 2 já tinha a recuperação das ferramentas (Prettier, Vitest) além do design system; juntar a Hero com a Home evita mexer duas vezes na mesma página.
+
+14. API pública do GitHub em Projetos (planejado — Dia 5)
+
+
+
+
+
+Por quê: pública, sem chave obrigatória, mostra os repositórios reais. Token opcional só no servidor (GITHUB_TOKEN, nunca NEXT_PUBLIC_).
+
+15. Página Sobre com a lista de tecnologias "à prova de esquecimento" (11/11)
+
+
+
+
+
+Contexto: a seção "Tecnologias e módulos usados neste app" é obrigatória e precisa estar completa. Lista escrita à mão fica desatualizada no primeiro npm install.
+
+
+
+Decisão: a lista mora em data/sobre.js (TECNOLOGIAS_DO_APP), com o papel de cada item; a versão é lida direto do package.json (versaoDe()); e o teste __tests__/data/sobre.test.js falha se algum pacote do package.json ou algum módulo next/... importado no código não estiver explicado.
+
+
+
+Consequência: instalou um pacote novo (ex.: Playwright, no Dia 7)? O teste avisa e a página continua honesta.
+
+16. Foto com next/image e JSON-LD ProfilePage na Sobre (11/11)
+
+
+
+
+
+Decisão: a foto usa next/image com sizes e priority (é a maior imagem da tela); a página ganha um JSON-LD ProfilePage que reaproveita a ficha Person do layout.
+
+
+
+Por quê: a foto chega em AVIF/WebP no tamanho certo para cada tela (melhor LCP) e o Google entende que /sobre é a página de perfil da Vanessa.
+
+
+
+Acessibilidade: um só h1 ("Sobre mim"), seções ligadas aos títulos por aria-labelledby, pares rótulo/valor em <dl> e passos em <ol>.
+
+17. Uma Timeline só para as duas páginas de experiência (12/11)
+
+
+
+
+
+Contexto: Experiência Acadêmica e Profissional mostram o mesmo tipo de informação: período, título, organização, descrição, destaques e tecnologias.
+
+
+
+Decisão: um componente components/Timeline (Server Component) que recebe a lista de data/experiencias.js. HTML em <ol> (a ordem importa), cada item um <article> nomeado pelo seu título (h3). O topo das páginas virou components/CabecalhoPagina (rótulo, h1 e números em <dl>).
+
+
+
+Por quê: um layout, um teste e um lugar para corrigir; as duas páginas ficam iguais por construção. O leitor de tela anuncia "lista, 2 itens" e navega item por item.
+
+
+
+Mobile-first: no celular, linha vertical com bolinhas e tudo empilhado; a partir de 900 px, o período ganha uma coluna própria à esquerda.
+
+18. Dado não confirmado vale PREENCHER, nunca um valor inventado (12/11)
+
+
+
+
+
+Contexto: faltam algumas datas e o cargo na Vanessenceweb. Um portfólio com cargo ou data errados é pior do que sem o campo.
+
+
+
+Decisão: o marcador PREENCHER (lib/experiencias.js). Campo com ele some no site publicado, mostra um aviso ✏️ no npm run dev e aparece listado no npm test (console.warn, sem quebrar o teste). formatarPeriodo() não inventa período quando falta o início.
+
+
+
+Consequência: dá para publicar hoje sem expor "a preencher" para recrutadores; preencheu o dado, o aviso some sozinho.
+
