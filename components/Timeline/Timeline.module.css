@@ -1,0 +1,152 @@
+ /* =========================================================
+   Timeline — mobile-first
+   Celular: uma linha vertical fina à esquerda, com uma bolinha
+   vermelha em cada item; tudo empilhado.
+   A partir de 900px: o período vai para uma coluna própria à
+   esquerda e o conteúdo fica à direita (visual editorial).
+   ========================================================= */
+.timeline {
+  --recuo: 2rem; /* distância entre a linha e o texto */
+  position: relative;
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  margin: 0;
+  padding: 0 0 0 var(--recuo);
+  list-style: none;
+}
+
+/* A linha vertical */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  left: 5px;
+  width: 1px;
+  background: var(--cor-linha);
+}
+
+.item {
+  position: relative;
+}
+
+/* Bolinha vermelha com um anel da cor do fundo (parece "cortar" a linha) */
+.marcador {
+  position: absolute;
+  top: 0.35rem;
+  left: calc(var(--recuo) * -1);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--cor-destaque);
+  box-shadow: 0 0 0 5px var(--cor-fundo);
+}
+
+.conteudo {
+  display: grid;
+  gap: 1rem;
+}
+
+.quando {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 1.4rem;
+}
+
+.corpo {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.titulo {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  text-wrap: balance;
+  overflow-wrap: break-word; /* nome longo (ex.: VANESSENCEWEB) quebra em vez de vazar no celular */
+}
+
+.organizacao {
+  margin: 0;
+  font-size: clamp(1rem, 1.6vw, 1.1rem);
+  font-weight: 700;
+}
+
+.descricao {
+  margin: 0.3rem 0 0;
+  max-width: 62ch;
+  color: var(--cor-texto-suave);
+  line-height: 1.7;
+}
+
+/* Destaques: lista com um traço vermelho no lugar da bolinha */
+.destaques {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.destaques li {
+  position: relative;
+  max-width: 62ch;
+  padding-left: 1.4rem;
+  line-height: 1.6;
+}
+.destaques li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 0.7rem;
+  height: 1px;
+  background: var(--cor-destaque);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.3rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+}
+
+/* Aviso ✏️ (só aparece no npm run dev) */
+.pendente {
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  border: 1px dashed var(--cor-destaque);
+  border-radius: 10px;
+  color: var(--cor-destaque);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ---------- Computador: período numa coluna à esquerda ---------- */
+@media (min-width: 900px) {
+  .timeline {
+    --recuo: 2.75rem;
+  }
+  .conteudo {
+    grid-template-columns: minmax(9rem, 14rem) 1fr;
+    column-gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+  }
+  .quando {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 0.2rem;
+  }
+}
