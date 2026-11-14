@@ -1,0 +1,68 @@
+{
+  "api-projeto-integrador": {
+    "site": "https://api-projeto-integrador-0e79.onrender.com/",
+    "computador": "/images/projetos/api-projeto-integrador-computador.jpg",
+    "celular": "/images/projetos/api-projeto-integrador-celular.jpg",
+    "data": "2026-11-14"
+  },
+  "facial-harmony-clinic": {
+    "site": "https://facial-harmony-clinic.vercel.app",
+    "computador": "/images/projetos/facial-harmony-clinic-computador.jpg",
+    "celular": "/images/projetos/facial-harmony-clinic-celular.jpg",
+    "data": "2026-11-14"
+  },
+  "isac-conecta": {
+    "site": "https://isac-conecta-pi.vercel.app",
+    "computador": "/images/projetos/isac-conecta-computador.jpg",
+    "celular": "/images/projetos/isac-conecta-celular.jpg",
+    "data": "2026-11-14"
+  },
+  "jogo-dados": {
+    "site": "https://jogo-dados-react.vercel.app",
+    "computador": "/images/projetos/jogo-dados-computador.jpg",
+    "celular": "/images/projetos/jogo-dados-celular.jpg",
+    "data": "2026-11-14"
+  },
+  "jogue-dados": {
+    "site": "https://joga-dados-unicap.vercel.app",
+    "computador": "/images/projetos/jogue-dados-computador.jpg",
+    "celular": "/images/projetos/jogue-dados-celular.jpg",
+    "data": "2026-11-14"
+  },
+  "mini-bio": {
+    "site": "https://mini-bio-gamma.vercel.app/",
+    "computador": "/images/projetos/mini-bio-computador.jpg",
+    "celular": "/images/projetos/mini-bio-celular.jpg",
+    "data": "2026-11-14"
+  },
+  "nasa-explorer": {
+    "site": "https://nasa-explorer-nine-rho.vercel.app",
+    "computador": "/images/projetos/nasa-explorer-computador.jpg",
+    "celular": "/images/projetos/nasa-explorer-celular.jpg",
+    "data": "2026-11-14"
+  },
+  "portfolio-2": {
+    "site": "https://vanessenceweb.github.io/portfolio-2/",
+    "computador": "/images/projetos/portfolio-2-computador.jpg",
+    "celular": "/images/projetos/portfolio-2-celular.jpg",
+    "data": "2026-11-14"
+  },
+  "portfolio-vanessa-lima": {
+    "site": "https://portfolio-vanessa-lima.vercel.app",
+    "computador": "/images/projetos/portfolio-vanessa-lima-computador.jpg",
+    "celular": "/images/projetos/portfolio-vanessa-lima-celular.jpg",
+    "data": "2026-11-14"
+  },
+  "react": {
+    "site": "https://react-iota-virid.vercel.app",
+    "computador": "/images/projetos/react-computador.jpg",
+    "celular": "/images/projetos/react-celular.jpg",
+    "data": "2026-11-14"
+  },
+  "recife-flats-temporada": {
+    "site": "https://vanessenceweb.github.io/recife-flats-temporada/",
+    "computador": "/images/projetos/recife-flats-temporada-computador.jpg",
+    "celular": "/images/projetos/recife-flats-temporada-celular.jpg",
+    "data": "2026-11-14"
+  }
+}
