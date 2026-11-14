@@ -114,5 +114,6 @@ export const GITHUB = {
   usuario: "VANESSENCEWEB",
   perfil: PESSOA.redes.github,
   limite: 12,
+  exigirDescricao: true, // só aparece repositório com descrição no GitHub
   excluir: [...EXCLUIR_SEMPRE, ...DESTAQUES.map((p) => p.repositorio).filter(Boolean)],
 };

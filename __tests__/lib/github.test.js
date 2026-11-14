@@ -98,3 +98,15 @@ describe("chaveDe", () => {
     expect(chaveDe(nome)).toBe(esperado);
   });
 });
+
+describe("filtrarRepositorios com exigirDescricao", () => {
+  it("tira repositório sem descrição (ou só com espaços) quando pedido", () => {
+    const lista = [repo("com"), repo("sem", { description: null }), repo("espacos", { description: "   " })];
+    expect(filtrarRepositorios(lista, { exigirDescricao: true }).map((r) => r.nome)).toEqual(["com"]);
+  });
+
+  it("sem a opção, mantém todos (comportamento padrão)", () => {
+    const lista = [repo("com"), repo("sem", { description: null })];
+    expect(filtrarRepositorios(lista)).toHaveLength(2);
+  });
+});

@@ -54,6 +54,7 @@ async function repositoriosComSite() {
   const repos = filtrarRepositorios(await resposta.json(), {
     excluir: GITHUB.excluir,
     limite: GITHUB.limite,
+    exigirDescricao: GITHUB.exigirDescricao,
   });
   return repos.filter((r) => r.site).map((r) => ({ chave: r.chave, site: r.site }));
 }
