@@ -49,6 +49,34 @@
   vertical-align: 0.08em;
 }
 
+/* Hover: contorno "neon" na cor da família
+   - box-shadow em 2 camadas: anel fino (o stroke) + brilho espalhado
+   - só em aparelho com mouse (@media hover): no celular não existe hover
+   - o cursor continua normal: a Tag não é clicável, não pode parecer botão */
+.tag[data-familia] {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.25s ease;
+}
+
+@media (hover: hover) {
+  .tag[data-familia]:hover {
+    border-color: var(--cor-familia);
+    color: var(--cor-texto);
+    box-shadow:
+      0 0 0 1px var(--cor-familia),
+      0 0 12px color-mix(in srgb, var(--cor-familia) 55%, transparent);
+  }
+}
+
+/* Quem prefere menos movimento: o brilho aparece na hora, sem transição */
+@media (prefers-reduced-motion: reduce) {
+  .tag[data-familia] {
+    transition: none;
+  }
+}
+
 .destaque {
   border-color: var(--cor-destaque);
   color: var(--cor-destaque);
