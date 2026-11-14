@@ -15,6 +15,14 @@ Portfólio profissional feito com Next.js e React: do esboço no Figma ao site n
 [![Prettier](https://img.shields.io/badge/código-Prettier-F7B93E?logo=prettier&logoColor=black)](https://prettier.io/)
 [![Vercel](https://img.shields.io/badge/deploy-Vercel-000000?logo=vercel&logoColor=white)](https://portfolio-vanessa-lima.vercel.app)
 
+<br />
+
+<a href="https://portfolio-vanessa-lima.vercel.app">
+  <img src="docs/demo-inicio.gif" width="100%" alt="Página Início do portfólio: a Hero com a palavra PORTFÓLIO gigante, o vídeo da Vanessa e a troca entre os temas claro e escuro" />
+</a>
+
+<br />
+
 🔗 **[Ver o site no ar](https://portfolio-vanessa-lima.vercel.app)** · [GitHub](https://github.com/VANESSENCEWEB) · [LinkedIn](https://www.linkedin.com/in/vanessa-lima-dev/)
 
 </div>
