@@ -90,7 +90,8 @@
   line-height: 1;
   text-align: center;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--cor-texto) 35%, transparent);
+  /* cinza padrão do texto: passa no contraste (o mais clarinho dava 2,2:1) */
+  color: var(--cor-texto-suave);
 }
 
 /* No hover do cartão, os aparelhos se afastam um pouquinho */

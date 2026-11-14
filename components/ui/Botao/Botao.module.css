@@ -34,7 +34,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--cor-destaque);
+  background: var(--cor-botao); /* texto branco por cima: ver --cor-botao no globals.css */
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
@@ -56,8 +56,8 @@
 
 /* Primário: já começa vermelho */
 .primario {
-  border-color: var(--cor-destaque);
-  background: var(--cor-destaque);
+  border-color: var(--cor-botao);
+  background: var(--cor-botao);
   color: #fff;
 }
 .primario::before {

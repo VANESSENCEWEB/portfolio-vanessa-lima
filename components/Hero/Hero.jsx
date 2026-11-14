@@ -38,7 +38,7 @@ function PalavraGigante() {
 function Esquerda() {
   return (
     <div className={styles.esquerda}>
-      <h1 className={`${styles.nome} ${styles.anima}`} style={atraso(0.5)}>
+      <h1 className={`${styles.nome} ${styles.anima}`} style={atraso(0.1)}>
         <span className={styles.ola}>
           {HERO.saudacao}{" "}
           {/* aria-hidden: o leitor de tela lê só "Olá, eu sou Vanessa" (sem "mão acenando" no meio) */}

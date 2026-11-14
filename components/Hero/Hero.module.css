@@ -164,7 +164,7 @@
   align-items: center;
   gap: 1.6rem;
   padding: 1rem 1.6rem;
-  background: var(--cor-destaque);
+  background: var(--cor-botao); /* texto branco por cima: ver --cor-botao no globals.css */
   color: #fff;
   font-weight: 700;
   font-size: 0.95rem;
@@ -176,7 +176,7 @@
 .botao:hover,
 .botao:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px -10px var(--cor-destaque);
+  box-shadow: 0 10px 30px -10px var(--cor-botao);
 }
 .botao:active {
   transform: translateY(0) scale(0.97);
@@ -428,11 +428,23 @@
   animation: subir 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
   animation-delay: var(--atraso, 0s);
 }
+/* O nome entra JÁ VISÍVEL (só desliza) e começa logo: é a primeira
+   coisa que a pessoa lê. Obs.: no Lighthouse isso não mudou o LCP
+   (~3,2 s no celular simulado); o que pesa lá são fontes e JS. */
+.nome.anima {
+  opacity: 1;
+  animation-name: deslizar;
+}
 .foto.anima {
   transform: translateY(40px) scale(0.97);
   animation-duration: 1.2s;
 }
 
+@keyframes deslizar {
+  to {
+    transform: translateY(0);
+  }
+}
 @keyframes subir {
   to {
     opacity: 1;

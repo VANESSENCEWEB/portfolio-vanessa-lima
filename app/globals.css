@@ -14,7 +14,10 @@
    Tema escuro é o padrão. Para mudar a cor de destaque do
    site inteiro, troque só --cor-destaque. */
 :root {
-  --cor-destaque: #e8462b;
+  --cor-destaque: #e8462b; /* texto e detalhes: 5,0:1 no fundo escuro */
+  /* Fundo de botão com texto BRANCO por cima: um tom mais fechado,
+     para o branco passar no contraste (5,2:1). WCAG 1.4.3 pede 4,5:1. */
+  --cor-botao: #c8391f;
   --cor-online: #2fd06b;
   --cor-fundo: #0b0b0e;
   --cor-texto: #f4efe9;
@@ -49,6 +52,10 @@
 
 /* Tema claro: só sobrescreve o que muda */
 [data-tema="claro"] {
+  /* No creme, o #e8462b dava só 3,4:1 em texto pequeno (Lighthouse).
+     #c0361d dá 4,8:1 no creme e 5,5:1 com texto branco por cima. */
+  --cor-destaque: #c0361d;
+  --cor-botao: #c0361d;
   --cor-fundo: #f3eee7;
   --cor-texto: #16130f;
   --cor-texto-suave: #6d665e;
@@ -156,7 +163,7 @@ button {
   top: -100px;
   z-index: 100;
   padding: 0.6rem 1rem;
-  background: var(--cor-destaque);
+  background: var(--cor-botao);
   color: #fff;
   font-weight: 700;
   text-decoration: none;
