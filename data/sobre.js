@@ -172,7 +172,8 @@ export const TECNOLOGIAS_DO_APP = [
       },
       {
         nome: "next/image",
-        papel: "A foto da página Sobre: formato leve (AVIF/WebP) e tamanho certo para cada tela.",
+        papel:
+          "A foto da página Sobre e os prints dos projetos: formato leve (AVIF/WebP) e tamanho certo para cada tela.",
       },
       {
         nome: "next/font/google",
@@ -299,7 +300,8 @@ export const TECNOLOGIAS_DO_APP = [
       {
         nome: "Playwright",
         pacote: "playwright",
-        papel: "Abre o site num navegador invisível e gera os prints do diário (npm run mockup).",
+        papel:
+          "Abre sites num navegador invisível e tira os prints do diário (npm run mockup) e dos cartões de projeto (npm run prints).",
       },
       { nome: "Git + GitHub", papel: "Histórico do código com Conventional Commits e repositório público." },
       { nome: "Vercel", papel: "Hospedagem: cada push na main publica o site sozinho." },

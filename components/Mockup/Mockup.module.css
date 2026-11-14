@@ -1,0 +1,110 @@
+/* =========================================================
+   Mockup — janela (computador) + celular por cima
+   ---------------------------------------------------------
+   Tudo em % da largura da "cena": funciona em qualquer
+   tamanho de cartão, do celular ao computador.
+   ========================================================= */
+.cena {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  margin-bottom: 0.4rem;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--cor-texto) 6%, transparent);
+  overflow: hidden;
+}
+
+/* Janela de navegador: canto superior esquerdo, 84% da largura */
+.janela {
+  position: absolute;
+  top: 8%;
+  left: 5%;
+  width: 84%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--cor-fundo);
+  box-shadow: 0 14px 30px color-mix(in srgb, #000 22%, transparent);
+  transition: transform 0.4s ease;
+}
+
+.barra {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 18px;
+  padding: 0 9px;
+  background: color-mix(in srgb, var(--cor-texto) 10%, var(--cor-fundo));
+}
+.barra span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--cor-texto) 30%, transparent);
+}
+
+/* Mesma proporção do print de computador (1440 x 900) */
+.telaComputador {
+  position: relative;
+  aspect-ratio: 1440 / 900;
+}
+
+/* Celular: canto inferior direito, por cima da janela */
+.celular {
+  position: absolute;
+  right: 5%;
+  bottom: -14%;
+  width: 24%;
+  padding: 3.5%;
+  border-radius: 18% / 9%;
+  background: #111;
+  box-shadow:
+    0 14px 30px color-mix(in srgb, #000 35%, transparent),
+    inset 0 0 0 1px #3a3833;
+  transition: transform 0.4s ease;
+}
+
+/* Mesma proporção do print de celular (390 x 844) */
+.telaCelular {
+  position: relative;
+  aspect-ratio: 390 / 844;
+  border-radius: 14% / 6.5%;
+  overflow: hidden;
+  background: var(--cor-fundo);
+}
+
+/* O print preenche a tela, alinhado pelo topo (onde fica o começo do site) */
+.imagem {
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Sem print: o nome do projeto no meio da janela */
+.semPrint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 1rem;
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--cor-texto) 35%, transparent);
+}
+
+/* No hover do cartão, os aparelhos se afastam um pouquinho */
+:global(article:hover) .janela {
+  transform: translateY(-3px);
+}
+:global(article:hover) .celular {
+  transform: translateY(-8px);
+}
+
+/* Quem prefere menos movimento não vê a animação */
+@media (prefers-reduced-motion: reduce) {
+  .janela,
+  .celular {
+    transition: none;
+  }
+}

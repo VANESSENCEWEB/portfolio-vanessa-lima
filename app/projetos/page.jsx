@@ -6,12 +6,17 @@
    2. Em destaque: projetos escolhidos à mão (data/projetos.js)
    3. No GitHub: repositórios públicos buscados na API do
       GitHub (lib/github.js), do mais recente para o mais antigo
+   Cada cartão mostra os prints do projeto (computador +
+   celular) com o componente Mockup. Os prints são gerados
+   com npm run prints e listados em data/prints.json.
    Server Component: a busca acontece no SERVIDOR, com cache.
    O navegador recebe o HTML pronto, sem esperar a API.
    ========================================================= */
 import { DESTAQUES, GITHUB } from "@/data/projetos";
+import PRINTS from "@/data/prints.json";
 import { buscarRepositorios } from "@/lib/github";
 import CabecalhoPagina from "@/components/CabecalhoPagina/CabecalhoPagina";
+import Mockup from "@/components/Mockup/Mockup";
 import Botao from "@/components/ui/Botao/Botao";
 import Card from "@/components/ui/Card/Card";
 import Secao from "@/components/ui/Secao/Secao";
@@ -36,7 +41,7 @@ function Destaques() {
       descricao="Os projetos que mais mostram o que eu sei fazer, com o contexto de cada um."
     >
       <ul className={styles.grade}>
-        {DESTAQUES.map(({ id, titulo, contexto, descricao, tags, site, codigo, nota }) => (
+        {DESTAQUES.map(({ id, titulo, contexto, descricao, tags, site, codigo, nota }, i) => (
           <li key={id}>
             {/* O cartão leva ao site; sem site, leva ao código; sem os dois, não é link */}
             <Card
@@ -45,6 +50,7 @@ function Destaques() {
               descricao={descricao}
               tags={tags}
               href={site || codigo || undefined}
+              midia={<Mockup titulo={titulo} prints={PRINTS[id]} prioridade={i < 2} />}
             >
               {site && codigo && (
                 <Botao href={codigo} variante="fantasma" seta>
@@ -81,7 +87,7 @@ async function RepositoriosDoGitHub() {
         </p>
       ) : (
         <ul className={styles.grade}>
-          {repositorios.map(({ id, nome, descricao, linguagem, codigo, site, atualizadoEm }) => (
+          {repositorios.map(({ id, chave, nome, descricao, linguagem, codigo, site, atualizadoEm }) => (
             <li key={id}>
               <Card
                 titulo={nome}
@@ -89,6 +95,7 @@ async function RepositoriosDoGitHub() {
                 descricao={descricao || "Sem descrição no GitHub."}
                 tags={linguagem ? [linguagem] : []}
                 href={codigo}
+                midia={<Mockup titulo={nome} prints={PRINTS[chave]} />}
               >
                 {site && (
                   <Botao href={site} variante="fantasma" seta>

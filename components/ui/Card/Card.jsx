@@ -13,6 +13,7 @@
    - href: para onde o cartão leva (interno "/..." ou externo "https://...")
    - nivelTitulo: 2 a 6 (padrão 3, porque o card fica dentro de uma seção com h2)
    - children: conteúdo extra no fim (ex.: botões)
+   - midia: conteúdo no TOPO do cartão (ex.: <Mockup /> com prints)
    ========================================================= */
 import Link from "next/link";
 import { juntarClasses } from "@/lib/classes";
@@ -46,11 +47,14 @@ export default function Card({
   nivelTitulo = 3,
   className,
   children,
+  midia,
 }) {
   const Titulo = `h${Math.min(Math.max(nivelTitulo, 2), 6)}`;
 
   return (
     <article className={juntarClasses(styles.card, href && styles.clicavel, className)}>
+      {midia}
+
       {rotulo && <p className="rotulo rotulo--suave">{rotulo}</p>}
 
       <Titulo className={styles.titulo}>
