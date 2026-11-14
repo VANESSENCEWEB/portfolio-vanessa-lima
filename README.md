@@ -58,9 +58,14 @@ Portfólio profissional feito com Next.js e React: do esboço no Figma ao site n
 
 ## 📖 Sobre o projeto
 
-Portfólio pessoal da **Vanessa Lima**, estudante de Sistemas para Internet na UNICAP, pensado para **recrutadores de estágio e professores**. Reúne quem eu sou, minha formação, minha experiência e os projetos que desenvolvi, com integração à API do GitHub.
+Este é o meu portfólio: o lugar onde reúno quem eu sou, minha formação, minha experiência e os projetos que desenvolvi. Construí com **Next.js e React**, do esboço no Figma ao site no ar, pensando em **recrutadores de estágio e professores**.
 
-**O problema:** um portfólio de estudante costuma ser uma página bonita, mas sem prova. **A proposta deste:** mostrar o trabalho _e_ o processo — cada tecnologia usada é explicada na página Sobre, cada decisão tem um porquê em [`docs/DECISOES.md`](docs/DECISOES.md), cada etapa tem print em [`docs/DIARIO.md`](docs/DIARIO.md), e 247 testes garantem que o que funciona hoje continua funcionando amanhã.
+Além de mostrar os projetos, o site mostra **como ele foi feito**:
+
+- a página **Sobre** lista cada tecnologia usada e o papel dela no site;
+- as **decisões técnicas**, com o porquê de cada uma, estão em [`docs/DECISOES.md`](docs/DECISOES.md);
+- o **diário** em [`docs/DIARIO.md`](docs/DIARIO.md) tem um print e o que aprendi em cada etapa;
+- **247 testes automatizados** conferem que tudo continua funcionando a cada mudança.
 
 | Item        | Detalhe                                                                        |
 | ----------- | ------------------------------------------------------------------------------ |
@@ -476,14 +481,7 @@ Hospedado na **[Vercel](https://vercel.com/)**: a cada `git push` na branch `mai
 
 ## 🤖 Como a IA foi usada
 
-A IA foi uma ferramenta de trabalho neste projeto, do jeito que um time de desenvolvimento usa hoje — com as decisões e a revisão do meu lado.
-
-| Quem                                    | Papel                                                                                                                                                               |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Vanessa Lima**                        | Produto e conteúdo, design e identidade visual (incluindo a Hero do portfólio anterior), todas as decisões, revisão de cada etapa, testes no navegador e os commits |
-| **Claude** (Anthropic, via Claude Code) | Implementação das páginas e componentes a partir das decisões, testes automatizados, revisão de acessibilidade e SEO, medições com Lighthouse e documentação        |
-
-**Como o trabalho foi organizado:** uma etapa por vez, cada uma registrada no [diário](docs/DIARIO.md) com prints e "o que aprendi", e cada escolha com o porquê em [`DECISOES.md`](docs/DECISOES.md). Todo código passou por `npm test`, `npm run lint` e `npm run build` antes do commit.
+Usei IA (Claude) como apoio na implementação, seguindo as minhas instruções. As decisões foram minhas: estrutura do site, padrões do código e da documentação, design, conteúdo e a edição do vídeo da Hero. Todo código foi revisado, testado e entendido antes do commit.
 
 ---
 
