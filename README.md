@@ -4,15 +4,17 @@
 
 **Desenvolvedora front-end em formação & designer de interfaces · Recife, PE**
 
-Portfólio profissional feito com Next.js e React: do esboço no Figma ao site no ar.
+Portfólio profissional feito com Next.js e React: do esboço no Figma ao site no ar, com testes, acessibilidade e SEO desde o primeiro dia.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES2023-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 [![CSS Modules](https://img.shields.io/badge/CSS-Modules-1572B6?logo=css&logoColor=white)](https://github.com/css-modules/css-modules)
-[![Vitest](https://img.shields.io/badge/testes-Vitest-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev/)
+[![Vitest](https://img.shields.io/badge/testes-247_passando-6E9F18?logo=vitest&logoColor=white)](#-testes)
+[![Playwright](https://img.shields.io/badge/prints-Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 [![ESLint](https://img.shields.io/badge/lint-ESLint-4B32C3?logo=eslint&logoColor=white)](https://eslint.org/)
 [![Prettier](https://img.shields.io/badge/código-Prettier-F7B93E?logo=prettier&logoColor=black)](https://prettier.io/)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-acessibilidade_100-F44B21?logo=lighthouse&logoColor=white)](#-qualidade-acessibilidade-seo-e-segurança)
 [![Vercel](https://img.shields.io/badge/deploy-Vercel-000000?logo=vercel&logoColor=white)](https://portfolio-vanessa-lima.vercel.app)
 
 <br />
@@ -32,70 +34,212 @@ Portfólio profissional feito com Next.js e React: do esboço no Figma ao site n
 ## 📑 Sumário
 
 - [Sobre o projeto](#-sobre-o-projeto)
+- [Telas](#-telas)
 - [Funcionalidades](#-funcionalidades)
 - [Tecnologias](#️-tecnologias)
+- [Arquitetura](#️-arquitetura)
+- [Decisões técnicas](#-decisões-técnicas)
 - [Design system](#-design-system)
 - [Estrutura de pastas](#-estrutura-de-pastas)
 - [Como rodar](#-como-rodar)
 - [Scripts](#-scripts)
 - [Testes](#-testes)
 - [Qualidade, acessibilidade, SEO e segurança](#-qualidade-acessibilidade-seo-e-segurança)
+- [Limitações conhecidas](#️-limitações-conhecidas)
+- [O que este projeto demonstra](#-o-que-este-projeto-demonstra)
 - [Deploy](#-deploy)
 - [Roadmap](#️-roadmap)
-- [Autora](#-autora)
+- [Como a IA foi usada](#-como-a-ia-foi-usada)
+- [Sobre a autora](#-sobre-a-autora)
+- [Créditos](#-créditos)
+- [Licença](#-licença)
 
 ---
 
-## 💡 Sobre o projeto
+## 📖 Sobre o projeto
 
-Portfólio pessoal da **Vanessa Lima**, estudante de Sistemas para Internet na UNICAP, pensado para recrutadores e professores. Reúne quem eu sou, minha formação, minha experiência e os projetos que desenvolvi, com integração à API do GitHub.
+Portfólio pessoal da **Vanessa Lima**, estudante de Sistemas para Internet na UNICAP, pensado para **recrutadores de estágio e professores**. Reúne quem eu sou, minha formação, minha experiência e os projetos que desenvolvi, com integração à API do GitHub.
 
-| Item        | Detalhe                                                                      |
-| ----------- | ---------------------------------------------------------------------------- |
-| **Público** | Recrutadores de estágio e professores                                        |
-| **Páginas** | Início · Sobre · Experiência Acadêmica · Experiência Profissional · Projetos |
-| **Status**  | 🔧 Refinamento final da v1.0.0 (correções, testes e revisão)                 |
+**O problema:** um portfólio de estudante costuma ser uma página bonita, mas sem prova. **A proposta deste:** mostrar o trabalho _e_ o processo — cada tecnologia usada é explicada na página Sobre, cada decisão tem um porquê em [`docs/DECISOES.md`](docs/DECISOES.md), cada etapa tem print em [`docs/DIARIO.md`](docs/DIARIO.md), e 247 testes garantem que o que funciona hoje continua funcionando amanhã.
 
-As decisões técnicas, com o porquê de cada uma, estão em [`docs/DECISOES.md`](docs/DECISOES.md). O diário com prints de cada etapa está em [`docs/DIARIO.md`](docs/DIARIO.md).
+| Item        | Detalhe                                                                        |
+| ----------- | ------------------------------------------------------------------------------ |
+| **Público** | Recrutadores de estágio e professores                                          |
+| **Páginas** | Início · Sobre · Experiência Acadêmica · Experiência Profissional · Projetos   |
+| **Status**  | 🔧 Refinamento final da v1.0.0 (correções, testes e revisão)                   |
+| **No ar**   | [portfolio-vanessa-lima.vercel.app](https://portfolio-vanessa-lima.vercel.app) |
+
+---
+
+## 📸 Telas
+
+A imagem abaixo acompanha o tema do seu GitHub: no modo escuro aparece a Hero com o vídeo; no modo claro, a versão com a foto.
+
+<div align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/progresso/2026-11-14-etapa-06-home-escuro.png" />
+  <source media="(prefers-color-scheme: light)" srcset="docs/progresso/2026-11-14-etapa-06-home-claro.png" />
+  <img src="docs/progresso/2026-11-14-etapa-06-home-claro.png" width="100%" alt="Página Início no computador e no celular" />
+</picture>
+</div>
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="docs/progresso/2026-11-12-etapa-03-sobre.png" alt="Página Sobre no computador e no celular" />
+      <br /><sub><b>Sobre</b> · bio e todas as tecnologias do app</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="docs/progresso/2026-11-13-etapa-04-experiencias.png" alt="Página Experiência Acadêmica no computador e no celular" />
+      <br /><sub><b>Experiências</b> · linha do tempo e certificações</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="docs/progresso/2026-11-14-etapa-05-projetos.png" alt="Página Projetos com cartões em mockup de computador e celular" />
+      <br /><sub><b>Projetos</b> · destaques e API do GitHub</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
 ## ✨ Funcionalidades
 
-**Já no ar**
+**Em todas as páginas**
 
 - Navbar fixa com efeito vidro, link da página atual e ícones do GitHub e LinkedIn
 - Menu hambúrguer acessível no celular/tablet (fecha com `Esc` e ao trocar de página)
 - Tema **claro/escuro**: segue o sistema, lembra a escolha e não "pisca" ao abrir
-- Rodapé com contato, páginas e redes em todas as páginas
-- Página **Início**: Hero com **vídeo de fundo transparente** no tema escuro e foto no tema claro, "PORTFÓLIO" gigante letra por letra, números que contam, botão de pausar a animação e seções que **aparecem ao rolar**
-- Página **Sobre**: bio, foto, habilidades, **todas as tecnologias e módulos usados neste app** (com o papel de cada um e a versão lida do `package.json`) e "como este site foi feito"
-- Páginas **Experiência Acadêmica** e **Experiência Profissional**: linha do tempo, duas residências no Porto Digital, certificações e sites para clientes
-- Página **Projetos**: destaques com **mockup de computador + celular** (prints gerados por script) e lista automática dos repositórios pela **API do GitHub**, com cache
+- Rodapé com contato, páginas e redes
 - **Tags coloridas por área** de tecnologia (inspiradas na Origamid), com brilho no hover
-- Página **404** personalizada
-- SEO técnico: `sitemap.xml`, `robots.txt`, Open Graph e Twitter completos em **todas** as páginas, imagem de compartilhamento e JSON-LD
+- SEO completo: canonical, Open Graph e Twitter com imagem em **todas** as páginas, `sitemap.xml`, `robots.txt` e JSON-LD
+
+**Por página**
+
+| Página           | O que tem                                                                                                                                                                                |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Início**       | Hero com **vídeo de fundo transparente** (tema escuro) ou foto (tema claro), "PORTFÓLIO" gigante letra por letra, números que contam, botão de pausar e seções que **aparecem ao rolar** |
+| **Sobre**        | Bio, foto, habilidades, **todas as tecnologias e módulos usados neste app** (com o papel de cada um e a versão lida do `package.json`) e "como este site foi feito"                      |
+| **Acadêmica**    | Linha do tempo com a graduação e **duas residências** no Porto Digital, e certificações em destaque                                                                                      |
+| **Profissional** | Linha do tempo de trabalho e sites feitos para clientes                                                                                                                                  |
+| **Projetos**     | Destaques com **mockup de computador + celular** (prints gerados por script) e lista automática dos repositórios pela **API do GitHub**, com cache                                       |
+| **404**          | Página personalizada com caminhos de volta                                                                                                                                               |
 
 ---
 
 ## 🛠️ Tecnologias
 
-| Tecnologia                                                                      | Versão | Para quê                                                        |
-| ------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------- |
-| [Next.js](https://nextjs.org/) (App Router)                                     | 16     | Rotas por pasta, metadata/SEO, fontes e imagens otimizadas      |
-| [React](https://react.dev/)                                                     | 19     | Componentes e interatividade                                    |
-| JavaScript                                                                      | ES2023 | Linguagem do projeto                                            |
-| CSS Modules + variáveis CSS                                                     | —      | Estilos isolados por componente; tema trocando variáveis        |
-| `next/font/google`                                                              | —      | Anton, Caveat Brush e Manrope servidas pelo próprio site        |
-| `next/image`                                                                    | —      | Fotos e prints em AVIF/WebP no tamanho certo para cada tela     |
-| `"use cache"` + `cacheLife`                                                     | —      | Guarda a lista do GitHub por algumas horas (Cache Components)   |
-| [API REST do GitHub](https://docs.github.com/rest)                              | —      | Repositórios públicos na página Projetos                        |
-| `<video>` WebM com canal alfa                                                   | —      | Vídeo da Hero com fundo transparente (WebP animado no Safari)   |
-| `next/og`                                                                       | —      | Gera a imagem de compartilhamento a partir de JSX               |
-| [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/) | 5 / 16 | Testes de componentes, dados e SEO                              |
-| [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)                | 9 / 3  | Qualidade e padronização do código                              |
-| [Playwright](https://playwright.dev/)                                           | 1      | Prints do diário (`mockup`) e dos cartões de projeto (`prints`) |
-| [Vercel](https://vercel.com/)                                                   | —      | Hospedagem com deploy automático a cada push                    |
+| Tecnologia                                                                      | Versão | Para quê                                                           |
+| ------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------ |
+| [Next.js](https://nextjs.org/) (App Router, Cache Components)                   | 16     | Rotas por pasta, Server Components, metadata/SEO, fontes e imagens |
+| [React](https://react.dev/)                                                     | 19     | Componentes e interatividade                                       |
+| JavaScript                                                                      | ES2023 | Linguagem do projeto (TypeScript fica para a próxima versão)       |
+| CSS Modules + variáveis CSS                                                     | —      | Estilos isolados por componente; tema trocando variáveis           |
+| `next/font/google`                                                              | —      | Anton, Caveat Brush e Manrope servidas pelo próprio site           |
+| `next/image`                                                                    | —      | Fotos e prints em AVIF/WebP no tamanho certo para cada tela        |
+| `next/og`                                                                       | —      | Gera a imagem de compartilhamento a partir de JSX                  |
+| `"use cache"` + `cacheLife`                                                     | —      | Guarda a lista do GitHub por algumas horas                         |
+| [API REST do GitHub](https://docs.github.com/rest)                              | —      | Repositórios públicos na página Projetos                           |
+| `<video>` WebM com canal alfa                                                   | —      | Vídeo da Hero com fundo transparente (WebP animado no Safari)      |
+| [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/) | 5 / 16 | Testes de componentes, dados, SEO e funções                        |
+| [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)                | 9 / 3  | Qualidade e padronização do código                                 |
+| [Playwright](https://playwright.dev/)                                           | 1      | Prints do diário (`mockup`) e dos cartões de projeto (`prints`)    |
+| [Vercel](https://vercel.com/)                                                   | —      | Hospedagem com deploy automático a cada push                       |
+
+> A lista completa, com o papel de cada pacote e módulo, está na própria [página Sobre](https://portfolio-vanessa-lima.vercel.app/sobre) — e um teste falha se algum pacote novo ficar sem explicação.
+
+---
+
+## 🏗️ Arquitetura
+
+Todo o **conteúdo** fica em `data/`; os **componentes** só desenham; as **páginas** juntam os dois. O que precisa do navegador (vídeo, contador, menu, tema) fica em componentes cliente pequenos — o resto chega pronto em HTML.
+
+```mermaid
+flowchart LR
+  subgraph Conteudo["data/ (textos e listas)"]
+    D1[perfil.js · home.js · sobre.js]
+    D2[experiencias.js · projetos.js]
+    D3[(prints.json)]
+  end
+
+  subgraph Servidor["Servidor (Next.js)"]
+    P[app/*/page.jsx<br/>Server Components]
+    G["lib/github.js<br/>'use cache' + cacheLife"]
+    M[lib/metadados.js<br/>SEO de cada página]
+  end
+
+  subgraph Navegador["Navegador (use client)"]
+    H[HeroMidia · Contador]
+    R[Revelar · Navbar · Tema]
+  end
+
+  API[(API do GitHub)]
+  S[scripts/prints-projetos.mjs<br/>Playwright] -->|prints + lista| D3
+
+  Conteudo --> P
+  M --> P
+  P -->|busca com cache| G --> API
+  P -->|HTML pronto| Navegador
+```
+
+---
+
+## 💡 Decisões técnicas
+
+As 18 primeiras decisões, com contexto e porquê, estão em [`docs/DECISOES.md`](docs/DECISOES.md). As mais importantes:
+
+<details>
+<summary><b>1. Conteúdo em <code>data/</code>, e dado não confirmado vale <code>PREENCHER</code></b></summary>
+
+<br />
+
+Os textos ficam em arquivos de dados (`data/sobre.js`, `data/experiencias.js`...), separados do layout. Quando uma data ou um cargo ainda não foi confirmado, o campo vale `PREENCHER`: o site esconde o campo, o `npm run dev` mostra um aviso ✏️ e o `npm test` lista tudo o que falta. Nada é inventado para "completar" a página.
+
+</details>
+
+<details>
+<summary><b>2. API do GitHub no servidor, com cache e função "pura" separada</b></summary>
+
+<br />
+
+A busca acontece num Server Component com `"use cache"` + `cacheLife("hours")`: a API é chamada poucas vezes (o limite sem token é de 60 pedidos por hora) e a página abre rápido. O filtro (`lib/repositorios.js`) é uma função pura, testada sem internet: tira forks, arquivados, vazios e repositórios sem descrição. Se a API falhar, a página mostra um link para o perfil em vez de quebrar.
+
+</details>
+
+<details>
+<summary><b>3. Mockup em CSS e prints gerados por script</b></summary>
+
+<br />
+
+`npm run prints` abre cada site num navegador invisível (Playwright) e tira dois prints, computador e celular — inclusive esperando a hospedagem gratuita "acordar". A moldura (janela + celular) é CSS, não imagem: se adapta ao cartão e ao tema, e o `next/image` entrega os prints em formato leve.
+
+</details>
+
+<details>
+<summary><b>4. Vídeo com fundo transparente, plano B no Safari e botão de pausar</b></summary>
+
+<br />
+
+O vídeo da Hero é WebM com canal alfa. O Safari (e todo navegador do iPhone) ignora a transparência e pintaria o fundo de preto, então recebe um WebP animado — a escolha fica em `lib/midia.js`, testada com os agentes de cada navegador. Animação com mais de 5 s precisa de um jeito de parar (WCAG 2.2.2): há um botão de pausa, e quem pediu "reduzir movimento" vê a imagem parada. O vídeo só é baixado no tema escuro.
+
+</details>
+
+<details>
+<summary><b>5. Metadados completos por página</b></summary>
+
+<br />
+
+O Next junta os metadados do layout e da página de forma **rasa**: quem escreve `openGraph` na página perde a imagem e o tipo definidos no layout. `lib/metadados.js` monta tudo de uma vez (canonical, Open Graph e Twitter com imagem), e um teste confere as 5 páginas.
+
+</details>
+
+<details>
+<summary><b>6. Contraste medido, não "no olho"</b></summary>
+
+<br />
+
+O vermelho da marca (`#e8462b`) dava 3,4:1 sobre o creme do tema claro — abaixo do mínimo de 4,5:1 para texto pequeno. No tema claro ele virou `#c0361d`, e os fundos de botão com texto branco ganharam a variável `--cor-botao`. Resultado: acessibilidade 100 no Lighthouse nas 5 páginas, nos dois temas.
+
+</details>
 
 ---
 
@@ -127,7 +271,7 @@ import Secao from "@/components/ui/Secao/Secao";
 import Card from "@/components/ui/Card/Card";
 
 <Secao id="destaques" rotulo="Portfólio" titulo="Projetos em destaque">
-  <Card titulo="ISAC Conecta" descricao="..." tags={["React", "Figma"]} href="/projetos" />
+  <Card titulo="ISAC Conecta" descricao="..." tags={["React", "Supabase"]} href="/projetos" />
 </Secao>;
 ```
 
@@ -159,7 +303,7 @@ portfolio-vanessa-lima/
 ├── lib/                        → funções pequenas e testadas (GitHub, metadados, mídia, tecnologias...)
 ├── public/                     → foto, vídeo da Hero e prints dos projetos
 ├── __tests__/                  → testes automatizados (espelha as pastas acima)
-├── docs/                       → DECISOES.md, DIARIO.md e prints em progresso/
+├── docs/                       → DECISOES.md, DIARIO.md, gif do README e prints em progresso/
 └── scripts/                    → mockup.mjs (prints do diário) e prints-projetos.mjs (prints dos cartões)
 ```
 
@@ -178,7 +322,11 @@ npm run dev
 
 Abra [http://localhost:3000](http://localhost:3000).
 
-> 🔒 O projeto **não precisa** de variáveis de ambiente. As opcionais estão explicadas em [`.env.example`](.env.example).
+> [!NOTE]
+> O projeto **não precisa** de variáveis de ambiente. As opcionais (endereço do site e um token do GitHub só de leitura, para mais pedidos à API) estão explicadas em [`.env.example`](.env.example). O token fica só no servidor: nunca use o prefixo `NEXT_PUBLIC_` para ele.
+
+> [!TIP]
+> Mudou o visual de algum projeto? Rode `npm run prints` (ou `npm run prints -- --so jogue-dados` para um só) e faça o commit das imagens novas junto com o `data/prints.json`.
 
 ---
 
@@ -202,7 +350,17 @@ Abra [http://localhost:3000](http://localhost:3000).
 
 ## 🧪 Testes
 
-Os testes ficam em `__tests__/`, espelhando as pastas do projeto.
+Os testes ficam em `__tests__/`, espelhando as pastas do projeto. Nenhum acessa a internet: a API do GitHub é testada com dados de mentira.
+
+```bash
+npm test          # 24 arquivos · 247 testes
+npm run coverage  # relatório em coverage/index.html
+```
+
+<details>
+<summary><b>O que cada arquivo de teste garante</b></summary>
+
+<br />
 
 | Arquivo                                | O que garante                                                                                              |
 | -------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -231,10 +389,7 @@ Os testes ficam em `__tests__/`, espelhando as pastas do projeto.
 | `lib/midia.test.js`                    | Vídeo no Chrome/Firefox, WebP no Safari e iPhone, foto parada com "reduzir movimento"                      |
 | `lib/metadados.test.js`                | As 5 páginas com canonical, Open Graph completo (com imagem) e Twitter com o próprio título                |
 
-```bash
-npm test          # 24 arquivos · 247 testes
-npm run coverage  # relatório em coverage/index.html
-```
+</details>
 
 ---
 
@@ -243,8 +398,8 @@ npm run coverage  # relatório em coverage/index.html
 | Área               | Como é tratado                                                                                                                                                                                                |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Acessibilidade** | Teclado, "Pular para o conteúdo", `aria-current`, `aria-expanded`, seções nomeadas, avisos "(abre em nova aba)", área de toque ≥ 44 px, contraste ≥ 4,5:1 nos dois temas, pausa no vídeo, "reduzir movimento" |
-| **SEO**            | `title.template`, `metadataBase`, `canonical` por página, Open Graph + imagem gerada, `sitemap.xml`, `robots.txt`, JSON-LD `Person` e `ProfilePage`                                                           |
-| **Segurança**      | Cabeçalhos HTTP (`X-Frame-Options`, `HSTS`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`), sem `X-Powered-By`, `noopener noreferrer`, `.env*` fora do Git                                               |
+| **SEO**            | `title.template`, `metadataBase`, canonical, Open Graph e Twitter completos em cada página, imagem gerada, `sitemap.xml`, `robots.txt`, JSON-LD `Person` e `ProfilePage`                                      |
+| **Segurança**      | Cabeçalhos HTTP (`X-Frame-Options`, `HSTS`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`), sem `X-Powered-By`, `noopener noreferrer`, token do GitHub só no servidor, `.env*` fora do Git               |
 | **Desempenho**     | Server Components por padrão, fontes servidas pelo próprio site com `next/font`, lista do GitHub com cache, vídeo só no tema escuro                                                                           |
 | **Qualidade**      | ESLint (Next + React Hooks + jsx-a11y), Prettier e testes automatizados                                                                                                                                       |
 
@@ -259,6 +414,32 @@ npm run coverage  # relatório em coverage/index.html
 | Projetos     | 95–96      | 100            | 100           | 100 |
 
 Sem rolagem lateral em 320, 375, 768, 1024 e 1440 px.
+
+---
+
+## ⚠️ Limitações conhecidas
+
+Coisas que eu sei que ainda não estão como eu quero, e por quê:
+
+- **LCP da Início em ~3,2 s** no celular simulado do Lighthouse (a meta é 2,5 s). Testei sem animações e com imagens mais leves e não mudou: o que pesa são as 3 fontes e o JavaScript na rede lenta simulada.
+- **Sistema Recife Flats sem prints:** é um sistema privado com dados reais de hóspedes. Os prints vão entrar com dados fictícios.
+- **ISAC Conecta com código privado:** o projeto da residência ainda está em andamento. O app está no ar e o código abre depois da entrega final.
+- **Alguns dados ainda marcados como `PREENCHER`** (ano de ingresso na UNICAP e ano das certificações): ficam escondidos no site até serem confirmados.
+- **JavaScript, não TypeScript:** escolha de estudo para esta versão. A migração gradual está no roadmap.
+
+---
+
+## 🎓 O que este projeto demonstra
+
+- ✅ **Next.js 16 de verdade** — App Router, Server Components por padrão, Cache Components com `"use cache"`
+- ✅ **Integração com API** — GitHub REST no servidor, com cache, filtro testado e plano B quando a API falha
+- ✅ **Componentização** — design system próprio reaproveitado em todas as páginas, conteúdo separado do layout
+- ✅ **Acessibilidade medida** — WCAG 2.2 (contraste, pausa de animação, teclado, leitor de tela), Lighthouse 100
+- ✅ **SEO técnico** — metadados completos por página, sitemap, robots, Open Graph e JSON-LD
+- ✅ **Testes** — 247 testes com Vitest e Testing Library, incluindo testes que protegem o conteúdo
+- ✅ **Automação** — script com Playwright que gera os prints dos projetos sozinho
+- ✅ **Processo** — commits pequenos no padrão Conventional Commits, decisões documentadas e diário com prints de cada etapa
+- ✅ **Deploy contínuo** — Vercel publicando a cada push na `main`
 
 ---
 
@@ -293,9 +474,67 @@ Hospedado na **[Vercel](https://vercel.com/)**: a cada `git push` na branch `mai
 
 ---
 
-## 👩‍💻 Autora
+## 🤖 Como a IA foi usada
 
-**Vanessa Lima** — desenvolvedora front-end em formação & designer de interfaces
-Sistemas para Internet — UNICAP · Recife, PE
+A IA foi uma ferramenta de trabalho neste projeto, do jeito que um time de desenvolvimento usa hoje — com as decisões e a revisão do meu lado.
 
-[GitHub](https://github.com/VANESSENCEWEB) · [LinkedIn](https://www.linkedin.com/in/vanessa-lima-dev/) · [vanessalimaunicap@gmail.com](mailto:vanessalimaunicap@gmail.com)
+| Quem                                    | Papel                                                                                                                                                               |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Vanessa Lima**                        | Produto e conteúdo, design e identidade visual (incluindo a Hero do portfólio anterior), todas as decisões, revisão de cada etapa, testes no navegador e os commits |
+| **Claude** (Anthropic, via Claude Code) | Implementação das páginas e componentes a partir das decisões, testes automatizados, revisão de acessibilidade e SEO, medições com Lighthouse e documentação        |
+
+**Como o trabalho foi organizado:** uma etapa por vez, cada uma registrada no [diário](docs/DIARIO.md) com prints e "o que aprendi", e cada escolha com o porquê em [`DECISOES.md`](docs/DECISOES.md). Todo código passou por `npm test`, `npm run lint` e `npm run build` antes do commit.
+
+---
+
+## 👩‍💻 Sobre a autora
+
+<table>
+<tr>
+<td width="150" align="center">
+<a href="https://github.com/VANESSENCEWEB">
+<img src="https://github.com/VANESSENCEWEB.png" width="120" alt="Foto de perfil de Vanessa Lima no GitHub" />
+</a>
+</td>
+<td>
+
+**Vanessa Rafaella Carneiro de Lima**
+
+Estudante de Sistemas para Internet na UNICAP (Recife, Pernambuco). Desenvolvedora front-end em formação e designer de interfaces, fundadora da Vanessenceweb. Procuro estágio em front-end.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vanessa-lima-dev/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/VANESSENCEWEB)
+[![E-mail](https://img.shields.io/badge/E--mail-EA4335?style=flat&logo=gmail&logoColor=white)](mailto:vanessalimaunicap@gmail.com)
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🙏 Créditos
+
+- **[Next.js](https://nextjs.org/) e [Vercel](https://vercel.com/)** — framework e hospedagem gratuita com deploy contínuo
+- **[API REST do GitHub](https://docs.github.com/rest)** — lista automática de repositórios
+- **[Google Fonts](https://fonts.google.com/)** — Anton, Caveat Brush e Manrope (licença SIL Open Font)
+- **[Origamid](https://www.origamid.com/)** — inspiração para as cores por área das tags
+- **[Shields.io](https://shields.io/)** — badges deste README
+- **UNICAP** — pelo curso e pela oportunidade de aplicar a teoria na prática
+
+---
+
+## 📄 Licença
+
+O **código** deste projeto está sob a licença MIT — veja [LICENSE](LICENSE).
+
+As **fotos, o vídeo e os textos pessoais** (bio, experiências e descrições dos projetos) são meus e **não** estão incluídos na licença: todos os direitos reservados.
+
+---
+
+<div align="center">
+
+**Se este projeto te inspirou, deixe uma ⭐ no repositório!**
+
+Feito com ❤️ em Recife · Pernambuco · Brasil
+
+</div>
