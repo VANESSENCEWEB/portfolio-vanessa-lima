@@ -36,7 +36,7 @@ export const FOTO = {
 export const BIO = [
   "Sou a Vanessa, desenvolvedora front-end em formação e designer de interfaces em Recife. Estudo Sistemas para Internet na UNICAP e cuido do projeto inteiro: do Figma ao site no ar.",
 
-  "Desenvolvi o sistema interno do Recife Flats Temporada (40 telas, usadas todos os dias pela equipe) e, na Residência em Software e IA (GrowUp · Porto Digital), trabalho no ISAC Conecta, um app que usa IA para organizar os anúncios dos grupos de WhatsApp do bairro. Construí e publiquei a minha versão, com React, Supabase e mais de 200 testes automatizados.",
+  "Desenvolvi o sistema interno do Recife Flats Temporada (40 telas, usadas todos os dias pela equipe) e, na Residência em Software e IA (GrowUp · Porto Digital), trabalho no ISAC Conecta, um app que usa IA para organizar os anúncios dos grupos de WhatsApp do bairro. Construí e publiquei a minha versão, com React, Supabase e mais de 100 testes automatizados.",
 
   "Procuro estágio ou vaga júnior em front-end em Recife, presencial ou híbrido.",
 ];
@@ -140,7 +140,8 @@ export const TECNOLOGIAS_DO_APP = [
       },
       {
         nome: "JavaScript (ES2023)",
-        papel: "Linguagem do projeto inteiro (sem TypeScript, por escolha de estudo).",
+        papel:
+          "Linguagem deste site, por escolha de estudo: aqui pratiquei React em JavaScript puro. TypeScript eu uso em outros projetos.",
       },
       {
         nome: "CSS Modules + variáveis CSS",

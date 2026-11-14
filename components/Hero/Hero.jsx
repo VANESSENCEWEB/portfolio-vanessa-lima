@@ -41,7 +41,8 @@ function Esquerda() {
       <h1 className={`${styles.nome} ${styles.anima}`} style={atraso(0.5)}>
         <span className={styles.ola}>
           {HERO.saudacao}{" "}
-          <span className={styles.aceno} role="img" aria-label="mão acenando">
+          {/* aria-hidden: o leitor de tela lê só "Olá, eu sou Vanessa" (sem "mão acenando" no meio) */}
+          <span className={styles.aceno} aria-hidden="true">
             👋
           </span>
         </span>
