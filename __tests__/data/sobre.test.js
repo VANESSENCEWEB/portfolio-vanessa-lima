@@ -102,6 +102,11 @@ describe("Conteúdo da página Sobre", () => {
     expect(COMO_FOI_FEITO.every((p) => p.titulo && p.texto)).toBe(true);
   });
 
+  it("nenhum grupo de habilidades se repete", () => {
+    const grupos = HABILIDADES.map((h) => h.grupo);
+    expect(new Set(grupos).size).toBe(grupos.length);
+  });
+
   it("os links do projeto usam HTTPS e apontam para o GitHub da Vanessa", () => {
     for (const link of Object.values(LINKS_DO_PROJETO)) {
       expect(link).toMatch(/^https:\/\/github\.com\/VANESSENCEWEB\//);

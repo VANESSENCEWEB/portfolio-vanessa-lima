@@ -106,18 +106,6 @@ export const HABILIDADES = [
     grupo: "Em estudo",
     itens: ["Angular", "Tailwind", "Jest"],
   },
-  {
-    grupo: "Design",
-    itens: ["Figma", "UI Design", "Design Tokens", "Canva"],
-  },
-  {
-    grupo: "Dados e back-end",
-    itens: ["Python", "SQL", "Node.js", "Express", "APIs REST", "Supabase", "Postman/Newman"],
-  },
-  {
-    grupo: "Ferramentas",
-    itens: ["Git", "GitHub", "GitHub Actions", "VS Code", "Vercel", "Netlify", "Render"],
-  },
 ];
 
 /* ---------- 5. TECNOLOGIAS E MÓDULOS USADOS NESTE APP ----------
