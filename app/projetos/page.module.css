@@ -1,0 +1,30 @@
+/* Página Projetos — mobile-first (mesmo padrão da Experiência Profissional) */
+
+/* Cartões: 1 coluna no celular, quantas couberem no computador */
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  margin: 0 0 2.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+/* Aviso curto dentro do cartão (ex.: "código privado") */
+.nota {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+
+/* Mensagem quando a API do GitHub não responde */
+.aviso {
+  margin: 0 0 2rem;
+  max-width: 60ch;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
