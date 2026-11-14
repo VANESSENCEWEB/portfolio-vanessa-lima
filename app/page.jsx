@@ -1,37 +1,79 @@
 /* =========================================================
    app/page.jsx — página INÍCIO (endereço "/")
    ---------------------------------------------------------
-   Página PROVISÓRIA da Etapa 1: só serve para conferir se as
-   cores e as 3 fontes estão funcionando. Na próxima etapa
-   entram a Navbar e a Hero no lugar dela.
+   Seções, de cima para baixo:
+   1. Hero: a primeira tela, com o vídeo (components/Hero)
+   2. Projetos em destaque: os 3 primeiros de data/projetos.js,
+      com os prints (o mesmo cartão da página Projetos)
+   3. Navegue pelo portfólio: um cartão para cada página
+   As seções 2 e 3 sobem e aparecem ao rolar (<Revelar>).
+   Server Component: só o vídeo, o contador e o Revelar rodam
+   no navegador.
    ========================================================= */
+import { ATALHOS } from "@/data/home";
+import { DESTAQUES } from "@/data/projetos";
+import PRINTS from "@/data/prints.json";
+import Hero from "@/components/Hero/Hero";
+import Mockup from "@/components/Mockup/Mockup";
+import Revelar from "@/components/Revelar/Revelar";
+import Botao from "@/components/ui/Botao/Botao";
+import Card from "@/components/ui/Card/Card";
+import Secao from "@/components/ui/Secao/Secao";
+import styles from "./page.module.css";
 
-// "style" direto no elemento só para este teste rápido.
-// No site de verdade, cada componente terá seu arquivo .module.css.
-const caixa = { padding: "4rem var(--margem)", display: "grid", gap: "1.5rem" };
+/* Quantos destaques mostrar na Início (o resto fica em /projetos) */
+const DESTAQUES_NA_HOME = 3;
 
-export default function Home() {
+export default function Inicio() {
   return (
-    <section style={caixa}>
-      <p className="rotulo rotulo--destaque">Etapa 1 · Base visual</p>
+    <>
+      <Hero />
 
-      {/* Fonte de título (Anton) */}
-      <h1 style={{ margin: 0, fontFamily: "var(--display)", fontSize: "clamp(3rem, 10vw, 8rem)", fontWeight: 400 }}>
-        VANESSA<span style={{ color: "var(--cor-destaque)" }}>.</span>
-      </h1>
+      <Revelar>
+        <Secao
+          id="destaques"
+          rotulo="Portfólio"
+          titulo="Projetos em destaque"
+          descricao="Uma amostra do que eu construo. Os outros estão na página Projetos."
+        >
+          <ul className={styles.grade}>
+            {DESTAQUES.slice(0, DESTAQUES_NA_HOME).map((p) => (
+              <li key={p.id}>
+                <Card
+                  titulo={p.titulo}
+                  rotulo={p.contexto}
+                  descricao={p.descricao}
+                  tags={p.tags}
+                  href={p.site || p.codigo || undefined}
+                  midia={<Mockup titulo={p.titulo} prints={PRINTS[p.id]} />}
+                >
+                  {p.nota && <p className={styles.nota}>{p.nota}</p>}
+                </Card>
+              </li>
+            ))}
+          </ul>
+          <Botao href="/projetos" seta>
+            Ver todos os projetos
+          </Botao>
+        </Secao>
+      </Revelar>
 
-      {/* Fonte manuscrita (Caveat Brush) */}
-      <p style={{ margin: 0, fontFamily: "var(--script)", fontSize: "2.5rem" }}>Olá, eu sou Vanessa Lima</p>
-
-      {/* Fonte de texto (Manrope) */}
-      <p style={{ margin: 0, maxWidth: "40ch", color: "var(--cor-texto-suave)", lineHeight: 1.6 }}>
-        START NOW - SEGUNDA, 09 DE NOVEMBRO DE 20226
-      </p>
-
-      <p className="rotulo rotulo--suave" style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-        <span className="online" aria-hidden="true" />
-        Disponível para estágio
-      </p>
-    </section>
+      <Revelar>
+        <Secao
+          id="navegue"
+          rotulo="Mapa do site"
+          titulo="Navegue pelo portfólio"
+          descricao="Cada página conta uma parte da minha trajetória."
+        >
+          <ul className={styles.grade}>
+            {ATALHOS.map(({ href, titulo, descricao }) => (
+              <li key={href}>
+                <Card titulo={titulo} descricao={descricao} href={href} />
+              </li>
+            ))}
+          </ul>
+        </Secao>
+      </Revelar>
+    </>
   );
 }

@@ -1,0 +1,17 @@
+/* Página Início — seções abaixo da Hero (mobile-first) */
+
+.grade {
+  display: grid;
+  /* auto-fit: os cartões ocupam a largura toda (sem coluna vazia no fim) */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  margin: 0 0 2.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.nota {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}

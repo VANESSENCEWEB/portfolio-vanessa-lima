@@ -194,7 +194,8 @@ export const TECNOLOGIAS_DO_APP = [
     itens: [
       {
         nome: "useSyncExternalStore",
-        papel: "Lê o tema do <html> e avisa o React quando ele muda (uma só fonte da verdade).",
+        papel:
+          "Lê de fora do React o tema do <html>, a preferência de movimento e o navegador (para escolher o vídeo da Hero).",
       },
       {
         nome: "createContext + useContext",
@@ -206,6 +207,23 @@ export const TECNOLOGIAS_DO_APP = [
       },
       { nome: "useCallback", papel: "Mantém a mesma função alternarTema entre uma renderização e outra." },
       { nome: "localStorage", papel: "Lembra o tema escolhido para a próxima visita." },
+      {
+        nome: "useRef",
+        papel: "Guarda o elemento do Revelar para o IntersectionObserver observar.",
+      },
+      {
+        nome: "<video> com fundo transparente",
+        papel:
+          "O vídeo da Hero (WebM com canal alfa); no Safari, que não mostra a transparência, entra um WebP animado.",
+      },
+      {
+        nome: "IntersectionObserver",
+        papel: "Avisa quando uma seção da Início entra na tela, para ela subir e aparecer (uma vez só).",
+      },
+      {
+        nome: "requestAnimationFrame",
+        papel: "Faz os números da Hero contarem de 0 até o valor no ritmo da tela.",
+      },
       {
         nome: "matchMedia",
         papel: "Descobre se o aparelho está no modo claro ou escuro na primeira visita.",
