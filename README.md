@@ -46,7 +46,7 @@ Portfólio pessoal da **Vanessa Lima**, estudante de Sistemas para Internet na U
 | ----------- | ---------------------------------------------------------------------------- |
 | **Público** | Recrutadores de estágio e professores                                        |
 | **Páginas** | Início · Sobre · Experiência Acadêmica · Experiência Profissional · Projetos |
-| **Status**  | ✅ v1.0.0 concluída — entrega da disciplina em 17/11/2026                    |
+| **Status**  | 🔧 Refinamento final da v1.0.0 (correções, testes e revisão)                 |
 
 As decisões técnicas, com o porquê de cada uma, estão em [`docs/DECISOES.md`](docs/DECISOES.md). O diário com prints de cada etapa está em [`docs/DIARIO.md`](docs/DIARIO.md).
 
@@ -272,7 +272,7 @@ Hospedado na **[Vercel](https://vercel.com/)**: a cada `git push` na branch `mai
 - [x] Página **Projetos** com a API pública do GitHub
 - [x] Home completa: hero com vídeo e seções com animação ao rolar
 - [x] Revisão de acessibilidade e Lighthouse ≥ 90
-- [x] Versão `v1.0.0`
+- [ ] Versão `v1.0.0` (tag: primeira versão finalizada)
 
 **Depois da v1.0.0**
 
