@@ -1,19 +1,22 @@
 /* =========================================================
-   HeroMidia — você na Hero: vídeo, WebP animado ou foto parada
+   HeroMidia — você na Hero
    ---------------------------------------------------------
-   "use client": precisa do navegador para saber qual versão
-   mostrar (lib/midia.js) e para o botão de pausar funcionar.
-   Ordem do que acontece:
-   1. O servidor manda a FOTO PARADA (aparece rápido, funciona
-      sem JavaScript e é o que o Google vê).
-   2. No navegador, escolhe: vídeo, WebP animado ou continua parada.
-   3. O botão pausa/retoma. Regra de acessibilidade (WCAG 2.2.2):
-      animação com mais de 5 s precisa de um jeito de parar.
+   - Tema CLARO  → foto de blusa vinho (parada)
+   - Tema ESCURO → vídeo com fundo transparente (ou WebP
+     animado no Safari, ou foto parada, ver lib/midia.js)
+   "use client": precisa do navegador para escolher a versão
+   do tema escuro e para o botão de pausar funcionar.
+   Sem "piscar" ao abrir: o servidor manda as DUAS imagens
+   paradas e o CSS mostra só a do tema atual (o tema é um
+   atributo no <html>, que o CSS lê antes do React acordar).
+   O vídeo só entra quando o tema é escuro: quem está no tema
+   claro não baixa o vídeo à toa.
+   Acessibilidade (WCAG 2.2.2): animação com mais de 5 s
+   precisa de um botão para pausar.
    Por que useSyncExternalStore (e não useState + useEffect)?
    A preferência de movimento e o navegador são dados de FORA
    do React. Este hook lê esses dados direto, com um valor para
-   o servidor e outro para o navegador, sem renderizar duas
-   vezes à toa (mesmo padrão do TemaProvider).
+   o servidor e outro para o navegador (mesmo padrão do TemaProvider).
    ========================================================= */
 "use client";
 
@@ -21,6 +24,7 @@ import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { MIDIA } from "@/data/home";
 import { escolherModo } from "@/lib/midia";
+import { useTema } from "@/components/TemaProvider";
 import styles from "./Hero.module.css";
 
 const CONSULTA_MOVIMENTO = "(prefers-reduced-motion: reduce)";
@@ -39,44 +43,66 @@ const naoMuda = () => () => {};
 const lerAgente = () => navigator.userAgent;
 const semAgente = () => null;
 
+/* A versão do tema escuro (vídeo, WebP animado ou parada) */
+function MidiaEscura({ modo }) {
+  if (modo === "video") {
+    return (
+      <video
+        className={`${styles.midia} ${styles.midiaEscura}`}
+        src={MIDIA.video}
+        poster={MIDIA.parada}
+        width={MIDIA.largura}
+        height={MIDIA.altura}
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-label={MIDIA.alt}
+      />
+    );
+  }
+  return (
+    <Image
+      className={`${styles.midia} ${styles.midiaEscura}`}
+      src={modo === "animada" ? MIDIA.animada : MIDIA.parada}
+      alt={MIDIA.alt}
+      width={MIDIA.largura}
+      height={MIDIA.altura}
+      priority
+      // unoptimized: o otimizador do Next transformaria o WebP animado em foto parada
+      unoptimized
+    />
+  );
+}
+
 export default function HeroMidia() {
+  const { tema } = useTema(); // null no servidor, "claro" ou "escuro" no navegador
   const [pausado, setPausado] = useState(false);
   const reduzirMovimento = useSyncExternalStore(assinarMovimento, lerMovimento, () => false);
   const agente = useSyncExternalStore(naoMuda, lerAgente, semAgente);
 
-  // No servidor (agente null) sempre a foto parada; no navegador, a função decide
-  const modo = agente === null ? "parada" : escolherModo({ reduzirMovimento, pausado, agente });
+  const escuro = tema !== "claro"; // o escuro é o padrão do site
+  // No servidor (agente null) ou no tema claro: versão parada (nada de vídeo à toa)
+  const modo = agente === null || !escuro ? "parada" : escolherModo({ reduzirMovimento, pausado, agente });
 
   return (
     <figure className={`${styles.foto} ${styles.anima}`} style={{ "--atraso": "0.3s" }}>
-      {modo === "video" ? (
-        <video
-          className={styles.midia}
-          src={MIDIA.video}
-          poster={MIDIA.parada}
-          width={MIDIA.largura}
-          height={MIDIA.altura}
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-label={MIDIA.alt}
-        />
-      ) : (
-        <Image
-          className={styles.midia}
-          src={modo === "animada" ? MIDIA.animada : MIDIA.parada}
-          alt={MIDIA.alt}
-          width={MIDIA.largura}
-          height={MIDIA.altura}
-          priority
-          // unoptimized: o otimizador do Next transformaria o WebP animado em foto parada
-          unoptimized
-        />
-      )}
+      {/* Tema claro: blusa vinho (o CSS esconde no tema escuro) */}
+      <Image
+        className={`${styles.midia} ${styles.midiaClara}`}
+        src={MIDIA.clara.src}
+        alt={MIDIA.clara.alt}
+        width={MIDIA.clara.largura}
+        height={MIDIA.clara.altura}
+        priority
+        sizes="(max-width: 720px) 88vw, 520px"
+      />
 
-      {/* Quem pediu menos movimento não vê o botão (já está tudo parado) */}
-      {!reduzirMovimento && (
+      {/* Tema escuro: vídeo (o CSS esconde no tema claro) */}
+      <MidiaEscura modo={modo} />
+
+      {/* Botão de pausar: só no tema escuro e para quem não pediu menos movimento */}
+      {escuro && !reduzirMovimento && (
         <button
           type="button"
           className={styles.pausar}

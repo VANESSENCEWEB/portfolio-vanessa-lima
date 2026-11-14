@@ -3,11 +3,19 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import Hero from "@/components/Hero/Hero";
+import { TemaProvider } from "@/components/TemaProvider";
 import { HERO, MIDIA } from "@/data/home";
+
+/* A HeroMidia usa o tema (useTema): precisa do TemaProvider em volta */
+const HeroComTema = () => (
+  <TemaProvider>
+    <Hero />
+  </TemaProvider>
+);
 
 describe("Hero", () => {
   it("tem um h1 só, com a saudação e o nome", () => {
-    render(<Hero />);
+    render(<HeroComTema />);
     const titulos = screen.getAllByRole("heading", { level: 1 });
     expect(titulos).toHaveLength(1);
     expect(titulos[0]).toHaveTextContent(HERO.saudacao);
@@ -15,22 +23,23 @@ describe("Hero", () => {
   });
 
   it("a palavra gigante é só enfeite (escondida do leitor de tela)", () => {
-    const { container } = render(<Hero />);
+    const { container } = render(<HeroComTema />);
     const palavra = [...container.querySelectorAll('[aria-hidden="true"]')].find(
       (el) => el.textContent === HERO.palavraGigante,
     );
     expect(palavra).toBeDefined();
   });
 
-  it("mostra você com texto alternativo", () => {
-    render(<Hero />);
-    // Pode ser o vídeo (aria-label) ou a imagem (alt), conforme o navegador
-    const midia = screen.queryByAltText(MIDIA.alt) ?? screen.queryByLabelText(MIDIA.alt);
-    expect(midia).toBeInTheDocument();
+  it("tem as duas versões: a foto do tema claro e a mídia do tema escuro, com texto alternativo", () => {
+    render(<HeroComTema />);
+    expect(screen.getByAltText(MIDIA.clara.alt)).toBeInTheDocument();
+    // Escuro: pode ser o vídeo (aria-label) ou a imagem (alt), conforme o navegador
+    const escura = screen.queryByAltText(MIDIA.alt) ?? screen.queryByLabelText(MIDIA.alt);
+    expect(escura).toBeInTheDocument();
   });
 
   it("o botão de pausar alterna entre pausar e retomar", async () => {
-    render(<Hero />);
+    render(<HeroComTema />);
     const botao = screen.getByRole("button", { name: "Pausar a animação" });
     expect(botao).toHaveAttribute("aria-pressed", "false");
     await userEvent.click(botao);
@@ -41,7 +50,7 @@ describe("Hero", () => {
   });
 
   it("os links levam para a página Projetos", () => {
-    render(<Hero />);
+    render(<HeroComTema />);
     expect(screen.getByRole("link", { name: /Ver projetos/ })).toHaveAttribute("href", "/projetos");
     expect(screen.getByRole("link", { name: /Ver um caso por dentro/ })).toHaveAttribute("href", "/projetos");
   });

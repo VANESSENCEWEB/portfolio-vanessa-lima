@@ -13,6 +13,7 @@
 import { PESSOA } from "@/data/perfil";
 import { CERTIFICACOES } from "@/data/experiencias";
 import PRINTS from "@/data/prints.json";
+import { FOTO } from "@/data/sobre";
 
 /* "87+" → 87 (o contador anima até esse número e põe o "+") */
 const totalCertificacoes = Number.parseInt(CERTIFICACOES.total, 10);
@@ -43,6 +44,8 @@ export const HERO = {
 };
 
 /* ---------- 2. MIDIA ----------
+   Tema CLARO: a foto de blusa vinho (a mesma da página Sobre).
+   Tema ESCURO:
    - video: WebM com fundo TRANSPARENTE (canal alfa)
    - animada: a mesma animação em WebP, para o Safari (que não
      mostra a transparência do WebM e pintaria o fundo de preto)
@@ -56,6 +59,7 @@ export const MIDIA = {
   largura: 640,
   altura: 866,
   alt: "Vanessa Lima, de camiseta preta, com luz vermelha e azul no cabelo",
+  clara: FOTO, // { src, largura, altura, alt }
 };
 
 /* ---------- 3. ATALHOS (cartões abaixo da Hero) ---------- */

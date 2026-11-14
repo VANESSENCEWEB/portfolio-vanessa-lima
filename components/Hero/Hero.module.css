@@ -48,18 +48,17 @@
   z-index: 3;
 }
 
-/* ---------- 2. Palavra gigante (atrás da foto, ACIMA do nome: nunca atrás do texto) ---------- */
+/* ---------- 2. Palavra gigante (atrás da foto e do nome, como no design original) ---------- */
 .palavra {
   position: absolute;
   z-index: 1;
   left: 50%;
-  top: 3.6rem; /* começa abaixo dos rótulos do topo */
+  top: 9%;
   transform: translateX(-50%);
   margin: 0;
   font-family: var(--display);
   font-weight: 400;
-  /* min(): limita pela largura E pela altura da tela, para não descer até o nome */
-  font-size: min(12vw, 24svh);
+  font-size: clamp(5rem, 19vw, 21rem);
   line-height: 0.85;
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -156,10 +155,42 @@
   line-height: 1.65;
 }
 
-/* Botão: brilho que passa SÓ no hover (sem animação infinita competindo com o vídeo) */
+/* Botão retangular "Ver projetos ↓" (design original da Hero).
+   Brilho que passa SÓ no hover (sem animação infinita competindo com o vídeo). */
 .botao {
   position: relative;
   overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 1rem 1.6rem;
+  background: var(--cor-destaque);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.botao:hover,
+.botao:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px var(--cor-destaque);
+}
+.botao:active {
+  transform: translateY(0) scale(0.97);
+}
+.botao:focus-visible {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: 3px;
+}
+/* A seta quica no hover */
+.botaoSeta {
+  display: inline-block;
+}
+.botao:hover .botaoSeta {
+  animation: quicar 0.8s ease-in-out infinite;
 }
 .botao::after {
   content: "";
@@ -193,7 +224,7 @@
   z-index: 2;
   margin: 0;
 }
-/* Luz vermelha e azul atrás de você (mesmas cores do vídeo) */
+/* Luz atrás de você: vermelha e azul no escuro (cores do vídeo), só vermelha no claro */
 .foto::before {
   content: "";
   position: absolute;
@@ -215,7 +246,26 @@
   object-fit: contain;
   object-position: bottom;
   /* esfuma a parte de baixo no fundo do site */
-  /* esfuma a parte de baixo E a borda direita (onde o vídeo corta o notebook) */
+  -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 80%, transparent 100%);
+}
+
+/* Qual aparece: o tema é o atributo data-tema do <html> (escuro é o padrão) */
+.midiaClara {
+  display: none;
+}
+:global([data-tema="claro"]) .midiaClara {
+  display: block;
+}
+:global([data-tema="claro"]) .midiaEscura {
+  display: none;
+}
+:global([data-tema="claro"]) .foto::before {
+  background: radial-gradient(closest-side, var(--brilho-foto), transparent);
+}
+
+/* Vídeo: esfuma também a borda direita (onde o vídeo corta o notebook) */
+.midiaEscura {
   -webkit-mask-image:
     linear-gradient(180deg, #000 80%, transparent 100%), linear-gradient(90deg, #000 82%, transparent 100%);
   -webkit-mask-composite: source-in;
@@ -354,6 +404,15 @@
     color 0.25s,
     transform 0.25s;
 }
+/* Anel "radar" que sai do play */
+.play::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1px solid var(--cor-destaque);
+  border-radius: 50%;
+  animation: radar 2.4s ease-out infinite;
+}
 .caso:hover .play,
 .caso:focus-visible .play {
   background: var(--cor-destaque);
@@ -427,6 +486,25 @@
     transform: rotate(10deg);
   }
 }
+@keyframes quicar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+@keyframes radar {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
 @keyframes girar {
   to {
     transform: rotate(360deg);
@@ -447,8 +525,12 @@
   .nomeBrilho {
     background-position: 100% 0;
   }
-  .botao:hover::after {
+  .botao:hover::after,
+  .botao:hover .botaoSeta {
     animation: none;
+  }
+  .play::after {
+    display: none;
   }
 }
 

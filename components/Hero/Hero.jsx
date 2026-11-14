@@ -14,7 +14,6 @@
    ========================================================= */
 import Link from "next/link";
 import { HERO } from "@/data/home";
-import Botao from "@/components/ui/Botao/Botao";
 import Contador from "./Contador";
 import HeroMidia from "./HeroMidia";
 import styles from "./Hero.module.css";
@@ -62,9 +61,12 @@ function Esquerda() {
       </p>
 
       <div className={styles.anima} style={atraso(0.85)}>
-        <Botao href={HERO.botao.href} tamanho="grande" seta className={styles.botao}>
+        <Link href={HERO.botao.href} className={styles.botao}>
           {HERO.botao.texto}
-        </Botao>
+          <span className={styles.botaoSeta} aria-hidden="true">
+            ↓
+          </span>
+        </Link>
       </div>
 
       <p className={`rotulo rotulo--suave ${styles.local} ${styles.anima}`} style={atraso(0.95)}>
