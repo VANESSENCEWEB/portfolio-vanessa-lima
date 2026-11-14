@@ -1,18 +1,15 @@
 /* =========================================================
    data/sobre.js — textos e listas da página Sobre (/sobre)
    ---------------------------------------------------------
-   Mesmo padrão do data/perfil.js: conteúdo aqui, layout nos
-   componentes. Para mudar um texto da página Sobre, mexa SÓ
-   neste arquivo.
-   Partes:
    1. FOTO      → a imagem da página
-   2. BIO       → seus parágrafos de apresentação
-   3. FATOS     → resumo rápido (formação, residência...)
-   4. HABILIDADES → o que você usa nos seus projetos
+   2. BIO       → parágrafo de apresentação
+   3. FATOS     → resumo rápido
+   4. HABILIDADES → o que uso nos projetos
    5. TECNOLOGIAS_DO_APP → TUDO que este site usa, com o papel
       de cada coisa (um teste confere que nada ficou de fora)
    6. COMO_FOI_FEITO → o processo, passo a passo
    ========================================================= */
+
 import pacote from "@/package.json";
 
 /* ---------- Versão real de um pacote ----------
@@ -26,8 +23,7 @@ export function versaoDe(nome) {
 }
 
 /* ---------- 1. FOTO ----------
-   Copie a foto da pasta antiga (portfolio/public/images/vanessa.webp)
-   para public/images/ deste projeto. Tamanho original: 760 x 1267. */
+(portfolio/public/images/vanessa.webp). Tamanho original: 760 x 1267. */
 export const FOTO = {
   src: "/images/vanessa.webp",
   largura: 760,
@@ -47,13 +43,24 @@ export const BIO = [
 
 /* ---------- 3. FATOS (resumo rápido ao lado da bio) ---------- */
 export const FATOS = [
-  { titulo: "Formação", valor: "Sistemas para Internet · UNICAP (3º período, em andamento)" },
-  { titulo: "Residência", valor: "Porto Digital · RiseUp 2026.1 · projeto ISAC Conecta" },
+  {
+    titulo: "Formação",
+    valor: "Sistemas para Internet · UNICAP (3º período, em andamento)",
+  },
+  {
+    titulo: "Residência atual",
+    valor: "Software e IA · GrowUp / Porto Digital (2026.2) · ISAC Conecta",
+  },
+  { titulo: "Empresa", valor: "Vanessenceweb · sites e sistemas desde 2025" },
   { titulo: "Certificações", valor: "87+ (DIO Campus Expert, Origamid, Rocketseat...)" },
-  { titulo: "Onde estou", valor: "Recife, PE · estágio presencial ou híbrido" },
+  { titulo: "Idiomas", valor: "Português nativo · inglês intermediário" },
+  {
+    titulo: "Onde estou",
+    valor: "Recife, PE · estágio presencial ou híbrido no Porto Digital, ou remoto",
+  },
 ];
 
-/* ---------- 4. HABILIDADES (as do seu portfólio antigo) ---------- */
+/* ---------- 4. HABILIDADES ---------- */
 export const HABILIDADES = [
   {
     grupo: "Front-end",
@@ -64,12 +71,45 @@ export const HABILIDADES = [
       "TypeScript",
       "React",
       "Next.js",
+      "Vite",
       "Design responsivo",
       "GSAP",
       "Three.js",
     ],
   },
   { grupo: "Design", itens: ["Figma", "UI Design", "Design Tokens", "Canva"] },
+  {
+    grupo: "Dados e back-end",
+    itens: [
+      "Node.js",
+      "Express",
+      "APIs REST",
+      "Supabase (Auth, Storage, pg_cron)",
+      "PostgreSQL + RLS",
+      "Migrations SQL",
+      "Edge Functions (Deno)",
+      "Integração com IA (LLM)",
+      "SQL",
+      "Python",
+      "Java",
+    ],
+  },
+  {
+    grupo: "Testes e qualidade",
+    itens: ["Vitest", "Testing Library", "node:test", "Postman/Newman", "ESLint", "Prettier"],
+  },
+  {
+    grupo: "Ferramentas",
+    itens: ["Git", "GitHub", "GitHub Actions", "VS Code", "Vercel", "Cloudflare Pages", "Netlify", "Render"],
+  },
+  {
+    grupo: "Em estudo",
+    itens: ["Angular", "Tailwind", "Jest"],
+  },
+  {
+    grupo: "Design",
+    itens: ["Figma", "UI Design", "Design Tokens", "Canva"],
+  },
   {
     grupo: "Dados e back-end",
     itens: ["Python", "SQL", "Node.js", "Express", "APIs REST", "Supabase", "Postman/Newman"],
@@ -98,12 +138,12 @@ export const TECNOLOGIAS_DO_APP = [
         nome: "Next.js",
         pacote: "next",
         papel:
-          "Framework: cada pasta em app/ vira uma página, monta o HTML no servidor e otimiza fontes e imagens.",
+          "Framework: cada pasta em app/ vira uma página, o HTML é montado no servidor e fontes e imagens já saem otimizadas.",
       },
       {
         nome: "React",
         pacote: "react",
-        papel: "Biblioteca dos componentes: cada parte da tela é uma função.",
+        papel: "Biblioteca dos componentes: cada parte da tela é uma função reaproveitável.",
       },
       {
         nome: "React DOM",
@@ -116,7 +156,8 @@ export const TECNOLOGIAS_DO_APP = [
       },
       {
         nome: "CSS Modules + variáveis CSS",
-        papel: "Um .module.css por componente (classes nunca se misturam) e as cores do tema em variáveis.",
+        papel:
+          "Um .module.css por componente, para as classes nunca se misturarem, e as cores do tema em variáveis.",
       },
     ],
   },
@@ -143,7 +184,19 @@ export const TECNOLOGIAS_DO_APP = [
         papel: "Título, descrição, canonical e Open Graph de cada página, com title.template no layout.",
       },
       { nome: "sitemap.js e robots.js", papel: "Geram /sitemap.xml e /robots.txt a partir do MENU." },
-      { nome: '"use cache"', papel: "Guarda o ano do rodapé no build (exigência do cacheComponents)." },
+      {
+        nome: '"use cache"',
+        papel:
+          "Guarda o ano do rodapé e a lista de repositórios do GitHub, para não refazer o trabalho a cada visita (exigência do cacheComponents).",
+      },
+      {
+        nome: "next/cache",
+        papel: "cacheLife: diz por quanto tempo a lista do GitHub fica guardada (algumas horas).",
+      },
+      {
+        nome: "fetch",
+        papel: "Busca os repositórios públicos na API REST do GitHub, no servidor, para a página Projetos.",
+      },
     ],
   },
   {
@@ -160,7 +213,7 @@ export const TECNOLOGIAS_DO_APP = [
       },
       {
         nome: "useState + useEffect",
-        papel: "Menu do celular: abre, fecha, trava a rolagem e escuta o Esc.",
+        papel: "Menu do celular: abre, fecha, trava a rolagem e escuta a tecla Esc.",
       },
       { nome: "useCallback", papel: "Mantém a mesma função alternarTema entre uma renderização e outra." },
       { nome: "localStorage", papel: "Lembra o tema escolhido para a próxima visita." },
@@ -183,7 +236,7 @@ export const TECNOLOGIAS_DO_APP = [
       {
         nome: "eslint-config-next",
         pacote: "eslint-config-next",
-        papel: "Regras oficiais do Next, React Hooks e acessibilidade (jsx-a11y).",
+        papel: "Regras oficiais do Next, de React Hooks e de acessibilidade (jsx-a11y).",
       },
       {
         nome: "eslint-config-prettier",
@@ -215,7 +268,7 @@ export const TECNOLOGIAS_DO_APP = [
       {
         nome: "jsdom",
         pacote: "jsdom",
-        papel: "Um navegador de mentira para os testes (tem document e window).",
+        papel: "Simula um navegador dentro dos testes (com document e window).",
       },
       {
         nome: "Testing Library (React)",
@@ -264,7 +317,7 @@ export const COMO_FOI_FEITO = [
   {
     titulo: "Base em Next.js",
     texto:
-      "Projeto criado com create-next-app, cores e tema claro/escuro em variáveis CSS, sem piscar ao abrir.",
+      "Projeto criado com create-next-app, com cores e tema claro/escuro em variáveis CSS, sem piscar ao abrir.",
   },
   {
     titulo: "Design system",
@@ -273,7 +326,7 @@ export const COMO_FOI_FEITO = [
   },
   {
     titulo: "Qualidade desde o início",
-    texto: "ESLint, Prettier e testes automatizados com Vitest e Testing Library a cada etapa.",
+    texto: "ESLint, Prettier e testes automatizados com Vitest e Testing Library em cada etapa.",
   },
   {
     titulo: "Acessibilidade, SEO e segurança",
