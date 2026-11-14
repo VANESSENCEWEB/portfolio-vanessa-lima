@@ -13,7 +13,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
-    "mockup": "node scripts/mockup.mjs"
+    "mockup": "node scripts/mockup.mjs",
+    "prints": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/prints-projetos.mjs"
   },
   "dependencies": {
     "next": "16.4.6",

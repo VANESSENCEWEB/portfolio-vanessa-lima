@@ -10,7 +10,10 @@
    ✏️ REGRA: só fatos que estão no README de cada projeto.
    Projeto privado não tem link de código (codigo: null).
    ========================================================= */
-import { PESSOA } from "@/data/perfil";
+/* Import RELATIVO ("./perfil.js") em vez do atalho "@/data/perfil":
+   este arquivo também é lido pelo script de prints, que roda no
+   Node puro, e o Node não conhece o atalho "@/" do Next. */
+import { PESSOA } from "./perfil.js";
 
 /* ---------- 1. DESTAQUES ----------
    Formato de cada item:
@@ -22,7 +25,7 @@ import { PESSOA } from "@/data/perfil";
      tags: [],    // tecnologias principais
      site?,       // link do projeto no ar (ou null)
      codigo?,     // link do repositório (ou null, se for privado)
-     repositorio?,// nome do repo no GitHub: some da lista automática para não repetir
+     repositorio?,// repo do GitHub que este destaque já representa: some da lista automática
      nota?,       // aviso curto (ex.: por que não há link)
    }
    Ordem = ordem na tela. */
@@ -36,6 +39,8 @@ export const DESTAQUES = [
     tags: ["React", "Vite", "Supabase", "PostgreSQL", "Edge Functions", "IA"],
     site: "https://isac-conecta-pi.vercel.app",
     codigo: null,
+    // O repositório público "isac-conecta" (documentação) não repete na lista automática
+    repositorio: "isac-conecta",
     nota: "Código ainda privado: o projeto está em andamento.",
   },
   {
