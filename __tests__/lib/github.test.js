@@ -6,7 +6,7 @@
    formato que a API do GitHub devolve.
    ========================================================= */
 import { describe, expect, it } from "vitest";
-import { filtrarRepositorios, formatarData } from "@/lib/github";
+import { chaveDe, filtrarRepositorios, formatarData } from "@/lib/github";
 
 /* Fábrica de repositório falso: só muda o que o teste precisa */
 function repo(nome, extra = {}) {
@@ -86,5 +86,15 @@ describe("filtrarRepositorios", () => {
   it("resposta estranha da API (não é lista) não quebra: vira lista vazia", () => {
     expect(filtrarRepositorios({ message: "API rate limit exceeded" })).toEqual([]);
     expect(filtrarRepositorios(undefined)).toEqual([]);
+  });
+});
+
+describe("chaveDe", () => {
+  it.each([
+    ["nasa_explorer", "nasa-explorer"],
+    ["Jogo Dados", "jogo-dados"],
+    ["--portfolio-2--", "portfolio-2"],
+  ])("chaveDe(%s) → %s", (nome, esperado) => {
+    expect(chaveDe(nome)).toBe(esperado);
   });
 });
