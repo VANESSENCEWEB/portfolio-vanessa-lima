@@ -19,7 +19,13 @@ import Revelar from "@/components/Revelar/Revelar";
 import Botao from "@/components/ui/Botao/Botao";
 import Card from "@/components/ui/Card/Card";
 import Secao from "@/components/ui/Secao/Secao";
+import { metadadosDaPagina } from "@/lib/metadados";
+import { SEO } from "@/data/perfil";
 import styles from "./page.module.css";
+
+/* SEO da Home: título padrão do site + canonical "/" (o layout não
+   define canonical, senão todas as páginas diriam "eu sou a Home") */
+export const metadata = metadadosDaPagina({ descricao: SEO.descricao, caminho: "/" });
 
 /* Quantos destaques mostrar na Início (o resto fica em /projetos) */
 const DESTAQUES_NA_HOME = 3;

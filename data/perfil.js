@@ -49,14 +49,4 @@ export const SEO = {
   descricao:
     "Portfólio de Vanessa Lima, desenvolvedora front-end e designer de interfaces em Recife. Projetos em React, Next.js e Figma.",
   nomeDoSite: "Vanessa Lima — Portfólio",
-  palavrasChave: [
-    "Vanessa Lima",
-    "desenvolvedora front-end",
-    "portfólio",
-    "React",
-    "Next.js",
-    "Recife",
-    "UNICAP",
-    "estágio front-end",
-  ],
 };

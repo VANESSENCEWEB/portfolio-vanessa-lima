@@ -17,15 +17,15 @@ import Botao from "@/components/ui/Botao/Botao";
 import Card from "@/components/ui/Card/Card";
 import Secao from "@/components/ui/Secao/Secao";
 import styles from "./page.module.css";
+import { metadadosDaPagina } from "@/lib/metadados";
 
-/* SEO da página (o layout completa o título → "Experiência Acadêmica — Vanessa Lima") */
-export const metadata = {
-  title: "Experiência Acadêmica",
-  description:
-    "Formação de Vanessa Lima: Sistemas para Internet na UNICAP, Residência Tecnológica no Porto Digital e 87+ certificações.",
-  alternates: { canonical: "/experiencia-academica" },
-  openGraph: { title: "Experiência Acadêmica — Vanessa Lima", url: "/experiencia-academica" },
-};
+/* SEO da página: metadados completos (lib/metadados.js). O layout completa o título → "Experiência Acadêmica — Vanessa Lima") */
+export const metadata = metadadosDaPagina({
+  titulo: "Experiência Acadêmica",
+  descricao:
+    "Formação de Vanessa Lima: Sistemas para Internet na UNICAP, duas residências no Porto Digital e 87+ certificações.",
+  caminho: "/experiencia-academica",
+});
 
 /* ---------- 3. Certificações ---------- */
 function Certificacoes() {

@@ -16,15 +16,15 @@ import Botao from "@/components/ui/Botao/Botao";
 import Card from "@/components/ui/Card/Card";
 import Secao from "@/components/ui/Secao/Secao";
 import styles from "./page.module.css";
+import { metadadosDaPagina } from "@/lib/metadados";
 
-/* SEO da página (o layout completa o título → "Experiência Profissional — Vanessa Lima") */
-export const metadata = {
-  title: "Experiência Profissional",
-  description:
+/* SEO da página: metadados completos (lib/metadados.js). O layout completa o título → "Experiência Profissional — Vanessa Lima") */
+export const metadata = metadadosDaPagina({
+  titulo: "Experiência Profissional",
+  descricao:
     "Experiência de Vanessa Lima: Vanessenceweb, estúdio de desenvolvimento web com sites para clientes, e o sistema interno do Recife Flats Temporada.",
-  alternates: { canonical: "/experiencia-profissional" },
-  openGraph: { title: "Experiência Profissional — Vanessa Lima", url: "/experiencia-profissional" },
-};
+  caminho: "/experiencia-profissional",
+});
 
 /* ---------- 3. Sites para clientes ---------- */
 function SitesParaClientes() {

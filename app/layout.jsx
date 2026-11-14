@@ -58,7 +58,6 @@ export const metadata = {
     template: SEO.modeloTitulo,
   },
   description: SEO.descricao,
-  keywords: SEO.palavrasChave,
   authors: [{ name: PESSOA.nome, url: URL_SITE }],
   creator: PESSOA.nome,
   openGraph: {

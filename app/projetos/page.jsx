@@ -21,15 +21,15 @@ import Botao from "@/components/ui/Botao/Botao";
 import Card from "@/components/ui/Card/Card";
 import Secao from "@/components/ui/Secao/Secao";
 import styles from "./page.module.css";
+import { metadadosDaPagina } from "@/lib/metadados";
 
-/* SEO da página (o layout completa o título → "Projetos — Vanessa Lima") */
-export const metadata = {
-  title: "Projetos",
-  description:
+/* SEO da página: metadados completos (lib/metadados.js). O layout completa o título → "Projetos — Vanessa Lima") */
+export const metadata = metadadosDaPagina({
+  titulo: "Projetos",
+  descricao:
     "Projetos de Vanessa Lima: ISAC Conecta, Sistema Recife Flats, API REST, NASA Explorer e os repositórios públicos do GitHub.",
-  alternates: { canonical: "/projetos" },
-  openGraph: { title: "Projetos — Vanessa Lima", url: "/projetos" },
-};
+  caminho: "/projetos",
+});
 
 /* ---------- 2. Em destaque ---------- */
 function Destaques() {
@@ -72,6 +72,7 @@ async function RepositoriosDoGitHub() {
   const { repositorios, erro } = await buscarRepositorios(GITHUB.usuario, {
     excluir: GITHUB.excluir,
     limite: GITHUB.limite,
+    exigirDescricao: GITHUB.exigirDescricao,
   });
 
   return (
