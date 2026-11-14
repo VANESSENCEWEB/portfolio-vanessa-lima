@@ -50,32 +50,36 @@ function Esquerda() {
         <span className={styles.ponto}>.</span>
       </h1>
 
-      <p className={`${styles.cargo} ${styles.anima}`} style={atraso(0.65)}>
-        <span className="online" aria-hidden="true" />
-        {HERO.cargo[0]}
-        <br />
-        {HERO.cargo[1]}
-      </p>
+      {/* Bloco do texto: no computador fica embaixo do nome; no celular vira
+          uma coluna ao lado da foto (ver "Celular" no Hero.module.css) */}
+      <div className={styles.esqTexto}>
+        <p className={`${styles.cargo} ${styles.anima}`} style={atraso(0.65)}>
+          <span className="online" aria-hidden="true" />
+          {HERO.cargo[0]}
+          <br />
+          {HERO.cargo[1]}
+        </p>
 
-      <p className={`${styles.descricao} ${styles.anima}`} style={atraso(0.75)}>
-        {HERO.descricao}
-      </p>
+        <p className={`${styles.descricao} ${styles.anima}`} style={atraso(0.75)}>
+          {HERO.descricao}
+        </p>
 
-      <div className={styles.anima} style={atraso(0.85)}>
-        <Link href={HERO.botao.href} className={styles.botao}>
-          {HERO.botao.texto}
-          <span className={styles.botaoSeta} aria-hidden="true">
-            ↓
+        <div className={styles.anima} style={atraso(0.85)}>
+          <Link href={HERO.botao.href} className={styles.botao}>
+            {HERO.botao.texto}
+            <span className={styles.botaoSeta} aria-hidden="true">
+              ↓
+            </span>
+          </Link>
+        </div>
+
+        <p className={`rotulo rotulo--suave ${styles.local} ${styles.anima}`} style={atraso(0.95)}>
+          <span aria-hidden="true" className={styles.alvo}>
+            ⌖
           </span>
-        </Link>
+          {HERO.local}
+        </p>
       </div>
-
-      <p className={`rotulo rotulo--suave ${styles.local} ${styles.anima}`} style={atraso(0.95)}>
-        <span aria-hidden="true" className={styles.alvo}>
-          ⌖
-        </span>
-        {HERO.local}
-      </p>
     </div>
   );
 }
