@@ -1,0 +1,16 @@
+/* Revelar — sobe e aparece ao entrar na tela */
+.revelar {
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) var(--atraso, 0s),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) var(--atraso, 0s);
+}
+.revelar[data-estado="escondido"] {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revelar {
+    transition: none;
+  }
+}
