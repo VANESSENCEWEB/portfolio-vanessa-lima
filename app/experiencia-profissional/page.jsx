@@ -4,7 +4,7 @@
    ---------------------------------------------------------
    Seções, de cima para baixo:
    1. Cabeçalho: título (h1) e descrição
-   2. Onde atuei: linha do tempo (Vanessenceweb e ISAC Conecta)
+   2. Onde atuei: linha do tempo (Vanessenceweb e Recife Flats)
    3. Sites para clientes: cartões com link do site e do código
    Server Component: a página inteira chega pronta em HTML.
    Todos os textos vêm de data/experiencias.js.
@@ -21,7 +21,7 @@ import styles from "./page.module.css";
 export const metadata = {
   title: "Experiência Profissional",
   description:
-    "Experiência de Vanessa Lima: Vanessenceweb, estúdio de desenvolvimento web com sites para clientes, e coordenação e design do ISAC Conecta.",
+    "Experiência de Vanessa Lima: Vanessenceweb, estúdio de desenvolvimento web com sites para clientes, e o sistema interno do Recife Flats Temporada.",
   alternates: { canonical: "/experiencia-profissional" },
   openGraph: { title: "Experiência Profissional — Vanessa Lima", url: "/experiencia-profissional" },
 };
@@ -67,7 +67,7 @@ export default function PaginaExperienciaProfissional() {
         id="profissional"
         rotulo="Trabalho"
         titulo="Experiência Profissional"
-        descricao="Sites para clientes reais pela Vanessenceweb, meu estúdio de desenvolvimento web, e coordenação de equipe e design na residência do Porto Digital."
+        descricao="Sites para clientes reais pela Vanessenceweb, meu estúdio de desenvolvimento web, e o sistema interno que construí para uma empresa de hospedagem em Recife."
       />
 
       <Secao

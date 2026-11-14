@@ -34,26 +34,47 @@ import { PREENCHER } from "@/lib/experiencias";
 /* ---------- 1. Números do topo (página Acadêmica) ---------- */
 export const RESUMO_ACADEMICO = [
   { valor: "3º", rotulo: "período de Sistemas para Internet" },
-  { valor: "2026.1", rotulo: "residência no Porto Digital" },
+  { valor: "2", rotulo: "residências no Porto Digital" },
   { valor: "87+", rotulo: "certificações" },
 ];
 
 /* ---------- 2. Formação (mais recente primeiro) ---------- */
 export const FORMACAO = [
   {
-    id: "residencia-porto-digital",
-    titulo: "Residência Tecnológica",
-    organizacao: "Porto Digital · RiseUp / GrowUp", // ✏️ confira o nome oficial do programa
+    id: "residencia-growup",
+    titulo: "Residência em Software e IA",
+    organizacao: "GrowUp · Porto Digital",
     tipo: "Residência",
+    detalhe: "Projeto integrador: ISAC Conecta",
+    local: "Recife, PE",
+    inicio: "2026.2",
+    fim: null,
+    emAndamento: true,
+    descricao:
+      "No ISAC Conecta, app que usa IA para transformar os anúncios dos grupos de WhatsApp do bairro numa vitrine organizada, entrei cuidando da documentação e da prototipação no Figma e acabei desenvolvendo o app de ponta a ponta.",
+    destaques: [
+      "Banco com regras de acesso (RLS) em todas as tabelas",
+      "Edge Function com IA e plano B por regras quando a IA falha",
+      "Mais de 100 testes automatizados",
+    ],
+    tags: ["React", "Supabase", "PostgreSQL", "IA", "Figma"],
+    links: [{ texto: "Ver o ISAC Conecta no ar", href: "https://isac-conecta-pi.vercel.app" }],
+  },
+  {
+    id: "residencia-riseup",
+    titulo: "Residência RiseUp",
+    organizacao: "UNICAP · Porto Digital · Beyond Co.",
+    tipo: "Residência",
+    detalhe: "Projeto integrador: Miaumigo",
     local: "Recife, PE",
     inicio: "2026.1",
-    fim: null,
+    fim: "2026.1",
     emAndamento: false,
     descricao:
-      "Programa de residência do Porto Digital em que desenvolvi, em equipe, o ISAC Conecta, atuando na coordenação e no design.",
-    destaques: ["Projeto ISAC Conecta selecionado para o CoDay"],
+      "Ideação, prototipação no Figma e desenvolvimento front-end do projeto integrador, o Miaumigo.",
+    destaques: ["Grupo selecionado para o CoDay"],
     tags: ["Figma", "UI Design", "Trabalho em equipe"],
-    links: [], // ✏️ opcional: { texto: "Ver o ISAC Conecta", href: "https://..." }
+    links: [], // ✏️ opcional: { texto: "Ver o Miaumigo", href: "https://..." }
   },
   {
     id: "unicap",
@@ -106,35 +127,40 @@ export const EXPERIENCIA_PROFISSIONAL = [
   {
     id: "vanessenceweb",
     titulo: "Vanessenceweb",
-    cargo: PREENCHER, // ✏️ o seu cargo, ex.: "Fundadora e desenvolvedora web"
+    cargo: "Fundadora e desenvolvedora front-end",
     organizacao: "Estúdio de desenvolvimento web · empresa registrada no Reino Unido",
     tipo: "Empresa própria",
-    inicio: PREENCHER, // ✏️ quando o estúdio começou, ex.: "2024"
+    inicio: "ago/2025",
     fim: null,
     emAndamento: true,
     descricao:
       "Meu estúdio de desenvolvimento web: sites institucionais para clientes reais, do layout no Figma à publicação.",
     destaques: [
-      "Recife Flats: site de flat de temporada com galeria de apartamentos, avaliações de hóspedes e versão mobile",
+      "Recife Flats: site de hospedagem por temporada, com galeria de apartamentos, avaliações de hóspedes e versão mobile",
       "Dra. Priscilla Barros: site de cirurgiã bucomaxilofacial com galeria de resultados, FAQ e agendamento",
     ],
     tags: ["HTML", "CSS", "JavaScript", "Figma", "Design responsivo"],
     links: [], // ✏️ opcional: site do estúdio, se houver
   },
   {
-    id: "isac-conecta",
-    titulo: "ISAC Conecta",
-    cargo: "Coordenação e design",
-    organizacao: "Residência Tecnológica · Porto Digital",
-    tipo: "Projeto em equipe",
-    inicio: "2026.1",
+    id: "recife-flats-sistema",
+    titulo: "Recife Flats Temporada",
+    cargo: "Desenvolvedora do sistema interno",
+    organizacao: "Empresa de hospedagem por temporada · 4 apartamentos",
+    tipo: "Projeto",
+    local: "Recife, PE",
+    inicio: "2024",
     fim: null,
-    emAndamento: false,
+    emAndamento: true,
     descricao:
-      "Projeto desenvolvido em equipe na residência, em que atuei na coordenação do time e no design da interface.",
-    destaques: ["Projeto selecionado para o CoDay"],
-    tags: ["Figma", "UI Design", "Coordenação de equipe"],
-    links: [], // ✏️ opcional: repositório ou protótipo, ex.: { texto: "Ver protótipo", href: "https://..." }
+      "Comecei pela Google Sheets API e reconstruí no Supabase o sistema interno que a equipe usa todos os dias.",
+    destaques: [
+      "40 telas: reservas, caução, limpezas, financeiro e documentos em PDF",
+      "Conferência automática com a Booking (iCal) e com a FNRH, o sistema do governo",
+      "LGPD: documentos dos hóspedes apagados automaticamente após o check-out",
+    ],
+    tags: ["JavaScript", "Supabase", "PostgreSQL", "Edge Functions", "GitHub Actions"],
+    links: [], // sistema privado: o card dele está na página Projetos
   },
 ];
 
@@ -144,7 +170,7 @@ export const PROJETOS_CLIENTES = [
   {
     id: "recife-flats",
     titulo: "Recife Flats",
-    cliente: "Flat de temporada · Recife",
+    cliente: "Hospedagem por temporada · Recife",
     descricao:
       "Site institucional com matching guiado por perguntas, galeria de apartamentos, avaliações de hóspedes e versão mobile.",
     tags: ["HTML", "CSS", "JavaScript", "Responsivo"],

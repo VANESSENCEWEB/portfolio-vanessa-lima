@@ -3,7 +3,7 @@
    (endereço /experiencia-academica)
    ---------------------------------------------------------
    Seções, de cima para baixo:
-   1. Cabeçalho: título (h1), descrição e números (3º, 2026.1, 87+)
+   1. Cabeçalho: título (h1), descrição e números (3º, 2 residências, 87+)
    2. Trajetória: linha do tempo (UNICAP e residência)
    3. Certificações: destaques em cartões + link para todas
    Server Component: a página inteira chega pronta em HTML.
@@ -69,7 +69,7 @@ export default function PaginaExperienciaAcademica() {
         id="academica"
         rotulo="Formação"
         titulo="Experiência Acadêmica"
-        descricao="Minha formação em tecnologia: graduação na UNICAP, residência no Porto Digital e estudo contínuo em cursos e certificações."
+        descricao="Minha formação em tecnologia: graduação na UNICAP, duas residências no Porto Digital e estudo contínuo em cursos e certificações."
         numeros={RESUMO_ACADEMICO}
       />
 

@@ -48,7 +48,7 @@ export const DESTAQUES = [
     titulo: "Sistema Recife Flats",
     contexto: "Sistema interno · em uso todos os dias",
     descricao:
-      "Sistema com 40 telas que substituiu a planilha da minha empresa de hospedagem: reservas, caução, limpezas, financeiro e documentos em PDF, com conferência automática com a Booking e com a FNRH e exclusão automática de documentos (LGPD).",
+      "Sistema com 40 telas que substituiu a planilha de uma empresa de hospedagem por temporada em Recife: reservas, caução, limpezas, financeiro e documentos em PDF, com conferência automática com a Booking e com a FNRH e exclusão automática de documentos (LGPD).",
     tags: ["JavaScript", "Supabase", "PostgreSQL", "Edge Functions", "GitHub Actions"],
     site: null,
     codigo: null,
