@@ -12,6 +12,43 @@
   text-transform: uppercase;
   white-space: nowrap;
 }
+/* ---------- Cor por família (lib/tecnologias.js) ----------
+   Cada família só troca a variável --cor-familia; o resto é igual.
+   A cor aparece na bolinha, num fundo bem clarinho e na borda.
+   O texto NÃO muda de cor: o contraste continua o de sempre. */
+.tag[data-familia="1"] {
+  --cor-familia: var(--familia-1);
+}
+.tag[data-familia="2"] {
+  --cor-familia: var(--familia-2);
+}
+.tag[data-familia="3"] {
+  --cor-familia: var(--familia-3);
+}
+.tag[data-familia="4"] {
+  --cor-familia: var(--familia-4);
+}
+.tag[data-familia="5"] {
+  --cor-familia: var(--familia-5);
+}
+
+.tag[data-familia] {
+  border-color: color-mix(in srgb, var(--cor-familia) 45%, transparent);
+  background: color-mix(in srgb, var(--cor-familia) 9%, transparent);
+}
+
+/* A bolinha antes do nome */
+.tag[data-familia]::before {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-right: 0.5em;
+  border-radius: 50%;
+  background: var(--cor-familia);
+  vertical-align: 0.08em;
+}
+
 .destaque {
   border-color: var(--cor-destaque);
   color: var(--cor-destaque);

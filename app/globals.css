@@ -24,6 +24,15 @@
   --palavra-gigante: linear-gradient(180deg, #c93a22 0%, #7a2214 100%);
   --brilho-foto: rgba(232, 70, 43, 0.35);
 
+  /* Cores das FAMÍLIAS de tecnologia (bolinha das Tags, ver lib/tecnologias.js).
+     Inspiradas nas duplas de cores da Origamid: no fundo escuro, a versão
+     clara e viva; no tema claro (abaixo), a versão escura da mesma cor. */
+  --familia-1: #ffa600; /* base da web */
+  --familia-2: #ffe500; /* JavaScript */
+  --familia-3: #b6f200; /* back-end e dados */
+  --familia-4: #00cceb; /* React, testes e ferramentas */
+  --familia-5: #ff29f5; /* design e IA */
+
   /* Espaçamento lateral do site: cresce com a tela, com limites */
   --margem: clamp(1.25rem, 4vw, 3.5rem);
   --altura-nav: 76px;
@@ -47,6 +56,11 @@
   --cor-luz: #e8462b;
   --palavra-gigante: linear-gradient(180deg, #e8462b 0%, #b8321c 100%);
   --brilho-foto: rgba(232, 70, 43, 0.22);
+  --familia-1: #ff2b0d;
+  --familia-2: #f90;
+  --familia-3: #00bf1e;
+  --familia-4: #006bd2;
+  --familia-5: #8b00f8;
   color-scheme: light;
 }
 
