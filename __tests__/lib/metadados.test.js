@@ -1,6 +1,8 @@
 /* Testes de lib/metadados.js (metadados completos por página) */
 import { describe, expect, it } from "vitest";
-import { metadadosDaPagina, OG_BASE } from "@/lib/metadados";
+import { IMAGENS_PROPRIAS, metadadosDaPagina, OG_BASE } from "@/lib/metadados";
+import { existsSync } from "node:fs";
+import path from "node:path";
 import { metadata as home } from "@/app/page";
 import { metadata as sobre } from "@/app/sobre/page";
 import { metadata as academica } from "@/app/experiencia-academica/page";
@@ -34,7 +36,9 @@ describe.each(PAGINAS)("página %s", (caminho, m) => {
   });
 
   it("não perde o Open Graph do site (imagem, tipo, idioma, nome)", () => {
-    expect(m.openGraph).toMatchObject(OG_BASE);
+    const { images, ...resto } = OG_BASE; // eslint-disable-line no-unused-vars
+    expect(m.openGraph).toMatchObject(resto);
+    expect(m.openGraph.images[0]).toMatchObject({ width: 1200, height: 630 });
     expect(m.openGraph.url).toBe(caminho);
   });
 
@@ -49,4 +53,20 @@ it("cada página tem título e descrição diferentes", () => {
   const descricoes = PAGINAS.map(([, m]) => m.description);
   expect(new Set(titulos).size).toBe(PAGINAS.length);
   expect(new Set(descricoes).size).toBe(PAGINAS.length);
+});
+
+describe("imagens de compartilhamento próprias", () => {
+  it("a Início e a Sobre usam a sua imagem; o Twitter usa a mesma do Open Graph", () => {
+    expect(home.openGraph.images[0].url).toBe(IMAGENS_PROPRIAS.inicio.url);
+    expect(sobre.openGraph.images[0].url).toBe(IMAGENS_PROPRIAS.sobre.url);
+    expect(home.twitter.images[0]).toBe(home.openGraph.images[0]);
+  });
+
+  it.each(Object.entries(IMAGENS_PROPRIAS))(
+    "%s: o arquivo existe em public/ e tem texto alternativo",
+    (_, img) => {
+      expect(existsSync(path.join("public", img.url))).toBe(true);
+      expect(img.alt.length).toBeGreaterThan(10);
+    },
+  );
 });

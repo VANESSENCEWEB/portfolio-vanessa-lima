@@ -28,7 +28,7 @@ import Tag from "@/components/ui/Tag/Tag";
 import TituloSecao from "@/components/ui/TituloSecao/TituloSecao";
 import ListaTecnologias from "@/components/ListaTecnologias/ListaTecnologias";
 import styles from "./page.module.css";
-import { metadadosDaPagina } from "@/lib/metadados";
+import { IMAGENS_PROPRIAS, metadadosDaPagina } from "@/lib/metadados";
 
 /* SEO da página: metadados completos (lib/metadados.js). O layout completa o título → "Sobre — Vanessa Lima") */
 export const metadata = metadadosDaPagina({
@@ -36,6 +36,7 @@ export const metadata = metadadosDaPagina({
   descricao:
     "Quem é Vanessa Lima: trajetória, formação, habilidades e todas as tecnologias usadas neste portfólio.",
   caminho: "/sobre",
+  imagem: IMAGENS_PROPRIAS.sobre,
 });
 
 /* "sizes" diz ao navegador a largura da foto em cada tela,
