@@ -10,7 +10,7 @@ Criei o projeto com o comando oficial do Next.js (`create-next-app`), em JavaScr
 
 ![Página padrão do Next.js](progresso/2026-11-10-etapa-00-projeto-criado.png)
 
----npm
+---
 
 ## Etapa 1 — Base visual (10/11/2026)
 
@@ -126,3 +126,17 @@ Sem rolagem lateral em 320, 375, 768, 1024 e 1440 px.
 - Contraste: o vermelho `#e8462b` dava 3,4:1 no fundo creme (o mínimo é 4,5:1). No tema claro ele virou `#c0361d`, e os botões com texto branco ganharam `--cor-botao`.
 - Medir mais de uma vez: a primeira nota da Início (61) era o servidor "frio" logo depois do build. Repetindo, deu 91–93.
 - Nem todo relatório acerta: vários itens apontados já estavam resolvidos no código. Conferir antes de mudar.
+
+---
+
+## Versão 1.0.0 — Primeira versão finalizada (16/11/2026)
+
+**O que fiz:** fechei a primeira versão completa do portfólio: as 5 páginas (Início, Sobre, Acadêmica, Profissional e Projetos), tema claro e escuro, Lighthouse com 100 em acessibilidade, boas práticas e SEO, e 265 testes passando. Antes de marcar a versão, arrumei o `package-lock.json` para o `npm ci` funcionar, organizei os testes em `__tests__/`, formatei tudo com o Prettier e preenchi o ingresso na UNICAP e a certificação da Origamid.
+
+**O que aprendi:**
+
+- Versão semântica: `1.0.0` marca a primeira versão que eu considero pronta para mostrar. Daqui para frente, correção sobe o último número e funcionalidade nova sobe o do meio.
+- Tag no Git: `git tag -a v1.0.0` guarda um "marco" no histórico, e dá para voltar a ele quando eu quiser.
+- Dado que eu ainda não confirmei (o ano das certificações da DIO e da Rocketseat) continua como `PREENCHER` e fica escondido no site, em vez de eu inventar.
+
+**Próximos passos:** estudo de caso do ISAC Conecta, prints do Sistema Recife Flats com dados fictícios, currículo em PDF e formulário de contato.

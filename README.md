@@ -466,7 +466,7 @@ Hospedado na **[Vercel](https://vercel.com/)**: a cada `git push` na branch `mai
 - [x] Página **Projetos** com a API pública do GitHub
 - [x] Home completa: hero com vídeo e seções com animação ao rolar
 - [x] Revisão de acessibilidade e Lighthouse ≥ 90
-- [ ] Versão `v1.0.0` (tag: primeira versão finalizada)
+- [x] Versão `v1.0.0` (tag: primeira versão finalizada)
 
 **Depois da v1.0.0**
 
