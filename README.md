@@ -429,7 +429,7 @@ Coisas que eu sei que ainda não estão como eu quero, e por quê:
 - **LCP da Início em ~3,2 s** no celular simulado do Lighthouse (a meta é 2,5 s). Testei sem animações e com imagens mais leves e não mudou: o que pesa são as 3 fontes e o JavaScript na rede lenta simulada.
 - **Sistema Recife Flats sem prints:** é um sistema privado com dados reais de hóspedes. Os prints vão entrar com dados fictícios.
 - **ISAC Conecta com código privado:** o projeto da residência ainda está em andamento. O app está no ar e o código abre depois da entrega final.
-- **Alguns dados ainda marcados como `PREENCHER`** (ano de ingresso na UNICAP e ano das certificações): ficam escondidos no site até serem confirmados.
+- **Alguns dados ainda marcados como `PREENCHER`** (ano das certificações da DIO e da Rocketseat): ficam escondidos no site até serem confirmados.
 - **JavaScript, não TypeScript:** escolha de estudo para esta versão. A migração gradual está no roadmap.
 
 ---
@@ -473,7 +473,7 @@ Hospedado na **[Vercel](https://vercel.com/)**: a cada `git push` na branch `mai
 - [ ] Página de estudo de caso (ISAC Conecta) para o botão "Ver um caso por dentro"
 - [ ] Prints do Sistema Recife Flats com dados fictícios
 - [ ] Currículo em PDF para baixar e formulário de contato
-- [ ] Preencher o ano de ingresso na UNICAP e o ano das certificações
+- [ ] Preencher o ano das certificações da DIO e da Rocketseat
 - [ ] Testes de acessibilidade com axe e Lighthouse CI no GitHub Actions
 - [ ] Migração gradual para TypeScript
 

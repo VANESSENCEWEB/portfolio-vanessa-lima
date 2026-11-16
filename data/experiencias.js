@@ -83,7 +83,8 @@ export const FORMACAO = [
     tipo: "Graduação",
     detalhe: "3º período",
     local: "Recife, PE",
-    inicio: PREENCHER, // ✏️ semestre de início, ex.: "2025.1"
+    // Ingresso em 2025.1; trancou 2025.2 e voltou em 2026.1 (2º período)
+    inicio: "2025.1",
     fim: null, // ✏️ opcional: previsão de conclusão, ex.: "2027.2"
     emAndamento: true,
     // ✏️ REVISE com as suas palavras
@@ -110,8 +111,10 @@ export const CERTIFICACOES = {
     {
       id: "origamid",
       instituicao: "Origamid",
-      titulo: "Interface e CSS", // ✏️ nome como estava no portfólio antigo: confira o nome exato
-      ano: PREENCHER,
+      // Certificado da formação (72 h), atualizado em 31/03/2026:
+      // origamid.com/certificate/1d3b2ba4
+      titulo: "Front/Back End & UX/UI Design",
+      ano: "2026",
     },
     {
       id: "rocketseat",
