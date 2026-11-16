@@ -47,7 +47,7 @@ Decisão: eslint-config-next/core-web-vitals + eslint-config-prettier; Prettier 
 
 Por quê: ESLint acha erros (hooks, acessibilidade, imagens); Prettier cuida da aparência. ESLint 9 porque os plugins do eslint-config-next ainda não suportam o 10.
 
-8. Vitest + Testing Library, testes em **tests**/ (10/11)
+8. Vitest + Testing Library, testes em `__tests__/` (10/11)
 
 Decisão: Vitest com jsdom; testes numa pasta própria, espelhando components/, app/, lib/ e data/.
 
@@ -103,7 +103,7 @@ Por quê: pública, sem chave obrigatória, mostra os repositórios reais. Token
 
 Contexto: a seção "Tecnologias e módulos usados neste app" é obrigatória e precisa estar completa. Lista escrita à mão fica desatualizada no primeiro npm install.
 
-Decisão: a lista mora em data/sobre.js (TECNOLOGIAS_DO_APP), com o papel de cada item; a versão é lida direto do package.json (versaoDe()); e o teste **tests**/data/sobre.test.js falha se algum pacote do package.json ou algum módulo next/... importado no código não estiver explicado.
+Decisão: a lista mora em data/sobre.js (TECNOLOGIAS_DO_APP), com o papel de cada item; a versão é lida direto do package.json (versaoDe()); e o teste `__tests__/data/sobre.test.js` falha se algum pacote do package.json ou algum módulo next/... importado no código não estiver explicado.
 
 Consequência: instalou um pacote novo (ex.: Playwright, no Dia 7)? O teste avisa e a página continua honesta.
 
