@@ -35,7 +35,7 @@ const { values: opcoes } = parseArgs({
 });
 
 if (!opcoes.nome) {
-  console.error('Faltou o nome. Exemplo: npm run mockup -- --nome etapa-02-navbar');
+  console.error("Faltou o nome. Exemplo: npm run mockup -- --nome etapa-02-navbar");
   process.exit(1);
 }
 // Só letras minúsculas, números e hífen (nome seguro para arquivo e para o GitHub)
