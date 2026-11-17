@@ -22,12 +22,17 @@ describe("Hero", () => {
     expect(titulos[0]).toHaveTextContent(HERO.nome);
   });
 
-  it("a palavra gigante é só enfeite (escondida do leitor de tela)", () => {
+  it("o nome animado é lido inteiro pelo leitor de tela (as letras soltas ficam escondidas)", () => {
     const { container } = render(<HeroComTema />);
-    const palavra = [...container.querySelectorAll('[aria-hidden="true"]')].find(
-      (el) => el.textContent === HERO.palavraGigante,
+    const h1 = screen.getByRole("heading", { level: 1 });
+    // O texto completo existe uma vez fora do aria-hidden
+    const visiveisAoLeitor = [...h1.querySelectorAll("span")].filter(
+      (el) => el.textContent === HERO.nome && !el.closest('[aria-hidden="true"]'),
     );
-    expect(palavra).toBeDefined();
+    expect(visiveisAoLeitor.length).toBeGreaterThan(0);
+    // E as letras animadas estão dentro de um aria-hidden
+    const letras = container.querySelector('h1 [aria-hidden="true"] span span');
+    expect(letras).not.toBeNull();
   });
 
   it("tem as duas versões: a foto do tema claro e a mídia do tema escuro, com texto alternativo", () => {

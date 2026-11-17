@@ -1,115 +1,53 @@
 /* =========================================================
    Hero — a primeira tela da página Início
    ---------------------------------------------------------
-   Trazida do portfólio anterior (React + Vite) para o Next.
-   Grade de 3 colunas no computador:
-     [texto e botão]  [você + PORTFÓLIO atrás]  [frase e números]
-   No celular tudo empilha: rótulos → você → texto → números.
-   Server Component: chega pronta em HTML. Só duas partes
-   rodam no navegador: HeroMidia (vídeo + pausar) e Contador.
-   Animações de entrada: classe .anima + --atraso (CSS puro).
-   A palavra gigante aparece letra por letra também só com
-   CSS: cada letra recebe o seu número (--i) e espera a sua vez.
-   Todos os textos vêm de data/home.js.
+   Três colunas no computador:
+     [rótulos, "Olá, eu sou", NOME, texto e botões]  [você]  [PORTFÓLIO na vertical]
+   e, embaixo, uma linha com números, residência e stack.
+   Tudo cabe numa tela, alinhado com o menu (mesmo --margem).
+   No celular tudo empilha.
+   Efeito protagonista: SÓ no nome. As letras sobem uma a uma,
+   girando de leve, e o ponto vermelho cai por último e quica.
+   É CSS puro: cada letra recebe o seu número (--i) e espera a
+   sua vez. A foto/vídeo não tem efeito.
+   Transição para a próxima seção: ver .hero e .palco abaixo e
+   .folha no app/page.module.css (a hero fica parada e a seção
+   seguinte sobe por cima, como uma folha).
+   Server Component: só a HeroMidia (vídeo + pausar) roda no
+   navegador. Todos os textos vêm de data/home.js.
    ========================================================= */
 import Link from "next/link";
 import { HERO } from "@/data/home";
-import Contador from "./Contador";
 import HeroMidia from "./HeroMidia";
 import styles from "./Hero.module.css";
 
 /* Atraso da animação de entrada, em segundos */
 const atraso = (segundos) => ({ "--atraso": `${segundos}s` });
 
-/* "PORTFÓLIO" gigante atrás da foto (só enfeite: aria-hidden) */
-function PalavraGigante() {
-  const letras = Array.from(HERO.palavraGigante);
+/* O nome, letra por letra. O leitor de tela lê o texto inteiro
+   (span escondido); as letras animadas são só visuais. */
+function NomeAnimado() {
+  let i = 0;
   return (
-    <p className={styles.palavra} aria-hidden="true">
-      {letras.map((letra, i) => (
-        <span key={i} className={styles.letra} style={{ "--i": i }}>
-          {letra}
-        </span>
-      ))}
-    </p>
-  );
-}
-
-function Esquerda() {
-  return (
-    <div className={styles.esquerda}>
-      <h1 className={`${styles.nome} ${styles.anima}`} style={atraso(0.1)}>
-        <span className={styles.ola}>
-          {HERO.saudacao}{" "}
-          {/* aria-hidden: o leitor de tela lê só "Olá, eu sou Vanessa" (sem "mão acenando" no meio) */}
-          <span className={styles.aceno} aria-hidden="true">
-            👋
+    <span className={styles.nome}>
+      <span className={styles.soLeitor}>{HERO.nome}</span>
+      <span aria-hidden="true">
+        {HERO.nome.split(" ").map((palavra, p, todas) => (
+          <span key={palavra} className={styles.linha}>
+            {Array.from(palavra).map((letra) => (
+              <span key={i} className={styles.letra} style={{ "--i": i++ }}>
+                {letra}
+              </span>
+            ))}
+            {p === todas.length - 1 && (
+              <span className={styles.ponto} style={{ "--i": i }}>
+                .
+              </span>
+            )}
           </span>
-        </span>
-        <span className={styles.nomeBrilho}>{HERO.nome}</span>
-        <span className={styles.ponto}>.</span>
-      </h1>
-
-      {/* Bloco do texto: no computador fica embaixo do nome; no celular vira
-          uma coluna ao lado da foto (ver "Celular" no Hero.module.css) */}
-      <div className={styles.esqTexto}>
-        <p className={`${styles.cargo} ${styles.anima}`} style={atraso(0.65)}>
-          <span className="online" aria-hidden="true" />
-          {HERO.cargo[0]}
-          <br />
-          {HERO.cargo[1]}
-        </p>
-
-        <p className={`${styles.descricao} ${styles.anima}`} style={atraso(0.75)}>
-          {HERO.descricao}
-        </p>
-
-        <div className={styles.anima} style={atraso(0.85)}>
-          <Link href={HERO.botao.href} className={styles.botao}>
-            {HERO.botao.texto}
-            <span className={styles.botaoSeta} aria-hidden="true">
-              ↓
-            </span>
-          </Link>
-        </div>
-
-        <p className={`rotulo rotulo--suave ${styles.local} ${styles.anima}`} style={atraso(0.95)}>
-          <span aria-hidden="true" className={styles.alvo}>
-            ⌖
-          </span>
-          {HERO.local}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function Direita() {
-  return (
-    <div className={styles.direita}>
-      <p className={`${styles.frase} ${styles.anima}`} style={atraso(0.7)}>
-        <span className={styles.fraseIcone} aria-hidden="true">
-          ✳
-        </span>
-        <span>
-          {HERO.frase[0]}
-          <br />
-          {HERO.frase[1]}
-        </span>
-      </p>
-
-      <ul className={`${styles.numeros} ${styles.anima}`} style={atraso(0.85)}>
-        {HERO.numeros.map(({ valor, legenda }) => (
-          <li key={legenda} className={styles.numero}>
-            <strong>
-              <Contador valor={valor} />
-              <sup>+</sup>
-            </strong>
-            <span className="rotulo rotulo--suave">{legenda}</span>
-          </li>
         ))}
-      </ul>
-    </div>
+      </span>
+    </span>
   );
 }
 
@@ -117,31 +55,76 @@ export default function Hero() {
   return (
     <section className={styles.hero} aria-label="Apresentação">
       <div className={styles.palco}>
-        <PalavraGigante />
+        <div className={styles.texto}>
+          <div className={`${styles.topo} ${styles.anima}`} style={atraso(0.1)}>
+            <p className="rotulo">
+              <span className="online" aria-hidden="true" />
+              {HERO.disponivel}
+            </p>
+            <p className="rotulo rotulo--suave">
+              <span aria-hidden="true" className={styles.alvo}>
+                ⌖
+              </span>
+              {HERO.local}
+            </p>
+          </div>
 
-        <div className={`${styles.topoEsq} ${styles.anima}`} style={atraso(0.2)}>
-          <p className="rotulo rotulo--destaque">{HERO.topoEsquerda[0]}</p>
-          <p className="rotulo rotulo--suave">{HERO.topoEsquerda[1]}</p>
-        </div>
-        <div className={`${styles.topoDir} ${styles.anima}`} style={atraso(0.2)}>
-          <span className="online" aria-hidden="true" />
-          <p className="rotulo rotulo--suave">{HERO.topoDireita}</p>
+          <h1 className={styles.titulo}>
+            <span className={`${styles.ola} ${styles.anima}`} style={atraso(0.1)}>
+              {HERO.saudacao} {/* aria-hidden: o leitor de tela lê só "Olá, eu sou Vanessa Lima" */}
+              <span className={styles.aceno} aria-hidden="true">
+                👋
+              </span>
+            </span>
+            <NomeAnimado />
+          </h1>
+
+          <p className={`${styles.cargo} ${styles.anima}`} style={atraso(0.75)}>
+            {HERO.cargo[0]}
+            <br />
+            {HERO.cargo[1]}
+          </p>
+
+          <p className={`${styles.descricao} ${styles.anima}`} style={atraso(0.85)}>
+            {HERO.descricao}
+          </p>
+
+          <div className={`${styles.acoes} ${styles.anima}`} style={atraso(0.95)}>
+            <Link href={HERO.botao.href} className={styles.botao}>
+              {HERO.botao.texto}
+              <span className={styles.botaoSeta} aria-hidden="true">
+                ↓
+              </span>
+            </Link>
+            <Link href={HERO.caso.href} className={styles.caso}>
+              {HERO.caso.texto}
+              <span className={styles.casoSeta} aria-hidden="true">
+                →
+              </span>
+            </Link>
+          </div>
         </div>
 
-        <Esquerda />
         <HeroMidia />
-        <Direita />
-      </div>
 
-      <div className={`${styles.rodape} ${styles.anima}`} style={atraso(1.1)}>
-        <Link href={HERO.rodape.caso.href} className={styles.caso}>
-          <span className={styles.play} aria-hidden="true">
-            ▶
-          </span>
-          <span className="rotulo">{HERO.rodape.caso.texto}</span>
-        </Link>
-        <p className={`rotulo rotulo--suave ${styles.rodapeExtra}`}>{HERO.rodape.extra}</p>
-        <p className="rotulo rotulo--suave">{HERO.rodape.direita}</p>
+        {/* Só enfeite: o leitor de tela não lê */}
+        <p className={`${styles.palavra} ${styles.anima}`} style={atraso(0.5)} aria-hidden="true">
+          {HERO.palavra}
+        </p>
+
+        <ul className={`${styles.numeros} ${styles.anima}`} style={atraso(1.05)}>
+          {HERO.numeros.map(({ valor, sufixo, legenda }) => (
+            <li key={legenda} className={styles.numero}>
+              <strong>
+                {valor}
+                {sufixo && <sup>{sufixo}</sup>}
+              </strong>
+              <span className="rotulo rotulo--suave">{legenda}</span>
+            </li>
+          ))}
+          <li className={`rotulo rotulo--suave ${styles.extra}`}>{HERO.residencia}</li>
+          <li className={`rotulo rotulo--suave ${styles.extra}`}>{HERO.stack}</li>
+        </ul>
       </div>
     </section>
   );

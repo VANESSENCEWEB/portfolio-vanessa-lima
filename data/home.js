@@ -20,27 +20,24 @@ const totalCertificacoes = Number.parseInt(CERTIFICACOES.total, 10);
 
 /* ---------- 1. HERO ---------- */
 export const HERO = {
-  topoEsquerda: ["Front-end developer em formação", "Design · Código · Produto"],
-  topoDireita: "Disponível para estágio",
-  palavraGigante: "PORTFÓLIO", // decorativa: o leitor de tela não lê
+  disponivel: "Disponível para estágio",
+  local: "Recife · PE — presencial ou híbrido",
   saudacao: "Olá, eu sou",
-  nome: PESSOA.primeiroNome,
+  palavra: "Portfólio", // na vertical, à direita (só enfeite: o leitor de tela não lê)
+  nome: PESSOA.nome, // "Vanessa Lima": cada palavra vira uma linha
   cargo: ["Desenvolvedora front-end", "& designer de interfaces"],
   descricao:
     "Estudante de Sistemas para Internet na UNICAP. Faço design e código no mesmo projeto: do esboço no Figma ao site no ar, com projetos reais em produção.",
-  local: "Recife · PE — estágio presencial ou híbrido",
-  frase: ["Do esboço ao ar.", "Design e código juntos."],
+  botao: { texto: "Ver projetos", href: "/projetos" },
+  caso: { texto: "Ver um caso por dentro", href: "/projetos" },
   // Números calculados, não digitados: nunca ficam desatualizados
   numeros: [
-    { valor: Object.keys(PRINTS).length, legenda: "Projetos no ar" },
-    { valor: totalCertificacoes, legenda: "Certificações concluídas" },
+    { valor: Object.keys(PRINTS).length, sufixo: "", legenda: "Projetos no ar" },
+    { valor: totalCertificacoes, sufixo: "+", legenda: "Certificações" },
   ],
-  botao: { texto: "Ver projetos", href: "/projetos" },
-  rodape: {
-    caso: { texto: "Ver um caso por dentro", href: "/projetos" },
-    extra: "Residência em Software e IA · Porto Digital",
-    direita: "React · Next.js · Figma · Supabase",
-  },
+  // Fim da linha de baixo (ao lado dos números)
+  residencia: "Residência em Software e IA · Porto Digital",
+  stack: "React · Next.js · Figma · Supabase",
 };
 
 /* ---------- 2. MIDIA ----------

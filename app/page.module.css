@@ -1,5 +1,17 @@
 /* Página Início — seções abaixo da Hero (mobile-first) */
 
+/* "Folha": as seções depois da Hero sobem por cima dela ao rolar
+   (a Hero fica parada, ver position: sticky no Hero.module.css).
+   Cantos arredondados em cima e uma sombra dão a sensação de
+   uma folha passando por cima da outra. */
+.folha {
+  position: relative;
+  z-index: 1;
+  background: var(--cor-folha);
+  border-radius: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 3vw, 2.25rem) 0 0;
+  box-shadow: 0 -24px 50px -20px rgba(0, 0, 0, 0.35);
+}
+
 .grade {
   display: grid;
   /* auto-fit: os cartões ocupam a largura toda (sem coluna vazia no fim) */

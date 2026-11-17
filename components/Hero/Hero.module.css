@@ -1,112 +1,108 @@
 /* =========================================================
-   Hero — estilos (trazidos do portfólio anterior)
+   Hero — estilos
    ---------------------------------------------------------
    As cores e fontes vêm das variáveis do app/globals.css,
    então os dois temas (claro e escuro) funcionam sozinhos.
-   Ordem: 1. palco e grade · 2. palavra gigante · 3. texto
-   · 4. foto/vídeo · 5. números · 6. rodapé · 7. animações
-   · 8. tablet e celular
+   Ordem: 1. hero e grade · 2. texto · 3. nome animado
+   · 4. foto/vídeo · 5. linha de baixo · 6. animações
+   · 7. transição para a próxima seção · 8. celular
    ========================================================= */
 
-/* ---------- 1. Palco e grade ---------- */
+/* ---------- 1. Hero e grade ----------
+   A hero tem exatamente a altura da tela abaixo do menu: tudo
+   aparece sem rolar. sticky: ela fica parada enquanto a seção
+   seguinte (.folha, no page.module.css) sobe por cima. */
 .hero {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: calc(100svh - var(--altura-nav));
-  overflow: hidden; /* a palavra gigante não cria rolagem lateral */
+  position: sticky;
+  top: var(--altura-nav);
+  z-index: 0;
+  height: calc(100svh - var(--altura-nav));
+  min-height: 560px;
+  /* --respiro: espaço entre a moldura e o conteúdo. A moldura fica
+     um pouco PARA FORA da margem do menu, e o conteúdo, dentro dela,
+     começa e termina exatamente na linha do logo e do "Vamos conversar". */
+  /* A moldura ocupa ~98% da largura da tela (1vw de cada lado). Por
+     dentro, o --respiro faz o conteúdo começar e terminar na mesma
+     linha do logo e do "Vamos conversar" (o --margem do menu). */
+  --aro: 7px; /* largura do aro em relevo em volta da moldura */
+  --borda-tela: 1vw;
+  --respiro: max(0.75rem, calc(var(--margem) - var(--borda-tela) - var(--aro)));
+  padding: calc(0.4rem + var(--aro)) calc(var(--borda-tela) + var(--aro)) calc(0.6rem + var(--aro));
+  perspective: 1400px; /* dá profundidade quando a moldura recua ao rolar */
 }
 
+/* Profundidade leve, como uma tecla apertada: o fundo da hero fica
+   um pouco AFUNDADO (sombra por dentro, no alto) e em volta dele há
+   um aro em relevo (anel claro + contorno fino + sombra suave). */
 .palco {
+  /* Tamanho do PORTFÓLIO: a coluna da esquerda usa a mesma conta
+     para ter a altura da palavra (rótulo no topo, botão na base) */
+  --tam-palavra: clamp(4rem, 18.9vh, 13rem);
   position: relative;
-  flex: 1;
+  height: 100%;
+  margin-inline: auto;
+  padding-inline: var(--respiro);
+  overflow: hidden;
+  border-radius: clamp(1.1rem, 2vw, 1.75rem);
+  background: var(--moldura-fundo);
+  box-shadow:
+    inset 0 10px 22px -12px var(--moldura-sombra),
+    inset 0 -1px 0 var(--moldura-luz),
+    0 0 0 6px var(--moldura-aro),
+    0 0 0 7px var(--cor-linha),
+    0 12px 26px -12px rgba(0, 0, 0, 0.3);
   display: grid;
-  grid-template-columns: 1fr minmax(300px, 520px) 1fr;
-  grid-template-rows: auto 1fr;
-  column-gap: 2rem;
-  padding: 1.75rem var(--margem) 0;
+  /* texto | você (no meio) | PORTFÓLIO: cada coluna tem o tamanho do
+     que está nela e a sobra se divide IGUAL entre os três blocos */
+  grid-template-columns: auto auto auto;
+  justify-content: space-between;
+  grid-template-rows: minmax(0, 1fr) auto;
+  column-gap: clamp(1.25rem, 2.5vw, 2.5rem);
 }
 
-.topoEsq {
+/* ---------- 2. Texto (coluna da esquerda) ---------- */
+.texto {
   grid-column: 1;
   grid-row: 1;
-  position: relative;
-  z-index: 3;
+  align-self: center;
+  margin-left: 1.5vw; /* um pouquinho para dentro da moldura */
+  max-width: 560px;
+  /* Mesma altura do PORTFÓLIO (a letra ocupa ~3,76 vezes o tamanho
+     da fonte): o rótulo começa onde a palavra começa e o botão
+     termina onde ela termina. A sobra vai entre os blocos. */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(var(--tam-palavra) * 3.76);
 }
-.topoEsq p,
-.topoDir p {
-  margin: 0;
+
+.topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.4rem;
+  margin-bottom: min(2.2rem, 3.5vh);
 }
-.topoDir {
-  grid-column: 3;
-  grid-row: 1;
-  justify-self: end;
+.topo p {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  position: relative;
-  z-index: 3;
-}
-
-/* ---------- 2. Palavra gigante (atrás da foto e do nome, como no design original) ---------- */
-.palavra {
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  top: 9%;
-  transform: translateX(-50%);
   margin: 0;
-  font-family: var(--display);
+}
+.alvo {
+  color: var(--cor-destaque);
+}
+
+.titulo {
+  margin: 0 0 min(1.6rem, 3vh);
   font-weight: 400;
-  font-size: clamp(5rem, 19vw, 21rem);
-  line-height: 0.85;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-  user-select: none;
-  pointer-events: none;
-}
-
-/* Letra por letra: cada uma tem o seu gradiente e espera a sua vez (--i).
-   O gradiente fica EM CADA LETRA: background-clip: text no pai não
-   funciona quando os filhos são blocos animados (vira um bloco sólido). */
-.letra {
-  display: inline-block;
-  padding-top: 0.12em; /* espaço para o acento do Ó (o recorte respeita a caixa da letra) */
-  margin-top: -0.12em;
-  background: var(--palavra-gigante);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  opacity: 0;
-  animation: letra-entra 0.25s ease-out forwards;
-  animation-delay: calc(0.4s + var(--i) * 0.14s);
-}
-
-/* ---------- 3. Texto (coluna da esquerda) ---------- */
-.esquerda {
-  grid-column: 1;
-  grid-row: 2;
-  align-self: end;
-  position: relative;
-  z-index: 3;
-  max-width: 440px;
-  padding-bottom: 2.5rem;
-}
-
-.nome {
-  margin: 0;
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(3.6rem, 7.5vw, 7.5rem);
-  line-height: 0.9;
-  text-transform: uppercase;
 }
 .ola {
   display: block;
-  margin-bottom: -0.2rem;
+  margin-bottom: 0.2rem;
   font-family: var(--script);
-  font-size: clamp(2rem, 3.4vw, 3.2rem);
-  text-transform: none;
+  font-size: clamp(1.8rem, min(2.8vw, 4.6vh), 2.6rem);
+  line-height: 1;
   transform: rotate(-4deg);
   transform-origin: left bottom;
 }
@@ -116,47 +112,32 @@
   transform-origin: 70% 75%;
   animation: acenar 2.6s ease-in-out 1.2s infinite;
 }
-/* Reflexo que atravessa o nome de tempos em tempos */
-.nomeBrilho {
-  background: linear-gradient(
-    110deg,
-    var(--cor-texto) 0%,
-    var(--cor-texto) 42%,
-    var(--cor-luz) 50%,
-    var(--cor-texto) 58%,
-    var(--cor-texto) 100%
-  );
-  background-size: 300% 100%;
-  background-position: 100% 0;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: brilho-texto 5s ease-in-out 1.6s infinite;
-}
-.ponto {
-  color: var(--cor-destaque);
-}
 
 .cargo {
-  display: flex;
-  align-items: baseline;
-  gap: 0.55rem;
-  margin: 1.1rem 0 0.9rem;
+  margin: 0 0 0.9rem;
   color: var(--cor-destaque);
   font-weight: 800;
   font-size: clamp(1rem, 1.4vw, 1.25rem);
-  line-height: 1.2;
+  line-height: 1.25;
   text-transform: uppercase;
 }
 
 .descricao {
-  margin: 0 0 1.6rem;
+  max-width: 34ch;
+  margin: 0 0 min(1.8rem, 3vh);
   color: var(--cor-texto-suave);
-  line-height: 1.65;
+  line-height: 1.6;
 }
 
-/* Botão retangular "Ver projetos ↓" (design original da Hero).
-   Brilho que passa SÓ no hover (sem animação infinita competindo com o vídeo). */
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.75rem;
+}
+
+/* Botão retangular "Ver projetos ↓": sobe, ganha sombra, um brilho
+   atravessa e a seta quica (SÓ no hover) */
 .botao {
   position: relative;
   overflow: hidden;
@@ -185,7 +166,6 @@
   outline: 2px solid var(--cor-destaque);
   outline-offset: 3px;
 }
-/* A seta quica no hover */
 .botaoSeta {
   display: inline-block;
 }
@@ -205,30 +185,97 @@
   animation: brilho-botao 0.7s ease-in-out;
 }
 
-.local {
-  display: flex;
+/* "Ver um caso por dentro →": sublinhado; no hover fica vermelho e a seta anda */
+.caso {
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  margin: 1.4rem 0 0;
+  gap: 0.6rem;
+  padding-bottom: 3px;
+  border-bottom: 1px solid currentColor;
+  color: var(--cor-texto);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.25s ease;
 }
-.alvo {
+.casoSeta {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.caso:hover,
+.caso:focus-visible {
   color: var(--cor-destaque);
 }
+.caso:hover .casoSeta,
+.caso:focus-visible .casoSeta {
+  transform: translateX(4px);
+}
 
-/* ---------- 4. Você (vídeo / imagem) ---------- */
+/* ---------- 3. Nome animado ---------- */
+.nome {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(3.5rem, min(10.5vw, 17.5vh), 11rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+/* Cada palavra numa linha. O recorte é SÓ na parte de baixo (de onde
+   as letras sobem): em cima e dos lados nada é cortado. */
+.linha {
+  display: block;
+  white-space: nowrap; /* "VANESSA" nunca quebra no meio */
+  padding-bottom: 0.03em;
+  clip-path: inset(-1em -1em 0 -1em);
+}
+.letra {
+  display: inline-block;
+  transform-origin: 0 100%;
+  animation: letra-sobe 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(0.25s + var(--i) * 0.045s);
+}
+.ponto {
+  display: inline-block;
+  color: var(--cor-destaque);
+  animation: ponto-cai 0.75s ease-out both;
+  animation-delay: calc(0.7s + var(--i) * 0.045s);
+}
+/* Texto só para o leitor de tela (as letras soltas ficam aria-hidden) */
+.soLeitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- 4. Você (vídeo / imagem) ----------
+   A foto ocupa a altura que sobra na tela, sem efeito nenhum. */
 .foto {
+  position: relative;
+  z-index: 1;
+  margin-left: -6vw; /* a coluna do texto fica mais compacta */
+  translate: -3vw 0; /* puxa a foto um pouco para a esquerda */
+  /* maior: desce até o fim da moldura, por trás da linha dos números
+     (a parte de baixo da foto já é esfumada, então o texto fica legível) */
   grid-column: 2;
   grid-row: 1 / 3;
-  align-self: end;
-  position: relative;
-  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 0;
   margin: 0;
+}
+.foto.anima {
+  opacity: 1;
+  transform: none;
+  animation: none;
 }
 /* Luz atrás de você: vermelha e azul no escuro (cores do vídeo), só vermelha no claro */
 .foto::before {
   content: "";
   position: absolute;
-  inset: 15% -10% 10%;
+  inset: 15% 10% 10%;
   z-index: -1;
   background: radial-gradient(
     closest-side,
@@ -240,14 +287,14 @@
 }
 .midia {
   display: block;
-  width: 100%;
-  height: auto;
-  max-height: 78vh;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: bottom;
   /* esfuma a parte de baixo no fundo do site */
-  -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
 }
 
 /* Qual aparece: o tema é o atributo data-tema do <html> (escuro é o padrão) */
@@ -267,10 +314,10 @@
 /* Vídeo: esfuma também a borda direita (onde o vídeo corta o notebook) */
 .midiaEscura {
   -webkit-mask-image:
-    linear-gradient(180deg, #000 80%, transparent 100%), linear-gradient(90deg, #000 82%, transparent 100%);
+    linear-gradient(180deg, #000 82%, transparent 100%), linear-gradient(90deg, #000 82%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(180deg, #000 80%, transparent 100%), linear-gradient(90deg, #000 82%, transparent 100%);
+    linear-gradient(180deg, #000 82%, transparent 100%), linear-gradient(90deg, #000 82%, transparent 100%);
   mask-composite: intersect;
 }
 
@@ -302,172 +349,120 @@
   border-color: var(--cor-destaque);
 }
 
-/* ---------- 5. Frase e números (coluna da direita) ---------- */
-.direita {
+/* "PORTFÓLIO" na vertical, do lado direito: ocupa a altura da hero */
+.palavra {
   grid-column: 3;
-  grid-row: 2;
-  align-self: end;
+  grid-row: 1;
+  align-self: center;
   justify-self: end;
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  max-width: 320px;
-  padding-bottom: 2.5rem;
+  margin: 0 1.5vw 0 0; /* um pouquinho para dentro da moldura */
+  writing-mode: vertical-rl;
+  font-family: var(--display);
+  font-size: var(--tam-palavra);
+  line-height: 0.85;
+  /* espaço para o acento do Ó: na vertical, o "alto" das letras fica à direita */
+  padding-right: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: var(--palavra-gigante);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  user-select: none;
 }
-.frase {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 0 0 1.8rem;
-  font-size: 1.05rem;
-  line-height: 1.45;
-}
-.fraseIcone {
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--cor-destaque);
-  border-radius: 50%;
-  color: var(--cor-destaque);
-  font-size: 1.1rem;
-  animation: girar 12s linear infinite;
-}
+
+/* ---------- 5. Linha de baixo: números, residência e stack ---------- */
 .numeros {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2.5rem;
   margin: 0;
-  padding: 0;
+  padding: 1rem 0 1.5rem;
+  border-top: 1px solid var(--cor-linha);
   list-style: none;
 }
 .numero {
   display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--cor-linha);
-}
-.numero:last-child {
-  border-bottom: 0;
+  align-items: baseline;
+  gap: 0.6rem;
 }
 .numero strong {
-  min-width: 2.6ch;
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(2.6rem, 4vw, 3.6rem);
+  font-size: 2rem;
   line-height: 1;
   color: var(--cor-destaque);
-  font-variant-numeric: tabular-nums; /* números do mesmo tamanho: não "pulam" ao contar */
-  transition: transform 0.3s ease;
-}
-.numero:hover strong {
-  transform: translateX(6px);
 }
 .numero sup {
-  font-size: 0.45em;
+  font-size: 0.5em;
   vertical-align: top;
 }
-
-/* ---------- 6. Rodapé da Hero ---------- */
-.rodape {
-  position: relative;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin: 0 var(--margem);
-  padding: 1.2rem 0 1.5rem;
-  border-top: 1px solid var(--cor-linha);
-}
-.rodape p {
+.extra {
   margin: 0;
 }
-.caso {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: var(--cor-texto);
-  text-decoration: none;
-}
-.play {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  border: 1px solid var(--cor-destaque);
-  border-radius: 50%;
-  color: var(--cor-destaque);
-  font-size: 0.75rem;
-  transition:
-    background 0.25s,
-    color 0.25s,
-    transform 0.25s;
-}
-/* Anel "radar" que sai do play */
-.play::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border: 1px solid var(--cor-destaque);
-  border-radius: 50%;
-  animation: radar 2.4s ease-out infinite;
-}
-.caso:hover .play,
-.caso:focus-visible .play {
-  background: var(--cor-destaque);
-  color: #fff;
-  transform: scale(1.08);
-}
 
-/* ---------- 7. Animações ---------- */
+/* ---------- 6. Animações ---------- */
 /* Entrada: sobe e aparece, cada bloco no seu --atraso */
 .anima {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(24px);
   animation: subir 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
   animation-delay: var(--atraso, 0s);
 }
-/* O nome entra JÁ VISÍVEL (só desliza) e começa logo: é a primeira
-   coisa que a pessoa lê. Obs.: no Lighthouse isso não mudou o LCP
-   (~3,2 s no celular simulado); o que pesa lá são fontes e JS. */
-.nome.anima {
-  opacity: 1;
-  animation-name: deslizar;
-}
-.foto.anima {
-  transform: translateY(40px) scale(0.97);
-  animation-duration: 1.2s;
+.ola.anima {
+  transform: rotate(-4deg) translateY(24px);
+  animation-name: subir-ola;
 }
 
-@keyframes deslizar {
-  to {
-    transform: translateY(0);
-  }
-}
 @keyframes subir {
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-@keyframes letra-entra {
-  from {
-    opacity: 0;
-    transform: translateY(0.08em);
-  }
-  to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
-@keyframes brilho-texto {
-  0% {
-    background-position: 100% 0;
+@keyframes subir-ola {
+  to {
+    opacity: 1;
+    transform: rotate(-4deg);
   }
-  30%,
+}
+/* As letras do nome sobem de baixo da linha, girando de leve */
+@keyframes letra-sobe {
+  from {
+    transform: translateY(110%) rotate(8deg);
+  }
+  to {
+    transform: none;
+  }
+}
+/* O ponto cai e quica */
+@keyframes ponto-cai {
+  0% {
+    opacity: 0;
+    transform: translateY(-0.6em);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  65% {
+    transform: translateY(-0.14em);
+  }
+  82% {
+    transform: translateY(0);
+  }
+  92% {
+    transform: translateY(-0.04em);
+  }
   100% {
-    background-position: 0% 0;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 @keyframes brilho-botao {
@@ -507,180 +502,144 @@
     transform: translateY(4px);
   }
 }
-@keyframes radar {
-  from {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  to {
-    transform: scale(1.7);
-    opacity: 0;
+
+/* ---------- 7. Transição para a próxima seção ----------
+   Enquanto a folha de baixo sobe, a hero diminui um pouco e
+   sobe junto. É uma animação ligada à ROLAGEM (CSS puro):
+   quem não tem suporte vê só a folha subindo por cima. */
+@supports (animation-timeline: scroll()) {
+  @media (min-width: 721px) and (prefers-reduced-motion: no-preference) {
+    .palco {
+      transform-origin: 50% 20%;
+      animation: recolher linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 calc(100svh - var(--altura-nav));
+    }
   }
 }
-@keyframes girar {
+@keyframes recolher {
   to {
-    transform: rotate(360deg);
+    transform: translateY(-24px) scale(0.94) rotateX(4deg);
   }
 }
 
-/* Quem pediu menos movimento: tudo já aparece no lugar, sem brilhos */
+/* Quem pediu menos movimento: tudo já aparece no lugar */
 @media (prefers-reduced-motion: reduce) {
   .anima,
   .letra,
-  .nomeBrilho,
-  .aceno,
-  .fraseIcone {
+  .ponto,
+  .aceno {
     animation: none;
     opacity: 1;
+  }
+  .anima,
+  .letra,
+  .ponto {
     transform: none;
   }
-  .nomeBrilho {
-    background-position: 100% 0;
+  .ola.anima {
+    transform: rotate(-4deg);
   }
   .botao:hover::after,
   .botao:hover .botaoSeta {
     animation: none;
   }
-  .play::after {
-    display: none;
-  }
 }
 
-/* ---------- 8. Tablet e celular ---------- */
-@media (max-width: 1024px) {
-  .palco {
-    grid-template-columns: 1fr minmax(240px, 380px) 1fr;
-    column-gap: 1rem;
-  }
-  .direita {
-    max-width: 220px;
-  }
-}
-
-/* ---------- Celular: tudo numa tela só, sem rolar ----------
-   Grade de 2 colunas, de cima para baixo:
-     rótulos (esq. e dir.)
-     "Olá, eu sou" + VANESSA (largura toda)
-     PORTFÓLIO gigante (largura toda, atrás da foto)
-     texto + botão  |  foto (a foto sobe por trás da palavra)
-     números (lado a lado)
-   O que sai no celular: a frase ✳, o "Recife · PE" e o "Ver um caso
-   por dentro" (leva ao mesmo lugar do botão). O menu é o do celular. */
-@media (max-width: 720px) {
-  .palco {
-    grid-template-columns: 1fr 1fr; /* texto termina onde a foto começa (nada de texto em cima da foto) */
-    grid-template-rows: repeat(5, auto);
-    align-content: space-between; /* a sobra de altura se divide entre as linhas, sem buraco no meio */
-    grid-template-areas:
-      "topoEsq topoDir"
-      "nome nome"
-      "palavra palavra"
-      "texto foto"
-      "numeros numeros";
-    column-gap: 0.75rem;
-    padding-top: 1rem;
-  }
-
-  .topoEsq {
-    grid-area: topoEsq;
-  }
-  .topoDir {
-    grid-area: topoDir;
-    justify-self: end;
-    align-self: start;
-  }
-
-  /* A coluna da esquerda "se desmancha": o nome e o texto vão para áreas diferentes */
-  .esquerda {
-    display: contents;
-  }
+/* Telas baixas (notebook pequeno): o nome e os espaços diminuem
+   para tudo continuar cabendo sem rolar */
+@media (max-height: 820px) and (min-width: 721px) {
   .nome {
-    grid-area: nome;
-    margin-top: 1rem;
-    font-size: 17vw;
-    position: relative;
-    z-index: 3;
+    font-size: clamp(3.5rem, min(10.5vw, 14.5vh), 11rem);
   }
-  .ola {
-    font-size: 8vw;
-  }
-  .esqTexto {
-    grid-area: texto;
-    align-self: start;
-    position: relative;
-    z-index: 3;
-    padding-top: 0.75rem;
-  }
-
-  /* A palavra deixa de "flutuar" e vira uma linha da grade */
-  .palavra {
-    grid-area: palavra;
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-    font-size: 23vw;
-    margin-top: 0.25rem;
-  }
-
-  /* A foto ocupa a coluna da direita e começa na metade da palavra:
-     a cabeça fica NA FRENTE do "PORTFÓLIO", como no desktop */
-  .foto {
-    grid-column: 1 / 3;
-    grid-row: 3 / 5;
-    justify-self: end;
-    align-self: start;
-    width: 52%;
-    margin-top: 6vw;
-  }
-  .midia {
-    max-height: none;
-  }
-
-  .cargo {
-    margin: 0 0 0.6rem;
-    font-size: clamp(0.85rem, 3.8vw, 1rem);
+  .topo {
+    margin-bottom: 1rem;
   }
   .descricao {
-    margin: 0 0 1rem;
-    font-size: 0.875rem; /* 14 px: menor que isso fica difícil de ler */
+    font-size: 0.95rem;
     line-height: 1.5;
   }
-  .botao {
-    gap: 1rem;
-    padding: 0.8rem 1.1rem;
-    font-size: 0.9rem;
+}
+
+/* Tablet: sem espaço para a palavra na vertical */
+@media (max-width: 1024px) {
+  .palco {
+    grid-template-columns: minmax(0, 1fr) auto;
   }
-  .local,
-  .frase,
-  .caso,
-  .rodapeExtra {
+  .palavra {
     display: none;
   }
+  .texto {
+    margin-left: 0;
+    min-height: 0;
+    padding-block: 1.25rem;
+  }
+  .foto {
+    margin-left: 0;
+    translate: none;
+    grid-row: 1;
+  }
+}
 
-  /* Números lado a lado, cada um com a legenda ao lado */
-  .direita {
-    grid-area: numeros;
-    justify-self: stretch;
-    max-width: none;
-    padding-bottom: 0.5rem;
+/* ---------- 8. Celular ----------
+   A hero deixa de ficar parada (ela é mais alta que a tela) e
+   tudo empilha: rótulos → nome → você → texto → números. */
+@media (max-width: 720px) {
+  .hero {
+    position: relative;
+    top: 0;
+    height: auto;
+    min-height: 0;
+    padding-top: 0.5rem;
+  }
+  .palco {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    padding-top: 1.5rem;
+  }
+  .texto {
+    display: contents;
+  }
+  .foto,
+  .numeros {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .topo {
+    order: 1;
+    margin-bottom: 1.5rem;
+  }
+  .titulo {
+    order: 2;
+    margin-bottom: 1rem;
+  }
+  .nome {
+    font-size: 23vw;
+  }
+  .foto {
+    order: 3;
+    width: 82%;
+    justify-self: center;
+    margin-bottom: 1.5rem;
+  }
+  .midia {
+    width: 100%;
+    height: auto;
+  }
+  .cargo {
+    order: 4;
+  }
+  .descricao {
+    order: 5;
+    font-size: 0.95rem;
+  }
+  .acoes {
+    order: 6;
+    margin-bottom: 2rem;
   }
   .numeros {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-  }
-  .numero {
-    gap: 0.6rem;
-    padding: 0.25rem 0;
-    border-bottom: 0;
-  }
-  .numero strong {
-    font-size: 2.6rem;
-  }
-
-  .rodape {
-    justify-content: center;
-    padding: 0.8rem 0 1rem;
+    order: 7;
+    justify-content: flex-start;
+    gap: 0.75rem 1.75rem;
   }
 }

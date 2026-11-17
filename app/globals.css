@@ -26,6 +26,12 @@
   --cor-luz: #ffb39c; /* cor do brilho que passa no nome (hero) */
   --palavra-gigante: linear-gradient(180deg, #c93a22 0%, #7a2214 100%);
   --brilho-foto: rgba(232, 70, 43, 0.35);
+  --cor-folha: #131317; /* seções que sobem por cima da Hero (página Início) */
+  /* Hero "afundada" com aro em relevo (página Início) */
+  --moldura-fundo: #08080b;
+  --moldura-aro: #17171c;
+  --moldura-sombra: rgba(0, 0, 0, 0.75);
+  --moldura-luz: rgba(255, 255, 255, 0.06);
 
   /* Cores das FAMÍLIAS de tecnologia (bolinha das Tags, ver lib/tecnologias.js).
      Inspiradas nas duplas de cores da Origamid: no fundo escuro, a versão
@@ -63,6 +69,11 @@
   --cor-luz: #e8462b;
   --palavra-gigante: linear-gradient(180deg, #e8462b 0%, #b8321c 100%);
   --brilho-foto: rgba(232, 70, 43, 0.22);
+  --cor-folha: #ffffff;
+  --moldura-fundo: #ece6dc;
+  --moldura-aro: #f9f6f1;
+  --moldura-sombra: rgba(80, 55, 30, 0.28);
+  --moldura-luz: #ffffff;
   --familia-1: #ff2b0d;
   --familia-2: #f90;
   --familia-3: #00bf1e;
