@@ -10,7 +10,7 @@ Portfólio profissional feito com Next.js e React: do esboço no Figma ao site n
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES2023-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 [![CSS Modules](https://img.shields.io/badge/CSS-Modules-1572B6?logo=css&logoColor=white)](https://github.com/css-modules/css-modules)
-[![Vitest](https://img.shields.io/badge/testes-247_passando-6E9F18?logo=vitest&logoColor=white)](#-testes)
+[![Vitest](https://img.shields.io/badge/testes-266_passando-6E9F18?logo=vitest&logoColor=white)](#-testes)
 [![Playwright](https://img.shields.io/badge/prints-Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 [![ESLint](https://img.shields.io/badge/lint-ESLint-4B32C3?logo=eslint&logoColor=white)](https://eslint.org/)
 [![Prettier](https://img.shields.io/badge/código-Prettier-F7B93E?logo=prettier&logoColor=black)](https://prettier.io/)
@@ -20,7 +20,7 @@ Portfólio profissional feito com Next.js e React: do esboço no Figma ao site n
 <br />
 
 <a href="https://portfolio-vanessa-lima.vercel.app">
-  <img src="docs/demo-inicio.gif" width="100%" alt="Página Início do portfólio: a Hero com a palavra PORTFÓLIO gigante, o vídeo da Vanessa e a troca entre os temas claro e escuro" />
+  <img src="docs/demo-inicio.gif" width="100%" alt="Página Início do portfólio: a Hero com o vídeo da Vanessa e a troca entre os temas claro e escuro" />
 </a>
 
 <br />
@@ -65,13 +65,13 @@ Além de mostrar os projetos, o site mostra **como ele foi feito**:
 - a página **Sobre** lista cada tecnologia usada e o papel dela no site;
 - as **decisões técnicas**, com o porquê de cada uma, estão em [`docs/DECISOES.md`](docs/DECISOES.md);
 - o **diário** em [`docs/DIARIO.md`](docs/DIARIO.md) tem um print e o que aprendi em cada etapa;
-- **247 testes automatizados** conferem que tudo continua funcionando a cada mudança.
+- **266 testes automatizados** conferem que tudo continua funcionando a cada mudança.
 
 | Item        | Detalhe                                                                        |
 | ----------- | ------------------------------------------------------------------------------ |
 | **Público** | Recrutadores de estágio e professores                                          |
 | **Páginas** | Início · Sobre · Experiência Acadêmica · Experiência Profissional · Projetos   |
-| **Status**  | 🔧 Refinamento final da v1.0.0 (correções, testes e revisão)                   |
+| **Status**  | ✅ v1.0.0 no ar · melhorias contínuas (hero nova, página Sobre mais enxuta)    |
 | **No ar**   | [portfolio-vanessa-lima.vercel.app](https://portfolio-vanessa-lima.vercel.app) |
 
 ---
@@ -82,16 +82,16 @@ A imagem abaixo acompanha o tema do seu GitHub: no modo escuro aparece a Hero co
 
 <div align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/progresso/2026-11-14-etapa-06-home-escuro.png" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/progresso/2026-11-14-etapa-06-home-claro.png" />
-  <img src="docs/progresso/2026-11-14-etapa-06-home-claro.png" width="100%" alt="Página Início no computador e no celular" />
+  <source media="(prefers-color-scheme: dark)" srcset="docs/progresso/2026-11-17-etapa-08-hero-nova-escuro.png" />
+  <source media="(prefers-color-scheme: light)" srcset="docs/progresso/2026-11-17-etapa-08-hero-nova-claro.png" />
+  <img src="docs/progresso/2026-11-17-etapa-08-hero-nova-claro.png" width="100%" alt="Página Início no computador e no celular" />
 </picture>
 </div>
 
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="docs/progresso/2026-11-12-etapa-03-sobre.png" alt="Página Sobre no computador e no celular" />
+      <img src="docs/progresso/2026-11-17-etapa-08-sobre-enxuta.png" alt="Página Sobre no computador e no celular" />
       <br /><sub><b>Sobre</b> · bio e todas as tecnologias do app</sub>
     </td>
     <td align="center" width="33%">
@@ -120,14 +120,14 @@ A imagem abaixo acompanha o tema do seu GitHub: no modo escuro aparece a Hero co
 
 **Por página**
 
-| Página           | O que tem                                                                                                                                                                                |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Início**       | Hero com **vídeo de fundo transparente** (tema escuro) ou foto (tema claro), "PORTFÓLIO" gigante letra por letra, números que contam, botão de pausar e seções que **aparecem ao rolar** |
-| **Sobre**        | Bio, foto, habilidades, **todas as tecnologias e módulos usados neste app** (com o papel de cada um e a versão lida do `package.json`) e "como este site foi feito"                      |
-| **Acadêmica**    | Linha do tempo com a graduação e **duas residências** no Porto Digital, e certificações em destaque                                                                                      |
-| **Profissional** | Linha do tempo de trabalho e sites feitos para clientes                                                                                                                                  |
-| **Projetos**     | Destaques com **mockup de computador + celular** (prints gerados por script) e lista automática dos repositórios pela **API do GitHub**, com cache                                       |
-| **404**          | Página personalizada com caminhos de volta                                                                                                                                               |
+| Página           | O que tem                                                                                                                                                                                                                                                  |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Início**       | Hero numa tela só, numa moldura com relevo: nome que **entra letra por letra**, mão acenando, foto (tema claro) ou **vídeo de fundo transparente** (tema escuro) no centro, "PORTFÓLIO" na vertical e a seção seguinte **subindo por cima como uma folha** |
+| **Sobre**        | Bio, foto, habilidades, **todas as tecnologias e módulos usados neste app** (agrupadas por família, com o papel de cada uma em uma linha e a versão lida do `package.json`) e "como este site foi feito"                                                   |
+| **Acadêmica**    | Linha do tempo com a graduação e **duas residências** no Porto Digital, e certificações em destaque                                                                                                                                                        |
+| **Profissional** | Linha do tempo de trabalho e sites feitos para clientes                                                                                                                                                                                                    |
+| **Projetos**     | Destaques com **mockup de computador + celular** (prints gerados por script) e lista automática dos repositórios pela **API do GitHub**, com cache                                                                                                         |
+| **404**          | Página personalizada com caminhos de volta                                                                                                                                                                                                                 |
 
 ---
 
@@ -156,7 +156,7 @@ A imagem abaixo acompanha o tema do seu GitHub: no modo escuro aparece a Hero co
 
 ## 🏗️ Arquitetura
 
-Todo o **conteúdo** fica em `data/`; os **componentes** só desenham; as **páginas** juntam os dois. O que precisa do navegador (vídeo, contador, menu, tema) fica em componentes cliente pequenos — o resto chega pronto em HTML.
+Todo o **conteúdo** fica em `data/`; os **componentes** só desenham; as **páginas** juntam os dois. O que precisa do navegador (vídeo, menu, tema) fica em componentes cliente pequenos — o resto chega pronto em HTML.
 
 ```mermaid
 flowchart LR
@@ -173,7 +173,7 @@ flowchart LR
   end
 
   subgraph Navegador["Navegador (use client)"]
-    H[HeroMidia · Contador]
+    H[HeroMidia]
     R[Revelar · Navbar · Tema]
   end
 
@@ -297,7 +297,7 @@ portfolio-vanessa-lima/
 ├── components/
 │   ├── ui/                     → design system (Container, Secao, TituloSecao, Botao, Tag, Card)
 │   ├── Navbar/ · Footer/       → barra de navegação e rodapé
-│   ├── Hero/                   → primeira tela da Início (vídeo, contador)
+│   ├── Hero/                   → primeira tela da Início (nome animado, vídeo)
 │   ├── Mockup/ · Revelar/      → prints em computador + celular; aparecer ao rolar
 │   ├── Timeline/ · CabecalhoPagina/ · ListaTecnologias/
 │   ├── EmConstrucao/           → página provisória
@@ -358,7 +358,7 @@ Abra [http://localhost:3000](http://localhost:3000).
 Os testes ficam em `__tests__/`, espelhando as pastas do projeto. Nenhum acessa a internet: a API do GitHub é testada com dados de mentira.
 
 ```bash
-npm test          # 24 arquivos · 247 testes
+npm test          # 25 arquivos · 266 testes
 npm run coverage  # relatório em coverage/index.html
 ```
 
@@ -375,7 +375,7 @@ npm run coverage  # relatório em coverage/index.html
 | `components/Footer.test.jsx`           | Landmark de rodapé, e-mail, links do menu, redes com `noopener noreferrer`, ano                            |
 | `app/sobre.test.jsx`                   | Página Sobre: um só `h1`, foto com `alt`, 4 seções nomeadas, links seguros, JSON-LD `ProfilePage`          |
 | `data/sobre.test.js`                   | **Todo pacote do `package.json` e todo módulo `next/...` importado está explicado na página Sobre**        |
-| `components/ListaTecnologias.test.jsx` | Grupos com `h3`, papel de cada item e versão só de quem é pacote                                           |
+| `components/ListaTecnologias.test.jsx` | Grupos com `h3`, papel de cada item, versão só de quem é pacote e etiquetas do que vem "junto"             |
 | `components/Navbar.test.jsx`           | Links, página ativa, hambúrguer (`aria-expanded`), `Esc`, fecha ao trocar página                           |
 | `components/TemaProvider.test.jsx`     | Lê, alterna e salva o tema                                                                                 |
 | `app/not-found.test.jsx`               | 404 com um só `h1` e caminhos de volta                                                                     |
@@ -390,7 +390,7 @@ npm run coverage  # relatório em coverage/index.html
 | `data/prints.test.js`                  | Todo print listado existe em `public/` e todo destaque com site tem print                                  |
 | `components/Mockup.test.jsx`           | Mockup com `alt` nos dois aparelhos e um link só dentro do Card                                            |
 | `lib/tecnologias.test.js`              | Cor por área: toda habilidade e tag de destaque tem cor, sem tecnologia repetida                           |
-| `components/Hero.test.jsx`             | Um `h1`, palavra gigante escondida do leitor de tela, foto e vídeo com `alt`, botão de pausa               |
+| `components/Hero.test.jsx`             | Um `h1`, nome animado lido inteiro pelo leitor de tela, foto e vídeo com `alt`, botão de pausa             |
 | `lib/midia.test.js`                    | Vídeo no Chrome/Firefox, WebP no Safari e iPhone, foto parada com "reduzir movimento"                      |
 | `lib/metadados.test.js`                | As 5 páginas com canonical, Open Graph completo (com imagem) e Twitter com o próprio título                |
 
@@ -441,7 +441,7 @@ Coisas que eu sei que ainda não estão como eu quero, e por quê:
 - ✅ **Componentização** — design system próprio reaproveitado em todas as páginas, conteúdo separado do layout
 - ✅ **Acessibilidade medida** — WCAG 2.2 (contraste, pausa de animação, teclado, leitor de tela), Lighthouse 100
 - ✅ **SEO técnico** — metadados completos por página, sitemap, robots, Open Graph e JSON-LD
-- ✅ **Testes** — 247 testes com Vitest e Testing Library, incluindo testes que protegem o conteúdo
+- ✅ **Testes** — 266 testes com Vitest e Testing Library, incluindo testes que protegem o conteúdo
 - ✅ **Automação** — script com Playwright que gera os prints dos projetos sozinho
 - ✅ **Processo** — commits pequenos no padrão Conventional Commits, decisões documentadas e diário com prints de cada etapa
 - ✅ **Deploy contínuo** — Vercel publicando a cada push na `main`
@@ -467,6 +467,7 @@ Hospedado na **[Vercel](https://vercel.com/)**: a cada `git push` na branch `mai
 - [x] Home completa: hero com vídeo e seções com animação ao rolar
 - [x] Revisão de acessibilidade e Lighthouse ≥ 90
 - [x] Versão `v1.0.0` (tag: primeira versão finalizada)
+- [x] Hero nova (sem cara de template) e página Sobre mais enxuta
 
 **Depois da v1.0.0**
 

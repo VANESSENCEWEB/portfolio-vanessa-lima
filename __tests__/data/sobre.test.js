@@ -46,20 +46,23 @@ function modulosNextImportados() {
 
 describe("Tecnologias e módulos usados neste app", () => {
   const todosOsPacotes = Object.keys({ ...pacote.dependencies, ...pacote.devDependencies });
-  const pacotesListados = ITENS.map((item) => item.pacote).filter(Boolean);
+  // Pacote principal + os que vêm "junto" no mesmo item
+  const pacotesListados = ITENS.flatMap((item) => [item.pacote, ...(item.junto ?? [])]).filter(
+    (nome) => nome && todosOsPacotes.includes(nome),
+  );
 
   it.each(todosOsPacotes)("o pacote %s do package.json está explicado na página", (nome) => {
     expect(pacotesListados).toContain(nome);
   });
 
-  it("todo pacote citado na página existe no package.json (versão aparece)", () => {
-    for (const nome of pacotesListados) {
+  it("todo pacote principal citado na página existe no package.json (versão aparece)", () => {
+    for (const { pacote: nome } of ITENS.filter((item) => item.pacote)) {
       expect(versaoDe(nome), nome).not.toBeNull();
     }
   });
 
   it("todo módulo next/... importado no código aparece na lista", () => {
-    const nomes = ITENS.map((item) => item.nome);
+    const nomes = ITENS.flatMap((item) => [item.nome, ...(item.junto ?? [])]);
     const modulos = modulosNextImportados();
     expect(modulos.length).toBeGreaterThan(0); // a busca funcionou
     for (const modulo of modulos) {

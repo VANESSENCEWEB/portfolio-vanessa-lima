@@ -140,3 +140,27 @@ Sem rolagem lateral em 320, 375, 768, 1024 e 1440 px.
 - Dado que eu ainda não confirmei (o ano das certificações da DIO e da Rocketseat) continua como `PREENCHER` e fica escondido no site, em vez de eu inventar.
 
 **Próximos passos:** estudo de caso do ISAC Conecta, prints do Sistema Recife Flats com dados fictícios, currículo em PDF e formulário de contato.
+
+---
+
+## Etapa 8 — Hero nova e página Sobre mais enxuta (17/11/2026)
+
+**O que fiz:** a Hero era inspirada num template que eu vi outras pessoas usando no LinkedIn, então redesenhei a primeira tela para ela ter a minha cara. Testei protótipos fora do projeto antes de mexer no site. A versão escolhida tem o texto à esquerda, eu no centro e "PORTFÓLIO" na vertical à direita, tudo numa tela só, dentro de uma moldura com relevo de tecla apertada. O único efeito é no nome: as letras sobem uma a uma e o ponto vermelho cai e quica. Ao rolar, a próxima seção sobe por cima da Hero como uma folha. Depois enxuguei a página Sobre: a lista de tecnologias caiu de 40 para 19 itens (pacotes da mesma família ficaram juntos) e a bio ficou com 2 parágrafos.
+
+![Hero nova no tema claro](progresso/2026-11-17-etapa-08-hero-nova-claro.png)
+
+![Hero nova no tema escuro, com o vídeo](progresso/2026-11-17-etapa-08-hero-nova-escuro.png)
+
+![Página Sobre mais enxuta](progresso/2026-11-17-etapa-08-sobre-enxuta.png)
+
+**O que aprendi:**
+
+- Protótipo antes de mexer no site: comparar opções lado a lado é mais rápido do que ajustar o código de verdade várias vezes.
+- Um efeito protagonista por seção: testei efeitos na foto e atrás do texto e todos poluíam. Animar só o nome deixou a Hero mais limpa.
+- Grid com posição explícita (`grid-column`/`grid-row`): sem isso, mudar um item de lugar empurra os outros.
+- `writing-mode: vertical-rl` deixa um texto na vertical sem girar a caixa. E se a coluna da esquerda usa a mesma conta de tamanho da palavra (`--tam-palavra`), as duas ficam alinhadas em qualquer tela.
+- Acessibilidade em texto animado: as letras soltas ficam escondidas do leitor de tela, e um texto escondido lê o nome inteiro.
+- `animation-timeline: scroll()` anima com a rolagem só com CSS, dentro de `@supports` para os navegadores que ainda não têm.
+- Menos texto também é design: juntar o que é da mesma família deixou a lista de tecnologias mais fácil de ler, e o teste continua garantindo que nenhum pacote fica de fora.
+
+**Próximos passos:** atualizar o GIF do README com a Hero nova, estudo de caso do ISAC Conecta, prints do Sistema Recife Flats com dados fictícios, currículo em PDF e formulário de contato.

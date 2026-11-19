@@ -3,9 +3,11 @@
    ---------------------------------------------------------
    Usada na página Sobre ("Tecnologias e módulos usados neste
    app"), mas serve para qualquer lista no mesmo formato:
-   [{ grupo, descricao, itens: [{ nome, papel, pacote? }] }]
+   [{ grupo, descricao, itens: [{ nome, papel, pacote?, junto? }] }]
    Cada grupo vira um bloco com título (h3) e uma lista.
    Se o item tiver "pacote", a versão vem do package.json.
+   "junto" vira etiquetas pequenas embaixo do papel (o que é
+   pacote do package.json ganha a versão ao lado).
    Server Component: só HTML, nenhum JavaScript no navegador.
    ========================================================= */
 import Tag from "@/components/ui/Tag/Tag";
@@ -25,7 +27,7 @@ export function idDoGrupo(grupo) {
 }
 
 /* Um item da lista: nome, versão (se houver) e papel */
-function Item({ nome, papel, pacote }) {
+function Item({ nome, papel, pacote, junto = [] }) {
   const versao = pacote ? versaoDe(pacote) : null;
   return (
     <li className={styles.item}>
@@ -39,6 +41,19 @@ function Item({ nome, papel, pacote }) {
         )}
       </div>
       <p className={styles.papel}>{papel}</p>
+      {junto.length > 0 && (
+        <ul className={styles.junto} aria-label={`Junto com ${nome}`}>
+          {junto.map((parte) => {
+            const versaoParte = versaoDe(parte);
+            return (
+              <li key={parte}>
+                {parte}
+                {versaoParte && <span className={styles.juntoVersao}> {versaoParte}</span>}
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </li>
   );
 }

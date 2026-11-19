@@ -75,6 +75,24 @@
   line-height: 1.6;
 }
 
+/* Etiquetas do "junto": pacotes e APIs da mesma família */
+.junto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  margin: 0.15rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--cor-texto-suave);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+.juntoVersao {
+  color: var(--cor-destaque);
+  font-variant-numeric: tabular-nums;
+}
+
 @media (min-width: 900px) {
   .grade {
     grid-template-columns: repeat(2, 1fr);

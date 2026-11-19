@@ -11,7 +11,7 @@ const GRUPOS = [
     descricao: "Peças prontas.",
     itens: [
       { nome: "Next.js", pacote: "next", papel: "Framework do site." },
-      { nome: "next/link", papel: "Links internos sem recarregar." },
+      { nome: "next/link", junto: ["next/navigation", "react-dom"], papel: "Links internos sem recarregar." },
     ],
   },
   { grupo: "Testes", itens: [{ nome: "Vitest", pacote: "vitest", papel: "Roda os testes." }] },
@@ -28,7 +28,9 @@ describe("ListaTecnologias", () => {
   it("lista os itens com o papel de cada um", () => {
     render(<ListaTecnologias grupos={GRUPOS} />);
     const grupo = screen.getByRole("region", { name: "Módulos do Next.js" });
-    expect(within(grupo).getAllByRole("listitem")).toHaveLength(2);
+    // A primeira lista é a dos itens; as etiquetas "junto" ficam dentro deles
+    const [lista] = within(grupo).getAllByRole("list");
+    expect(lista.children).toHaveLength(2);
     expect(within(grupo).getByText("Links internos sem recarregar.")).toBeInTheDocument();
   });
 
@@ -38,6 +40,14 @@ describe("ListaTecnologias", () => {
     // next/link não tem pacote próprio: nenhuma versão no item dele
     const itemLink = screen.getByText("next/link").closest("li");
     expect(within(itemLink).queryByText(/versão/)).not.toBeInTheDocument();
+  });
+
+  it('mostra o "junto" como etiquetas, com versão só para pacotes', () => {
+    render(<ListaTecnologias grupos={GRUPOS} />);
+    const junto = screen.getByRole("list", { name: "Junto com next/link" });
+    expect(within(junto).getAllByRole("listitem")).toHaveLength(2);
+    expect(within(junto).getByText(versaoDe("react-dom"))).toBeInTheDocument();
+    expect(within(junto).getByText("next/navigation")).toBeInTheDocument();
   });
 });
 

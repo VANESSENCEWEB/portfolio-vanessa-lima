@@ -36,9 +36,7 @@ export const FOTO = {
 export const BIO = [
   "Sou a Vanessa, desenvolvedora front-end em formação e designer de interfaces em Recife. Estudo Sistemas para Internet na UNICAP e cuido do projeto inteiro: do Figma ao site no ar.",
 
-  "Desenvolvi o sistema interno do Recife Flats Temporada (40 telas, usadas todos os dias pela equipe) e, na Residência em Software e IA (GrowUp · Porto Digital), trabalho no ISAC Conecta, um app que usa IA para organizar os anúncios dos grupos de WhatsApp do bairro. Construí e publiquei a minha versão, com React, Supabase e mais de 100 testes automatizados.",
-
-  "Procuro estágio ou vaga júnior em front-end em Recife, presencial ou híbrido.",
+  "Desenvolvi o sistema interno do Recife Flats Temporada, com 40 telas usadas todos os dias pela equipe. Hoje, na Residência em Software e IA (GrowUp · Porto Digital), trabalho no ISAC Conecta, um app que usa IA para organizar os anúncios dos grupos de WhatsApp do bairro.",
 ];
 
 /* ---------- 3. FATOS (resumo rápido ao lado da bio) ---------- */
@@ -109,14 +107,16 @@ export const HABILIDADES = [
 ];
 
 /* ---------- 5. TECNOLOGIAS E MÓDULOS USADOS NESTE APP ----------
-   Cada item: { nome, papel, pacote? }
+   Cada item: { nome, papel, pacote?, junto? }
    - nome: como aparece na tela
-   - papel: para que serve AQUI, em uma frase
+   - papel: para que serve AQUI, numa frase curta
    - pacote: nome no package.json → a versão aparece sozinha
+   - junto: pacotes, módulos ou APIs da mesma família, mostrados
+     como etiquetas no mesmo item (pacote → com a versão)
    O teste __tests__/data/sobre.test.js falha se:
    - um pacote do package.json não estiver nesta lista, ou
    - o código importar um módulo "next/..." que não esteja aqui.
-   Ou seja: instalou algo novo? Explique aqui o papel dele. */
+   Ou seja: instalou algo novo? Coloque aqui (item novo ou "junto"). */
 export const TECNOLOGIAS_DO_APP = [
   {
     grupo: "Base",
@@ -125,28 +125,18 @@ export const TECNOLOGIAS_DO_APP = [
       {
         nome: "Next.js",
         pacote: "next",
-        papel:
-          "Framework: cada pasta em app/ vira uma página, o HTML é montado no servidor e fontes e imagens já saem otimizadas.",
+        papel: "Rotas, HTML pronto no servidor e fontes e imagens otimizadas.",
       },
       {
         nome: "React",
         pacote: "react",
-        papel: "Biblioteca dos componentes: cada parte da tela é uma função reaproveitável.",
+        junto: ["react-dom"],
+        papel: "Cada parte da tela é um componente reaproveitável.",
       },
       {
-        nome: "React DOM",
-        pacote: "react-dom",
-        papel: "Liga o React ao navegador: desenha os componentes na página e cuida dos cliques.",
-      },
-      {
-        nome: "JavaScript (ES2023)",
+        nome: "JavaScript + CSS Modules",
         papel:
-          "Linguagem deste site, por escolha de estudo: aqui pratiquei React em JavaScript puro. TypeScript eu uso em outros projetos.",
-      },
-      {
-        nome: "CSS Modules + variáveis CSS",
-        papel:
-          "Um .module.css por componente, para as classes nunca se misturarem, e as cores do tema em variáveis.",
+          "JavaScript puro (escolha de estudo) e um .module.css por componente, com o tema em variáveis.",
       },
     ],
   },
@@ -154,38 +144,22 @@ export const TECNOLOGIAS_DO_APP = [
     grupo: "Módulos do Next.js",
     descricao: "Peças prontas do Next que o código importa.",
     itens: [
-      { nome: "next/link", papel: "Links internos que trocam de página sem recarregar o site." },
       {
-        nome: "next/navigation",
-        papel: "usePathname: a Navbar descobre a página atual e marca o link ativo.",
+        nome: "next/link",
+        junto: ["next/navigation"],
+        papel: "Troca de página sem recarregar e marca o link ativo no menu.",
       },
-      {
-        nome: "next/image",
-        papel:
-          "A foto da página Sobre e os prints dos projetos: formato leve (AVIF/WebP) e tamanho certo para cada tela.",
-      },
-      {
-        nome: "next/font/google",
-        papel: "Anton, Caveat Brush e Manrope baixadas no build e servidas pelo próprio site.",
-      },
-      { nome: "next/og", papel: "Desenha a imagem de compartilhamento (Open Graph) a partir de JSX." },
+      { nome: "next/image", papel: "Fotos e prints em AVIF/WebP, no tamanho certo para cada tela." },
+      { nome: "next/font/google", papel: "Anton, Caveat Brush e Manrope servidas pelo próprio site." },
       {
         nome: "Metadata API",
-        papel: "Título, descrição, canonical e Open Graph de cada página, com title.template no layout.",
+        junto: ["next/og", "sitemap.js", "robots.js"],
+        papel: "Título, descrição e imagem de compartilhamento de cada página.",
       },
-      { nome: "sitemap.js e robots.js", papel: "Geram /sitemap.xml e /robots.txt a partir do MENU." },
       {
         nome: '"use cache"',
-        papel:
-          "Guarda o ano do rodapé e a lista de repositórios do GitHub, para não refazer o trabalho a cada visita (exigência do cacheComponents).",
-      },
-      {
-        nome: "next/cache",
-        papel: "cacheLife: diz por quanto tempo a lista do GitHub fica guardada (algumas horas).",
-      },
-      {
-        nome: "fetch",
-        papel: "Busca os repositórios públicos na API REST do GitHub, no servidor, para a página Projetos.",
+        junto: ["next/cache", "fetch"],
+        papel: "Busca os repositórios do GitHub no servidor e guarda por algumas horas.",
       },
     ],
   },
@@ -194,109 +168,62 @@ export const TECNOLOGIAS_DO_APP = [
     descricao: "Recursos do React e do navegador usados no código.",
     itens: [
       {
-        nome: "useSyncExternalStore",
-        papel:
-          "Lê de fora do React o tema do <html>, a preferência de movimento e o navegador (para escolher o vídeo da Hero).",
+        nome: "Tema claro/escuro",
+        junto: [
+          "createContext",
+          "useSyncExternalStore",
+          "useCallback",
+          "matchMedia",
+          "MutationObserver",
+          "localStorage",
+        ],
+        papel: "Segue o aparelho na primeira visita, troca na hora e lembra a escolha.",
       },
       {
-        nome: "createContext + useContext",
-        papel: "Entregam o tema a qualquer componente pelo hook useTema().",
+        nome: "Menu do celular",
+        junto: ["useState", "useEffect"],
+        papel: "Abre, fecha, trava a rolagem e fecha com a tecla Esc.",
       },
       {
-        nome: "useState + useEffect",
-        papel: "Menu do celular: abre, fecha, trava a rolagem e escuta a tecla Esc.",
-      },
-      { nome: "useCallback", papel: "Mantém a mesma função alternarTema entre uma renderização e outra." },
-      { nome: "localStorage", papel: "Lembra o tema escolhido para a próxima visita." },
-      {
-        nome: "useRef",
-        papel: "Guarda o elemento do Revelar para o IntersectionObserver observar.",
+        nome: "Seções que aparecem",
+        junto: ["IntersectionObserver", "useRef"],
+        papel: "As seções da Início sobem ao entrar na tela, uma vez só.",
       },
       {
-        nome: "<video> com fundo transparente",
-        papel:
-          "O vídeo da Hero (WebM com canal alfa); no Safari, que não mostra a transparência, entra um WebP animado.",
+        nome: "Vídeo da Hero",
+        junto: ["<video>"],
+        papel: "WebM com fundo transparente; no Safari, um WebP animado.",
       },
-      {
-        nome: "IntersectionObserver",
-        papel: "Avisa quando uma seção da Início entra na tela, para ela subir e aparecer (uma vez só).",
-      },
-      {
-        nome: "requestAnimationFrame",
-        papel: "Faz os números da Hero contarem de 0 até o valor no ritmo da tela.",
-      },
-      {
-        nome: "matchMedia",
-        papel: "Descobre se o aparelho está no modo claro ou escuro na primeira visita.",
-      },
-      { nome: "MutationObserver", papel: "Vigia o atributo data-tema do <html> para o tema mudar na hora." },
     ],
   },
   {
     grupo: "Qualidade do código",
-    descricao: "Ferramentas que rodam só no meu computador (não vão para o site).",
+    descricao: "Rodam só no meu computador (não vão para o site).",
     itens: [
       {
         nome: "ESLint",
         pacote: "eslint",
-        papel: "Aponta erros antes de rodar: hooks usados errado, imagem sem alt...",
+        junto: ["eslint-config-next", "eslint-config-prettier"],
+        papel: "Aponta erros antes de rodar, com as regras do Next e de acessibilidade.",
       },
-      {
-        nome: "eslint-config-next",
-        pacote: "eslint-config-next",
-        papel: "Regras oficiais do Next, de React Hooks e de acessibilidade (jsx-a11y).",
-      },
-      {
-        nome: "eslint-config-prettier",
-        pacote: "eslint-config-prettier",
-        papel: "Desliga as regras de estilo do ESLint para não brigarem com o Prettier.",
-      },
-      {
-        nome: "Prettier",
-        pacote: "prettier",
-        papel: "Formata o código sempre do mesmo jeito (espaços, aspas, quebras).",
-      },
+      { nome: "Prettier", pacote: "prettier", papel: "Formata o código sempre do mesmo jeito." },
     ],
   },
   {
     grupo: "Testes",
-    descricao: "Garantem que o que funciona hoje continua funcionando amanhã.",
+    descricao: "O que funciona hoje continua funcionando amanhã.",
     itens: [
-      { nome: "Vitest", pacote: "vitest", papel: "Roda os testes automatizados (npm test)." },
       {
-        nome: "@vitest/coverage-v8",
-        pacote: "@vitest/coverage-v8",
-        papel: "Mostra quanto do código os testes cobrem (npm run coverage).",
+        nome: "Vitest",
+        pacote: "vitest",
+        junto: ["@vitest/coverage-v8", "@vitejs/plugin-react", "jsdom"],
+        papel: "Roda os testes num navegador simulado e mede a cobertura.",
       },
       {
-        nome: "@vitejs/plugin-react",
-        pacote: "@vitejs/plugin-react",
-        papel: "Ensina o Vitest a entender JSX.",
-      },
-      {
-        nome: "jsdom",
-        pacote: "jsdom",
-        papel: "Simula um navegador dentro dos testes (com document e window).",
-      },
-      {
-        nome: "Testing Library (React)",
+        nome: "Testing Library",
         pacote: "@testing-library/react",
-        papel: "Desenha o componente no teste e procura os elementos como uma pessoa procuraria.",
-      },
-      {
-        nome: "Testing Library (DOM)",
-        pacote: "@testing-library/dom",
-        papel: "Base da Testing Library: as buscas por papel (button, link) e por texto.",
-      },
-      {
-        nome: "jest-dom",
-        pacote: "@testing-library/jest-dom",
-        papel: 'Verificações legíveis, como toHaveAttribute("rel", "noopener noreferrer").',
-      },
-      {
-        nome: "user-event",
-        pacote: "@testing-library/user-event",
-        papel: "Simula cliques e teclas de verdade (ex.: Esc fechando o menu).",
+        junto: ["@testing-library/dom", "@testing-library/jest-dom", "@testing-library/user-event"],
+        papel: "Testa como uma pessoa usa: procura por texto, clica e aperta teclas.",
       },
     ],
   },
@@ -304,14 +231,9 @@ export const TECNOLOGIAS_DO_APP = [
     grupo: "Ferramentas e publicação",
     descricao: "Do meu computador até o site no ar.",
     itens: [
-      {
-        nome: "Playwright",
-        pacote: "playwright",
-        papel:
-          "Abre sites num navegador invisível e tira os prints do diário (npm run mockup) e dos cartões de projeto (npm run prints).",
-      },
-      { nome: "Git + GitHub", papel: "Histórico do código com Conventional Commits e repositório público." },
-      { nome: "Vercel", papel: "Hospedagem: cada push na main publica o site sozinho." },
+      { nome: "Playwright", pacote: "playwright", papel: "Tira os prints dos projetos e do diário." },
+      { nome: "Git + GitHub", papel: "Histórico com Conventional Commits, em repositório público." },
+      { nome: "Vercel", papel: "Cada push na main publica o site sozinho." },
     ],
   },
 ];
