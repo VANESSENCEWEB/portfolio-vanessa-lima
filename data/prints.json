@@ -64,5 +64,11 @@
     "computador": "/images/projetos/recife-flats-temporada-computador.jpg",
     "celular": "/images/projetos/recife-flats-temporada-celular.jpg",
     "data": "2026-11-14"
+  },
+  "sistema-recife-flats": {
+    "site": null,
+    "computador": "/images/projetos/sistema-recife-flats-computador.jpg",
+    "celular": "/images/projetos/sistema-recife-flats-celular.jpg",
+    "data": "2026-11-19"
   }
 }

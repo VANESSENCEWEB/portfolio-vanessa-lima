@@ -52,7 +52,7 @@ export const DESTAQUES = [
     tags: ["JavaScript", "Supabase", "PostgreSQL", "Edge Functions", "GitHub Actions"],
     site: null,
     codigo: null,
-    nota: "Sistema privado, com dados reais de hóspedes.",
+    nota: "Sistema privado: os prints usam dados fictícios.",
   },
   {
     id: "api-projeto-integrador",
