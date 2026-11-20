@@ -164,7 +164,9 @@
   white-space: nowrap;
   transition:
     border-color 0.3s,
-    color 0.3s;
+    color 0.3s,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 .ctaFundo {
   position: absolute;
@@ -186,8 +188,14 @@
     color 0.3s;
 }
 .cta:hover {
-  border-color: var(--cor-destaque);
+  border-color: var(--cor-texto);
   color: #fff;
+  transform: var(--levantar);
+  box-shadow: var(--sombra-dura);
+}
+.cta:active {
+  transform: none;
+  box-shadow: none;
 }
 .cta:hover .ctaFundo {
   transform: scaleX(1);

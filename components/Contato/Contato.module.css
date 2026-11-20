@@ -165,7 +165,6 @@
   gap: 0.75rem;
   width: 100%;
   padding: 1.05rem 1.25rem;
-  border: 0;
   border-radius: 12px;
   background: var(--cor-botao);
   color: #fff;
@@ -175,24 +174,24 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 0 18px -4px color-mix(in srgb, var(--cor-destaque) 70%, transparent);
+  border: 2px solid var(--cor-texto);
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
+/* Levanta do papel (ver --sombra-dura no globals.css) */
 .enviar:hover,
 .enviar:focus-visible {
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 24px 2px color-mix(in srgb, var(--cor-destaque) 55%, transparent),
-    0 12px 32px -10px var(--cor-botao);
+  transform: var(--levantar);
+  box-shadow: var(--sombra-dura);
 }
 .enviar:focus-visible {
   outline: 2px solid var(--cor-destaque);
   outline-offset: 3px;
 }
 .enviar:active {
-  transform: scale(0.98);
+  transform: none;
+  box-shadow: none;
 }
 .enviar svg {
   transition: transform 0.3s ease;

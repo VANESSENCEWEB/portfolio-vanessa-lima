@@ -46,6 +46,14 @@
   --margem: clamp(1.25rem, 4vw, 3.5rem);
   --altura-nav: 76px;
 
+  /* Hover "levanta do papel" (inspirado na API do Projeto Integrador):
+     o elemento sobe para a esquerda e aparece uma sombra DURA, sem
+     desfoque, na cor do texto. Usado em botões e cartões. */
+  --levantar: translate(-2px, -2px);
+  --sombra-dura: 4px 4px 0 var(--cor-texto);
+  --levantar-grande: translate(-3px, -3px);
+  --sombra-dura-grande: 6px 6px 0 var(--cor-texto);
+
   /* Fontes: --fonte-display, --fonte-script e --fonte-texto são
      criadas pelo next/font no layout.jsx. Aqui só damos as reservas
      (usadas se a fonte principal não carregar). */

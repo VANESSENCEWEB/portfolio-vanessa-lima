@@ -60,13 +60,17 @@
   font-weight: 700;
   cursor: pointer;
   transition:
-    border-color 0.25s ease,
-    color 0.25s ease;
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 .pausar:hover,
 .pausar:focus-visible {
-  border-color: var(--cor-destaque);
+  border-color: var(--cor-texto);
   color: var(--cor-texto);
+  transform: var(--levantar);
+  box-shadow: var(--sombra-dura);
 }
 .pausar:focus-visible {
   outline: 2px solid var(--cor-destaque);
@@ -81,12 +85,14 @@
   border-radius: 18px;
   background: color-mix(in srgb, var(--cor-texto) 3%, transparent);
   transition:
-    border-color 0.3s ease,
-    transform 0.3s ease;
+    border-color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 .cartao:hover {
-  border-color: var(--cor-destaque);
-  transform: translateY(-4px);
+  border-color: var(--cor-texto);
+  transform: var(--levantar-grande);
+  box-shadow: var(--sombra-dura-grande);
 }
 
 /* Miniatura: o botão inteiro é a imagem */
@@ -160,15 +166,16 @@
   font-weight: 700;
   text-decoration: none;
   transition:
-    border-color 0.25s ease,
-    color 0.25s ease,
-    box-shadow 0.25s ease;
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 .verificar:hover,
 .verificar:focus-visible {
-  border-color: var(--cor-destaque);
-  color: var(--cor-destaque);
-  box-shadow: 0 0 18px -4px color-mix(in srgb, var(--cor-destaque) 55%, transparent);
+  border-color: var(--cor-texto);
+  transform: var(--levantar);
+  box-shadow: var(--sombra-dura);
 }
 
 /* ---------- Visualização grande (dialog) ---------- */

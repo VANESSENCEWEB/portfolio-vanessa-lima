@@ -25,7 +25,8 @@
   transition:
     color 0.3s ease,
     border-color 0.3s ease,
-    transform 0.2s ease;
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 /* Fundo que enche no hover */
@@ -45,11 +46,15 @@
 }
 .botao:hover,
 .botao:focus-visible {
-  border-color: var(--cor-destaque);
+  border-color: var(--cor-texto);
   color: #fff;
+  transform: var(--levantar);
+  box-shadow: var(--sombra-dura);
 }
+/* Ao clicar, "afunda" de volta no papel */
 .botao:active {
-  transform: scale(0.97);
+  transform: none;
+  box-shadow: none;
 }
 
 /* ---------- Variantes ---------- */
@@ -83,6 +88,8 @@
 .fantasma:focus-visible {
   border-color: transparent;
   color: var(--cor-destaque);
+  transform: none;
+  box-shadow: none;
 }
 
 /* ---------- Tamanhos ---------- */

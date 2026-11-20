@@ -124,9 +124,9 @@
   gap: 1rem 1.75rem;
 }
 
-/* Botão "Ver projetos ↓" (inspirado no portfólio anterior): cantos
-   arredondados, caixa alta e um brilho neon fraco em volta. No hover
-   ele sobe, o brilho cresce, um reflexo atravessa e a seta quica. */
+/* Botão "Ver projetos ↓": cantos arredondados e caixa alta. No hover
+   ele "levanta do papel" (sobe para a esquerda com sombra dura, ver
+   --sombra-dura no globals.css), um reflexo atravessa e a seta quica. */
 .botao {
   position: relative;
   overflow: hidden;
@@ -142,20 +142,19 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  box-shadow: 0 0 18px -4px color-mix(in srgb, var(--cor-destaque) 70%, transparent);
+  border: 2px solid var(--cor-texto);
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 .botao:hover,
 .botao:focus-visible {
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 26px 2px color-mix(in srgb, var(--cor-destaque) 55%, transparent),
-    0 12px 32px -10px var(--cor-botao);
+  transform: var(--levantar);
+  box-shadow: var(--sombra-dura);
 }
 .botao:active {
-  transform: translateY(0) scale(0.97);
+  transform: none;
+  box-shadow: none;
 }
 .botao:focus-visible {
   outline: 2px solid var(--cor-destaque);
@@ -181,13 +180,13 @@
 }
 
 /* "Como este site foi feito →": botão vazado (só a borda). No hover
-   a borda e o texto ficam vermelhos, o brilho neon aparece e a seta anda */
+   ele levanta do papel como o "Ver projetos" e a seta anda */
 .caso {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   padding: 1rem 1.4rem;
-  border: 1px solid color-mix(in srgb, var(--cor-destaque) 40%, var(--cor-linha));
+  border: 2px solid var(--cor-texto);
   border-radius: 12px;
   color: var(--cor-texto);
   font-weight: 700;
@@ -196,16 +195,18 @@
   text-transform: uppercase;
   text-decoration: none;
   transition:
-    color 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
+    color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 .caso:hover,
 .caso:focus-visible {
-  transform: translateY(-2px);
-  border-color: var(--cor-destaque);
-  box-shadow: 0 0 22px -2px color-mix(in srgb, var(--cor-destaque) 50%, transparent);
+  transform: var(--levantar);
+  box-shadow: var(--sombra-dura);
+}
+.caso:active {
+  transform: none;
+  box-shadow: none;
 }
 .casoSeta {
   display: inline-block;
