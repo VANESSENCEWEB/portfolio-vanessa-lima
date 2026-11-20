@@ -51,13 +51,15 @@
   min-height: 44px;
   margin: 0 0 2.5rem;
   padding: 0.5rem 1.1rem;
-  border: 1px solid var(--cor-linha);
-  border-radius: 999px;
+  border: var(--borda-botao) solid var(--cor-texto);
+  border-radius: var(--raio-botao);
   background: transparent;
-  color: var(--cor-texto-suave);
+  color: var(--cor-texto);
   font: inherit;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   cursor: pointer;
   transition:
     border-color 0.15s ease,
@@ -68,9 +70,9 @@
 }
 .pausar:hover,
 .pausar:focus-visible {
-  border-color: var(--cor-tinta);
-  background: var(--cor-amarelo);
-  color: var(--cor-tinta);
+  border-color: var(--vazado-hover-texto);
+  background: var(--vazado-hover);
+  color: var(--vazado-hover-texto);
   transform: var(--levantar);
   box-shadow: var(--sombra-dura);
 }
@@ -161,11 +163,13 @@
   min-height: 44px;
   margin-top: auto;
   padding: 0.6rem 1.1rem;
-  border: 1px solid var(--cor-linha);
-  border-radius: 999px;
+  border: var(--borda-botao) solid var(--cor-texto);
+  border-radius: var(--raio-botao);
   color: var(--cor-texto);
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-decoration: none;
   transition:
     border-color 0.15s ease,
@@ -176,9 +180,9 @@
 }
 .verificar:hover,
 .verificar:focus-visible {
-  border-color: var(--cor-tinta);
-  background: var(--cor-amarelo);
-  color: var(--cor-tinta);
+  border-color: var(--vazado-hover-texto);
+  background: var(--vazado-hover);
+  color: var(--vazado-hover-texto);
   transform: var(--levantar);
   box-shadow: var(--sombra-dura);
 }
@@ -231,12 +235,15 @@
   gap: 0.45rem;
   min-height: 44px;
   padding: 0.6rem 1.1rem;
-  border: 1px solid var(--cor-linha);
-  border-radius: 999px;
+  border: var(--borda-botao) solid var(--cor-texto);
+  border-radius: var(--raio-botao);
   background: var(--cor-botao);
   color: #fff;
   font: inherit;
+  font-size: 0.78rem;
   font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   cursor: pointer;
 }
 .fechar:focus-visible {

@@ -134,7 +134,7 @@
   align-items: center;
   gap: 1.4rem;
   padding: 1rem 1.7rem;
-  border-radius: 12px;
+  border-radius: var(--raio-botao);
   background: var(--cor-botao); /* texto branco por cima: ver --cor-botao no globals.css */
   color: #fff;
   font-weight: 700;
@@ -142,7 +142,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  border: 2px solid var(--cor-texto);
+  border: var(--borda-botao) solid var(--cor-texto);
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
@@ -159,6 +159,10 @@
 .botao:focus-visible {
   outline: 2px solid var(--cor-destaque);
   outline-offset: 3px;
+}
+/* Texto do botão: um para o computador, outro para o celular */
+.textoCelular {
+  display: none;
 }
 .botaoSeta {
   display: inline-block;
@@ -180,14 +184,14 @@
 }
 
 /* "Como este site foi feito →": botão vazado (só a borda). No hover
-   enche de amarelo, levanta do papel e a seta anda */
+   enche (amarelo no claro, creme no escuro), levanta do papel e a seta anda */
 .caso {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   padding: 1rem 1.4rem;
-  border: 2px solid var(--cor-texto);
-  border-radius: 12px;
+  border: var(--borda-botao) solid var(--cor-texto);
+  border-radius: var(--raio-botao);
   color: var(--cor-texto);
   font-weight: 700;
   font-size: 0.85rem;
@@ -203,9 +207,9 @@
 }
 .caso:hover,
 .caso:focus-visible {
-  border-color: var(--cor-tinta);
-  background: var(--cor-amarelo);
-  color: var(--cor-tinta);
+  border-color: var(--vazado-hover-texto);
+  background: var(--vazado-hover);
+  color: var(--vazado-hover-texto);
   transform: var(--levantar);
   box-shadow: var(--sombra-dura);
 }
@@ -595,10 +599,11 @@
 /* ---------- 8. Celular ----------
    A hero deixa de ficar parada e tudo empilha, centralizado.
    A PRIMEIRA TELA (sem rolar) mostra o essencial:
-     "Olá, eu sou" → você → NOME → cargo → botão Ver projetos
+     "Olá, eu sou" → você → NOME → cargo → botão "Ver meu portfólio"
    e, rolando: texto → "Como este site foi feito" → números.
-   A foto usa a altura que sobra na tela (svh), então o botão
-   fica visível em qualquer celular.
+   A foto ocupa TODA a altura que sobra na tela (svh): o botão
+   fica no fim da primeira tela e o texto começa só depois dela
+   (nada aparece cortado embaixo).
    h1 e .acoes viram display: contents para os filhos entrarem
    na ordem acima (a foto fica ENTRE o "Olá" e o nome). */
 @media (max-width: 720px) {
@@ -611,12 +616,12 @@
   }
   .palco {
     /* espaço que os textos da primeira tela ocupam (sem a foto) */
-    --sem-foto: calc(var(--nome-cel) * 1.8 + 15rem);
+    --sem-foto: calc(var(--nome-cel) * 1.8 + 17rem);
     --nome-cel: min(20vw, 9svh);
     grid-template-columns: 1fr;
     grid-template-rows: none;
     justify-items: center;
-    padding-top: 1rem;
+    padding-top: 2rem;
     text-align: center;
   }
   .texto,
@@ -636,7 +641,7 @@
   }
   .foto {
     order: 2;
-    height: clamp(190px, calc(100svh - var(--altura-nav) - var(--sem-foto)), 360px);
+    height: clamp(190px, calc(100svh - var(--altura-nav) - var(--sem-foto)), 560px);
     margin: 0 0 0.75rem;
     translate: none;
   }
@@ -654,6 +659,12 @@
     margin-bottom: 1.1rem;
     font-size: 0.95rem;
   }
+  .textoComputador {
+    display: none;
+  }
+  .textoCelular {
+    display: inline;
+  }
   .botao {
     order: 5;
     justify-self: stretch;
@@ -661,7 +672,8 @@
   }
   .descricao {
     order: 6;
-    margin: 2.5rem auto 1.25rem;
+    /* começa depois do fim da primeira tela (nada aparece cortado) */
+    margin: 5rem auto 1.25rem;
     font-size: 0.95rem;
   }
   .caso {
@@ -675,5 +687,24 @@
     justify-self: stretch;
     justify-content: center;
     gap: 0.75rem 1.75rem;
+  }
+}
+
+/* Celular: a seta do "Ver meu portfólio ↓" desce e volta algumas vezes
+   logo depois que o botão aparece, chamando para rolar (no celular não
+   existe hover). Para sozinha em ~5 s (WCAG 2.2.2) e nem começa com
+   "reduzir movimento" ligado. */
+@media (max-width: 720px) and (prefers-reduced-motion: no-preference) {
+  .botaoSeta {
+    animation: chamar-para-baixo 1.2s ease-in-out 1.8s 4;
+  }
+}
+@keyframes chamar-para-baixo {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
   }
 }

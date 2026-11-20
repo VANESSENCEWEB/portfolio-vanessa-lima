@@ -21,6 +21,11 @@
 .ponto {
   color: var(--cor-destaque);
 }
+/* Mais espaço entre o título e a descrição: a Anton tem linhas bem
+   juntas, e o rabinho do "Ç" ou do "J" encostava no texto de baixo */
+.titulo + .descricao {
+  margin-top: clamp(0.5rem, 1.5vw, 1rem);
+}
 .descricao {
   margin: 0;
   max-width: 60ch;

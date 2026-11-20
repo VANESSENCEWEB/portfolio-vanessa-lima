@@ -26,7 +26,8 @@ export const HERO = {
   cargo: ["Desenvolvedora front-end", "& designer de interfaces"],
   descricao:
     "Estudante de Sistemas para Internet na UNICAP. Faço design e código no mesmo projeto: do esboço no Figma ao site no ar, com projetos reais em produção.",
-  botao: { texto: "Ver projetos", href: "/projetos" },
+  // textoCelular: no celular o botão fica sozinho na primeira tela, então chama para o portfólio todo
+  botao: { texto: "Ver projetos", textoCelular: "Ver meu portfólio", href: "/projetos" },
   caso: { texto: "Como este site foi feito", href: "/sobre#como-foi-feito" },
   // Números calculados, não digitados: nunca ficam desatualizados
   numeros: [

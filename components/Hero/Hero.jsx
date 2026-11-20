@@ -78,7 +78,9 @@ export default function Hero() {
 
           <div className={`${styles.acoes} ${styles.anima}`} style={atraso(0.95)}>
             <Link href={HERO.botao.href} className={styles.botao}>
-              {HERO.botao.texto}
+              {/* Só um dos dois aparece (CSS); o que está escondido não é lido */}
+              <span className={styles.textoComputador}>{HERO.botao.texto}</span>
+              <span className={styles.textoCelular}>{HERO.botao.textoCelular}</span>
               <span className={styles.botaoSeta} aria-hidden="true">
                 ↓
               </span>

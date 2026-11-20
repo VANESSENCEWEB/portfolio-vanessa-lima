@@ -11,17 +11,27 @@
    um de um jeito e o teclado também funciona diferente.
    Props:
    - variante: "primario" (vermelho) | "secundario" (contorno) | "fantasma" (só texto)
+     Link para github.com ou linkedin.com vira SOZINHO o botão da
+     marca (fundo da cor dela + ícone), menos o "fantasma".
    - tamanho: "medio" (padrão) | "grande"
    - seta: true mostra "↗" (externo) ou "→" (interno)
    - type: "button" (padrão) | "submit" — só para <button>
    ========================================================= */
 import Link from "next/link";
 import { juntarClasses } from "@/lib/classes";
+import { IconeGithub, IconeLinkedin } from "@/components/Navbar/Icones";
 import styles from "./Botao.module.css";
 
 // Link externo = começa com http:// ou https://
 export function ehExterno(href = "") {
   return /^https?:\/\//i.test(href);
+}
+
+// "github" | "linkedin" | null, pelo endereço do link
+export function marcaDoLink(href = "") {
+  if (/^https?:\/\/([\w-]+\.)?github\.com\//i.test(href)) return "github";
+  if (/^https?:\/\/([\w-]+\.)?linkedin\.com\//i.test(href)) return "linkedin";
+  return null;
 }
 
 export default function Botao({
@@ -34,12 +44,15 @@ export default function Botao({
   className,
   ...resto
 }) {
-  const classes = juntarClasses(styles.botao, styles[variante], styles[tamanho], className);
+  const marca = variante === "fantasma" ? null : marcaDoLink(href);
+  const classes = juntarClasses(styles.botao, styles[marca || variante], styles[tamanho], className);
   const externo = ehExterno(href);
+  const IconeMarca = marca === "github" ? IconeGithub : marca === "linkedin" ? IconeLinkedin : null;
 
-  // Conteúdo igual nos três casos: texto + seta (decorativa)
+  // Conteúdo igual nos três casos: (ícone da marca) + texto + seta (decorativa)
   const conteudo = (
     <>
+      {IconeMarca && <IconeMarca className={styles.icone} />}
       <span className={styles.texto}>{children}</span>
       {seta && (
         <span className={styles.seta} aria-hidden="true">

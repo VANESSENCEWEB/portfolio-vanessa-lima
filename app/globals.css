@@ -48,15 +48,27 @@
 
   /* Hover "levanta do papel" (inspirado na API do Projeto Integrador):
      o elemento sobe para a esquerda e aparece uma sombra DURA, sem
-     desfoque, na cor do texto. Usado em botões e cartões. */
+     desfoque. Usado em botões e cartões.
+     Tema escuro: sombra VERMELHA; tema claro: sombra na cor do texto. */
+  --cor-sombra: var(--cor-destaque);
+  /* BOTÕES: um estilo só no site inteiro. Todo botão usa este
+     arredondamento e esta borda (texto em caixa alta, ver Botao). */
+  --raio-botao: 12px;
+  --borda-botao: 2px;
+  /* Cores oficiais das marcas: botões que levam ao GitHub/LinkedIn */
+  --cor-github: #24292f;
+  --cor-linkedin: #0a66c2;
   --levantar: translate(-2px, -2px);
-  /* Amarelo dos botões vazados no hover e da seleção de texto.
-     Texto em cima dele é SEMPRE --cor-tinta (contraste ~13:1). */
+  --sombra-dura: 4px 4px 0 var(--cor-sombra);
+  --levantar-grande: translate(-3px, -3px);
+  --sombra-dura-grande: 6px 6px 0 var(--cor-sombra);
+  /* Botões vazados no hover e texto selecionado.
+     Tema escuro: enchem de BRANCO (creme) com texto preto.
+     Tema claro: enchem de AMARELO com texto escuro (contraste ~13:1). */
   --cor-amarelo: #ffd400;
   --cor-tinta: #16110b;
-  --sombra-dura: 4px 4px 0 var(--cor-texto);
-  --levantar-grande: translate(-3px, -3px);
-  --sombra-dura-grande: 6px 6px 0 var(--cor-texto);
+  --vazado-hover: var(--cor-texto);
+  --vazado-hover-texto: var(--cor-fundo);
 
   /* Fontes: --fonte-display, --fonte-script e --fonte-texto são
      criadas pelo next/font no layout.jsx. Aqui só damos as reservas
@@ -70,6 +82,9 @@
 
 /* Tema claro: só sobrescreve o que muda */
 [data-tema="claro"] {
+  --cor-sombra: var(--cor-texto);
+  --vazado-hover: var(--cor-amarelo);
+  --vazado-hover-texto: var(--cor-tinta);
   /* No creme, o #e8462b dava só 3,4:1 em texto pequeno (Lighthouse).
      #c0361d dá 4,8:1 no creme e 5,5:1 com texto branco por cima. */
   --cor-destaque: #c0361d;
@@ -217,8 +232,8 @@ button {
   }
 }
 
-/* Texto selecionado: marca-texto amarelo (nos dois temas) */
+/* Texto selecionado: amarelo no tema claro, creme com texto preto no escuro */
 ::selection {
-  background: var(--cor-amarelo);
-  color: var(--cor-tinta);
+  background: var(--vazado-hover);
+  color: var(--vazado-hover-texto);
 }

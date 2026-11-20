@@ -100,14 +100,15 @@
   gap: 0.6rem;
 }
 
-/* Botões redondos de ícone (GitHub, LinkedIn, tema) */
+/* Botão de ícone (tema): quadrado de cantos arredondados, o mesmo
+   formato dos botões do GitHub e do LinkedIn (components/Redes) */
 .icone {
   width: 38px;
   height: 38px;
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  border-radius: 50%;
+  border-radius: var(--raio-botao);
   border: 1px solid var(--cor-linha);
   background: transparent;
   color: var(--cor-texto);
@@ -118,16 +119,15 @@
     transform 0.25s,
     box-shadow 0.25s;
 }
-.icone:hover {
-  border-color: var(--cor-destaque);
-  color: var(--cor-destaque);
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 0 4px rgba(232, 70, 43, 0.12),
-    0 0 18px rgba(232, 70, 43, 0.3);
+.icone:hover,
+.icone:focus-visible {
+  border-color: var(--cor-texto);
+  transform: var(--levantar);
+  box-shadow: var(--sombra-dura);
 }
 .icone:active {
-  transform: scale(0.92);
+  transform: none;
+  box-shadow: none;
 }
 
 /* Tema: mostra o sol no escuro e a lua no claro */
@@ -155,11 +155,13 @@
   align-items: center;
   gap: 0.4rem;
   margin-left: 0.4rem;
-  padding: 0.65rem 1.15rem;
-  border: 1px solid var(--cor-linha);
-  border-radius: 999px;
-  font-size: 0.9rem;
+  padding: 0.6rem 1.05rem;
+  border: var(--borda-botao) solid var(--cor-texto);
+  border-radius: var(--raio-botao);
+  font-size: 0.78rem;
   font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
   transition:
@@ -171,7 +173,7 @@
 .ctaFundo {
   position: absolute;
   inset: 0;
-  background: var(--cor-amarelo); /* enche de amarelo, com o texto escuro por cima */
+  background: var(--vazado-hover); /* enche de amarelo (claro) ou creme (escuro), com texto escuro */
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
@@ -188,8 +190,8 @@
     color 0.3s;
 }
 .cta:hover {
-  border-color: var(--cor-tinta);
-  color: var(--cor-tinta);
+  border-color: var(--vazado-hover-texto);
+  color: var(--vazado-hover-texto);
   transform: var(--levantar);
   box-shadow: var(--sombra-dura);
 }
@@ -201,7 +203,7 @@
   transform: scaleX(1);
 }
 .cta:hover .ctaSeta {
-  color: var(--cor-tinta);
+  color: var(--vazado-hover-texto);
   transform: translate(3px, -3px);
 }
 
@@ -213,7 +215,7 @@
   width: 42px;
   height: 42px;
   border: 1px solid var(--cor-linha);
-  border-radius: 50%;
+  border-radius: var(--raio-botao); /* mesmo formato dos outros botões */
   background: transparent;
   cursor: pointer;
 }

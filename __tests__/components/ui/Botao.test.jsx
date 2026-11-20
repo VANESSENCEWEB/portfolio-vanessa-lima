@@ -65,4 +65,18 @@ describe("ehExterno", () => {
   ])("ehExterno(%s) → %s", (href, esperado) => {
     expect(ehExterno(href)).toBe(esperado);
   });
+
+  it("link para o GitHub ou LinkedIn vira o botão da marca (com ícone), menos o fantasma", () => {
+    const { rerender, container } = render(<Botao href="https://github.com/VANESSENCEWEB">GitHub</Botao>);
+    expect(container.querySelector("a").className).toMatch(/github/);
+    expect(container.querySelector("a svg")).not.toBeNull();
+    rerender(<Botao href="https://www.linkedin.com/in/vanessa-lima-dev/">LinkedIn</Botao>);
+    expect(container.querySelector("a").className).toMatch(/linkedin/);
+    rerender(
+      <Botao href="https://github.com/VANESSENCEWEB" variante="fantasma">
+        Código
+      </Botao>,
+    );
+    expect(container.querySelector("a").className).not.toMatch(/github/);
+  });
 });

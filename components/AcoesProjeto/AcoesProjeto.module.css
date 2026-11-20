@@ -16,10 +16,6 @@
   font-size: 0.9rem;
   white-space: nowrap;
 }
-.icone {
-  margin-right: 0.5rem;
-  vertical-align: -3px; /* alinha o ícone com o meio do texto */
-}
 .nota {
   margin: 0;
   font-size: 0.85rem;

@@ -61,9 +61,17 @@ function Apresentacao() {
             sizes={TAMANHOS_FOTO}
             priority /* é a maior imagem da tela: carrega primeiro */
           />
+          {/* Celular: a foto ocupa a tela toda, então uma seta chama para
+              rolar até o texto (no computador o texto já está ao lado) */}
+          <a href="#sobre-bio" className={styles.rolar}>
+            Role para baixo
+            <span className={styles.rolarSeta} aria-hidden="true">
+              ↓
+            </span>
+          </a>
         </figure>
 
-        <div className={styles.texto}>
+        <div id="sobre-bio" className={styles.texto}>
           {BIO.map((paragrafo) => (
             <p key={paragrafo} className={styles.paragrafo}>
               {paragrafo}

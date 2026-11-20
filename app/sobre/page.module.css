@@ -46,7 +46,71 @@
   mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
 }
 
+/* "Role para baixo ↓" em cima da parte de baixo da foto (só no celular).
+   A seta desce e volta sem parar; some quando a pessoa começa a rolar
+   (onde o navegador suporta) e fica parada com "reduzir movimento". */
+.rolar {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  translate: -50% 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.6rem 1.1rem;
+  border: var(--borda-botao) solid var(--cor-texto);
+  border-radius: var(--raio-botao);
+  background: color-mix(in srgb, var(--cor-fundo) 85%, transparent);
+  backdrop-filter: blur(6px);
+  color: var(--cor-texto);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.rolar:focus-visible {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: 3px;
+}
+.rolarSeta {
+  display: inline-block;
+  color: var(--cor-destaque);
+  font-size: 1rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rolarSeta {
+    animation: descer-seta 1.3s ease-in-out infinite;
+  }
+  @supports (animation-timeline: scroll()) {
+    .rolar {
+      animation: sumir-ao-rolar linear both;
+      animation-timeline: scroll();
+      animation-range: 0 120px;
+    }
+  }
+}
+@keyframes descer-seta {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+@keyframes sumir-ao-rolar {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .texto {
+  /* ao pular para ele pela seta, o menu fixo não cobre o texto */
+  scroll-margin-top: calc(var(--altura-nav) + 1rem);
   display: grid;
   align-content: start;
   gap: 1.2rem;
@@ -161,6 +225,9 @@
 
 /* ---------- Computador ---------- */
 @media (min-width: 900px) {
+  .rolar {
+    display: none;
+  }
   .grade {
     grid-template-columns: minmax(280px, 420px) 1fr;
     align-items: start;

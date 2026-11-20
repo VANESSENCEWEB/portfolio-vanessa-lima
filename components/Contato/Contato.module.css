@@ -33,7 +33,7 @@
   width: 48px;
   height: 48px;
   border: 1px solid var(--cor-linha);
-  border-radius: 11px;
+  border-radius: var(--raio-botao);
   background: color-mix(in srgb, var(--cor-texto) 4%, transparent);
   color: var(--cor-texto-suave);
   transition:
@@ -165,7 +165,7 @@
   gap: 0.75rem;
   width: 100%;
   padding: 1.05rem 1.25rem;
-  border-radius: 12px;
+  border-radius: var(--raio-botao);
   background: var(--cor-botao);
   color: #fff;
   font: inherit;
@@ -174,7 +174,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  border: 2px solid var(--cor-texto);
+  border: var(--borda-botao) solid var(--cor-texto);
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
