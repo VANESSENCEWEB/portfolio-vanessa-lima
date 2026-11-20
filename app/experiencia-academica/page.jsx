@@ -5,16 +5,16 @@
    Seções, de cima para baixo:
    1. Cabeçalho: título (h1), descrição e números (3º, 2 residências, 87+)
    2. Trajetória: linha do tempo (UNICAP e residência)
-   3. Certificações: destaques em cartões + link para todas
+   3. Certificações: galeria com os certificados (ampliar e
+      verificar) + link para todos no LinkedIn
    Server Component: a página inteira chega pronta em HTML.
    Todos os textos vêm de data/experiencias.js.
    ========================================================= */
 import { CERTIFICACOES, FORMACAO, RESUMO_ACADEMICO } from "@/data/experiencias";
-import { temValor } from "@/lib/experiencias";
+import Certificados from "@/components/Certificados/Certificados";
 import CabecalhoPagina from "@/components/CabecalhoPagina/CabecalhoPagina";
 import Timeline from "@/components/Timeline/Timeline";
 import Botao from "@/components/ui/Botao/Botao";
-import Card from "@/components/ui/Card/Card";
 import Secao from "@/components/ui/Secao/Secao";
 import styles from "./page.module.css";
 import { metadadosDaPagina } from "@/lib/metadados";
@@ -35,20 +35,10 @@ function Certificacoes() {
       id="certificacoes"
       rotulo="Estudo contínuo"
       titulo="Certificações"
-      descricao={`São ${total} certificações em cursos de tecnologia e design. Estas são as formações em destaque; a lista completa está no LinkedIn.`}
+      descricao={`São ${total} certificações em cursos de tecnologia e design. Estas são as que eu destaco: clique para ampliar ou em Verificar para conferir na página oficial. A lista completa está no LinkedIn.`}
     >
-      <ul className={styles.grade}>
-        {destaques.map(({ id, instituicao, titulo, ano }) => (
-          <li key={id}>
-            {/* O ano só aparece quando estiver preenchido */}
-            <Card
-              rotulo={temValor(ano) ? `${instituicao} · ${ano}` : instituicao}
-              titulo={titulo}
-              descricao="Formação concluída"
-            />
-          </li>
-        ))}
-      </ul>
+      {/* Miniaturas que ampliam ao clicar + link oficial de validação */}
+      <Certificados itens={destaques} />
 
       <div className={styles.acoes}>
         <Botao href={linkTodas} seta>

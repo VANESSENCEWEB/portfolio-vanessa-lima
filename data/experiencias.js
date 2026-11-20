@@ -29,7 +29,6 @@
    }
    ========================================================= */
 import { PESSOA } from "@/data/perfil";
-import { PREENCHER } from "@/lib/experiencias";
 
 /* ---------- 1. Números do topo (página Acadêmica) ---------- */
 export const RESUMO_ACADEMICO = [
@@ -101,26 +100,65 @@ export const CERTIFICACOES = {
   total: "87+",
   // Página de certificações do LinkedIn (a lista completa fica lá)
   linkTodas: `${PESSOA.redes.linkedin}details/certifications/`,
+  /* Destaques com a imagem do certificado (public/images/certificados,
+     gerada do PDF) e o link OFICIAL de validação, quando existe.
+     imagem: as 6 têm a mesma proporção (1600 x 1132).
+     verificar: null = a instituição não tem página pública de validação. */
   destaques: [
     {
-      id: "dio-campus-expert",
-      instituicao: "DIO",
-      titulo: "Campus Expert",
-      ano: PREENCHER, // ✏️ ano de conclusão, ex.: "2025"
-    },
-    {
-      id: "origamid",
+      id: "origamid-formacao",
       instituicao: "Origamid",
-      // Certificado da formação (72 h), atualizado em 31/03/2026:
-      // origamid.com/certificate/1d3b2ba4
       titulo: "Front/Back End & UX/UI Design",
+      carga: "72 h",
       ano: "2026",
+      imagem: "/images/certificados/origamid-formacao.webp",
+      verificar: "https://origamid.com/certificate/1d3b2ba4",
     },
     {
       id: "rocketseat",
       instituicao: "Rocketseat",
-      titulo: "Programação", // ✏️ nome como estava no portfólio antigo: confira o nome exato
-      ano: PREENCHER,
+      titulo: "Fundamentos de HTML, CSS, JavaScript e TypeScript",
+      carga: "15 h",
+      ano: "2026",
+      // o número de matrícula (RA) foi coberto na imagem
+      imagem: "/images/certificados/rocketseat.webp",
+      verificar: "https://app.rocketseat.com.br/certificates/ef8041bd-088a-4a5e-a810-ad69ac90171d",
+    },
+    {
+      id: "origamid-html-css",
+      instituicao: "Origamid",
+      titulo: "HTML e CSS para Iniciantes",
+      carga: "46 h",
+      ano: "2025",
+      imagem: "/images/certificados/origamid-html-css.webp",
+      verificar: "https://origamid.com/certificate/f8037f5e",
+    },
+    {
+      id: "dio-campus-expert",
+      instituicao: "DIO",
+      titulo: "Campus Expert · Turma 15 (liderança)",
+      carga: "40 h",
+      ano: "2026",
+      imagem: "/images/certificados/dio-campus-expert.webp",
+      verificar: null,
+    },
+    {
+      id: "asimov-git-github",
+      instituicao: "Asimov Academy",
+      titulo: "Git e GitHub: Controle de Versão e Colaboração",
+      carga: "9 h",
+      ano: "2026",
+      imagem: "/images/certificados/asimov-git-github.webp",
+      verificar: "https://hub.asimov.academy/validar-certificado/edba2114-a64a-4398-a1eb-fc821ac4d2a7",
+    },
+    {
+      id: "asimov-design-systems",
+      instituicao: "Asimov Academy",
+      titulo: "Modernizando Sites Antigos com Design Systems",
+      carga: "2 h",
+      ano: "2026",
+      imagem: "/images/certificados/asimov-design-systems.webp",
+      verificar: "https://hub.asimov.academy/validar-certificado/986faec7-fc76-4431-8bac-a72a28056937",
     },
   ],
 };

@@ -1,0 +1,200 @@
+/* =========================================================
+   Certificados.module.css
+   Celular: fileira que arrasta para o lado (scroll-snap).
+   A partir de 700px: grade com quantas colunas couberem.
+   ========================================================= */
+.lista {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(82%, 340px);
+  gap: 1rem;
+  margin: 0 calc(var(--margem) * -1) 2.5rem; /* a fileira vai até a borda da tela */
+  padding: 0.5rem var(--margem) 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--margem);
+  overscroll-behavior-x: contain;
+  list-style: none;
+}
+.cartao {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--cor-linha);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--cor-texto) 3%, transparent);
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+.cartao:hover {
+  border-color: var(--cor-destaque);
+  transform: translateY(-4px);
+}
+
+/* Miniatura: o botão inteiro é a imagem */
+.miniatura {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--cor-linha);
+  background: none;
+  cursor: zoom-in;
+}
+.miniatura img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.miniatura:hover img,
+.miniatura:focus-visible img {
+  transform: scale(1.03);
+}
+.miniatura:focus-visible {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: -4px;
+}
+.ampliar {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--cor-fundo) 80%, transparent);
+  backdrop-filter: blur(6px);
+  color: var(--cor-texto);
+  font-size: 1.05rem;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+  padding: 1.1rem 1.25rem 1.3rem;
+}
+.texto :global(.rotulo) {
+  margin: 0;
+}
+.titulo {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+/* Botão "Verificar ↗": fica sempre no fim do cartão */
+.verificar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  align-self: flex-start;
+  min-height: 44px;
+  margin-top: auto;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--cor-linha);
+  border-radius: 999px;
+  color: var(--cor-texto);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.verificar:hover,
+.verificar:focus-visible {
+  border-color: var(--cor-destaque);
+  color: var(--cor-destaque);
+  box-shadow: 0 0 18px -4px color-mix(in srgb, var(--cor-destaque) 55%, transparent);
+}
+
+/* ---------- Visualização grande (dialog) ---------- */
+.dialogo {
+  width: min(1000px, 94vw);
+  max-height: 94vh;
+  padding: 0;
+  border: 1px solid var(--cor-linha);
+  border-radius: 18px;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+.dialogo::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+}
+.ampliado {
+  margin: 0;
+}
+.ampliado img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.legenda {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+}
+.legenda strong {
+  color: var(--cor-texto);
+}
+.legendaAcoes {
+  display: flex;
+  gap: 0.6rem;
+}
+.legendaAcoes .verificar {
+  margin-top: 0;
+}
+.fechar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--cor-linha);
+  border-radius: 999px;
+  background: var(--cor-botao);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.fechar:focus-visible {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: 3px;
+}
+
+/* ---------- Telas maiores: vira grade ---------- */
+@media (min-width: 700px) {
+  .lista {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: clamp(1rem, 2.5vw, 1.5rem);
+    margin-inline: 0;
+    padding: 0;
+    overflow: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cartao,
+  .cartao:hover,
+  .miniatura img,
+  .miniatura:hover img {
+    transform: none;
+    transition: none;
+  }
+}

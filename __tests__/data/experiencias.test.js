@@ -4,6 +4,8 @@
    Garantem que os dados estão completos e seguros e LISTAM
    (sem falhar) os campos que a Vanessa ainda precisa preencher.
    ========================================================= */
+import { existsSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   CERTIFICACOES,
@@ -68,6 +70,13 @@ describe("links", () => {
 describe("certificações e resumo", () => {
   it("o total aparece igual no resumo do topo e na seção", () => {
     expect(RESUMO_ACADEMICO.map((item) => item.valor)).toContain(CERTIFICACOES.total);
+  });
+
+  it("todo destaque tem imagem que existe em public/ e link de validação em HTTPS (ou null)", () => {
+    for (const { id, imagem, verificar } of CERTIFICACOES.destaques) {
+      expect(existsSync(path.join(process.cwd(), "public", imagem)), id).toBe(true);
+      if (verificar !== null) expect(verificar, id).toMatch(/^https:\/\//);
+    }
   });
 
   it("todo destaque tem instituição e título", () => {
