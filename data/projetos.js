@@ -105,4 +105,11 @@ export const GITHUB = {
     "click-shop-pdv": "Click Shop PDV",
     "recife-flats-temporada": "Recife Flats Temporada",
   },
+  // Tecnologias do cartão (sem isto, só aparece a linguagem principal)
+  tags: {
+    "jogo-dados-unicap": ["Next.js", "React", "JavaScript", "CSS"],
+    "simulador-irpf": ["HTML", "CSS", "JavaScript"],
+    "click-shop-pdv": ["React", "TypeScript", "Vite", "Tailwind CSS", "Firebase"],
+    "recife-flats-temporada": ["HTML", "CSS", "JavaScript", "Web Components"],
+  },
 };

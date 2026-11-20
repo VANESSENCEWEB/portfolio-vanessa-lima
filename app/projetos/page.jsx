@@ -70,6 +70,7 @@ async function RepositoriosDoGitHub() {
     exigirDescricao: GITHUB.exigirDescricao,
     somente: GITHUB.somente,
     titulos: GITHUB.titulos,
+    tags: GITHUB.tags,
   });
 
   return (
@@ -85,13 +86,13 @@ async function RepositoriosDoGitHub() {
         </p>
       ) : (
         <ul className={styles.grade}>
-          {repositorios.map(({ id, chave, titulo, descricao, linguagem, codigo, site, atualizadoEm }) => (
+          {repositorios.map(({ id, chave, titulo, descricao, tags, codigo, site, atualizadoEm }) => (
             <li key={id}>
               <Card
                 titulo={titulo}
                 rotulo={atualizadoEm ? `Atualizado em ${atualizadoEm}` : undefined}
                 descricao={descricao || "Sem descrição no GitHub."}
-                tags={linguagem ? [linguagem] : []}
+                tags={tags}
                 midia={<Mockup titulo={titulo} prints={PRINTS[chave]} />}
               >
                 <AcoesProjeto titulo={titulo} site={site} codigo={codigo} />

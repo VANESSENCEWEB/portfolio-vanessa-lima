@@ -57,6 +57,7 @@ async function repositoriosComSite() {
     exigirDescricao: GITHUB.exigirDescricao,
     somente: GITHUB.somente,
     titulos: GITHUB.titulos,
+    tags: GITHUB.tags,
   });
   return repos.filter((r) => r.site).map((r) => ({ chave: r.chave, site: r.site }));
 }

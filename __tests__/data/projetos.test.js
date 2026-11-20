@@ -6,6 +6,7 @@
    ========================================================= */
 import { describe, expect, it } from "vitest";
 import { DESTAQUES, GITHUB } from "@/data/projetos";
+import { familiaDe } from "@/lib/tecnologias";
 
 const ehLink = (valor) => /^https:\/\//.test(valor);
 
@@ -63,6 +64,13 @@ describe("GITHUB: curadoria da lista", () => {
   it("todo escolhido tem título de exibição", () => {
     for (const nome of GITHUB.somente) {
       expect(GITHUB.titulos[nome], nome).toBeTruthy();
+    }
+  });
+
+  it("todo escolhido tem tags, e toda tag tem cor (família)", () => {
+    for (const nome of GITHUB.somente) {
+      expect(GITHUB.tags[nome]?.length, nome).toBeGreaterThan(0);
+      for (const tag of GITHUB.tags[nome]) expect(familiaDe(tag), tag).not.toBeNull();
     }
   });
 });

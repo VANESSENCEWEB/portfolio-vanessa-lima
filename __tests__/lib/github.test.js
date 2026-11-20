@@ -137,3 +137,17 @@ describe("filtrarRepositorios com curadoria (somente + titulos)", () => {
     expect(resultado.find((r) => r.nome === "novo").titulo).toBe("novo");
   });
 });
+
+describe("filtrarRepositorios com tags", () => {
+  it("usa as tags escolhidas; senão, a linguagem principal do GitHub", () => {
+    const lista = [
+      repo("site", { language: "HTML" }),
+      repo("outro", { language: "CSS" }),
+      repo("nada", { language: null }),
+    ];
+    const resultado = filtrarRepositorios(lista, { tags: { site: ["HTML", "CSS", "JavaScript"] } });
+    expect(resultado.find((r) => r.nome === "site").tags).toEqual(["HTML", "CSS", "JavaScript"]);
+    expect(resultado.find((r) => r.nome === "outro").tags).toEqual(["CSS"]);
+    expect(resultado.find((r) => r.nome === "nada").tags).toEqual([]);
+  });
+});
