@@ -14,36 +14,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTema } from "@/components/TemaProvider";
 import { MENU, PESSOA } from "@/data/perfil";
-import { IconeGithub, IconeLinkedin, IconeLua, IconeSol } from "./Icones";
+import Redes from "@/components/Redes/Redes";
+import { CONTATO } from "@/data/contato";
+import { IconeLua, IconeSol } from "./Icones";
 import styles from "./Navbar.module.css";
 
 /* ---------- Links das redes (reaproveitado no computador e no celular) ----------
-   target="_blank" abre em nova aba.
-   rel="noopener noreferrer" é SEGURANÇA: impede que o site aberto
-   consiga controlar a aba do seu portfólio. */
+   Botões nas cores do GitHub e do LinkedIn, com brilho neon no
+   hover (ver components/Redes). */
 function LinksRedes() {
-  return (
-    <>
-      <a
-        href={PESSOA.redes.github}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.icone}
-        aria-label="GitHub de Vanessa Lima (abre em nova aba)"
-      >
-        <IconeGithub />
-      </a>
-      <a
-        href={PESSOA.redes.linkedin}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.icone}
-        aria-label="LinkedIn de Vanessa Lima (abre em nova aba)"
-      >
-        <IconeLinkedin />
-      </a>
-    </>
-  );
+  return <Redes quais={["github", "linkedin"]} tamanho="p" />;
 }
 
 /* ---------- Botão de tema ----------
@@ -66,17 +46,18 @@ function BotaoTema() {
 }
 
 /* ---------- Botão "Vamos conversar" ----------
-   Abre o e-mail da pessoa já com o seu endereço preenchido.
-   O <span> de fundo "enche" o botão de vermelho no hover. */
-function BotaoConversar({ className = "" }) {
+   Leva para a seção Contato da Início (/#contato).
+   O <span> de fundo "enche" o botão de vermelho no hover.
+   onClick: no celular, fecha o menu ao clicar. */
+function BotaoConversar({ className = "", onClick }) {
   return (
-    <a href={`mailto:${PESSOA.email}`} className={`${styles.cta} ${className}`}>
+    <Link href={`/#${CONTATO.id}`} className={`${styles.cta} ${className}`} onClick={onClick}>
       <span className={styles.ctaFundo} aria-hidden="true" />
       <span className={styles.ctaTexto}>Vamos conversar</span>
       <span className={styles.ctaSeta} aria-hidden="true">
         ↗
       </span>
-    </a>
+    </Link>
   );
 }
 
@@ -186,7 +167,7 @@ export default function Navbar() {
           <div className={styles.painelRedes}>
             <LinksRedes />
           </div>
-          <BotaoConversar />
+          <BotaoConversar onClick={fecharMenu} />
         </div>
       </div>
     </header>

@@ -1,0 +1,91 @@
+/* =========================================================
+   Redes.module.css — botões nas cores das marcas
+   ---------------------------------------------------------
+   --marca: fundo do botão · --neon: cor do brilho
+   Parado: um brilho fraco. Hover/foco: sobe e o brilho
+   cresce (sombra em duas camadas = efeito neon).
+   ========================================================= */
+.redes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rede {
+  --marca: #24292f;
+  --neon: rgba(255, 255, 255, 0.28);
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: var(--marca);
+  color: #fff;
+  box-shadow: 0 0 12px -2px var(--neon);
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.3s ease;
+}
+.rede:hover,
+.rede:focus-visible {
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--neon) 60%, transparent),
+    0 0 18px 2px var(--neon),
+    0 10px 30px -6px var(--neon);
+}
+.rede:active {
+  transform: translateY(0) scale(0.94);
+}
+.rede:focus-visible {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: 3px;
+}
+
+/* Tamanhos */
+.p {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+}
+.m {
+  width: 44px;
+  height: 44px;
+}
+.m svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Cores oficiais das marcas */
+.github {
+  --marca: #24292f;
+  --neon: rgba(255, 255, 255, 0.35);
+  /* no fundo escuro, um contorno fino separa o botão do fundo */
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+:global([data-tema="claro"]) .github {
+  --neon: rgba(36, 41, 47, 0.55);
+  border-color: transparent;
+}
+.linkedin {
+  --marca: #0a66c2;
+  --neon: rgba(10, 102, 194, 0.75);
+}
+.whatsapp {
+  --marca: #25d366;
+  --neon: rgba(37, 211, 102, 0.7);
+}
+.instagram {
+  --marca: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+  --neon: rgba(214, 36, 159, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rede,
+  .rede:hover,
+  .rede:focus-visible {
+    transform: none;
+  }
+}

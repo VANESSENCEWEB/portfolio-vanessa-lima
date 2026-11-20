@@ -22,9 +22,12 @@ export const PESSOA = {
   conhecimentos: ["Front-end", "React", "Next.js", "JavaScript", "CSS", "UI Design", "Figma"],
   // E-mail PÚBLICO (pode aparecer no site)
   email: "vanessalimaunicap@gmail.com",
+  // WhatsApp PÚBLICO: texto para mostrar e número só com dígitos (para o wa.me)
+  whatsapp: { texto: "+55 (81) 99918-7869", numero: "5581999187869" },
   redes: {
     github: "https://github.com/VANESSENCEWEB",
     linkedin: "https://www.linkedin.com/in/vanessa-lima-dev/",
+    instagram: "https://www.instagram.com/vanessenceweb/",
   },
 };
 

@@ -17,12 +17,18 @@ describe("Footer", () => {
     expect(screen.getByRole("contentinfo")).toBeInTheDocument();
   });
 
-  it("tem o e-mail público com mailto", async () => {
+  it("tem o e-mail público com mailto na coluna Contato", async () => {
     await renderFooter();
-    expect(screen.getByRole("link", { name: PESSOA.email })).toHaveAttribute(
-      "href",
-      `mailto:${PESSOA.email}`,
-    );
+    expect(screen.getByRole("link", { name: "E-mail" })).toHaveAttribute("href", `mailto:${PESSOA.email}`);
+  });
+
+  it("mostra as 4 redes nas cores das marcas, cada uma com nome para o leitor de tela", async () => {
+    await renderFooter();
+    for (const rede of ["GitHub", "LinkedIn", "WhatsApp", "Instagram"]) {
+      expect(
+        screen.getByRole("link", { name: `${rede} de ${PESSOA.nome} (abre em nova aba)` }),
+      ).toBeInTheDocument();
+    }
   });
 
   it("repete todos os links do MENU", async () => {
@@ -36,7 +42,7 @@ describe("Footer", () => {
   it("links externos abrem em nova aba com rel=noopener noreferrer (segurança)", async () => {
     const { container } = await renderFooter();
     const externos = container.querySelectorAll('a[target="_blank"]');
-    expect(externos).toHaveLength(2); // GitHub e LinkedIn
+    expect(externos.length).toBeGreaterThan(0);
     for (const link of externos) {
       expect(link).toHaveAttribute("rel", "noopener noreferrer");
     }

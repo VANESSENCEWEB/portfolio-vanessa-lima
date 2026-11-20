@@ -6,7 +6,8 @@
    2. Projetos em destaque: os 3 primeiros de data/projetos.js,
       com os prints (o mesmo cartão da página Projetos)
    3. Navegue pelo portfólio: um cartão para cada página
-   As seções 2 e 3 ficam numa "folha" (.folha) que sobe por cima
+   4. Contato: canais e formulário (components/Contato)
+   As seções 2 a 4 ficam numa "folha" (.folha) que sobe por cima
    da Hero ao rolar, e cada uma aparece com o <Revelar>.
    Server Component: só o vídeo, o contador e o Revelar rodam
    no navegador.
@@ -14,6 +15,7 @@
 import { ATALHOS } from "@/data/home";
 import { DESTAQUES } from "@/data/projetos";
 import PRINTS from "@/data/prints.json";
+import Contato from "@/components/Contato/Contato";
 import Hero from "@/components/Hero/Hero";
 import Mockup from "@/components/Mockup/Mockup";
 import Revelar from "@/components/Revelar/Revelar";
@@ -85,6 +87,10 @@ export default function Inicio() {
               ))}
             </ul>
           </Secao>
+        </Revelar>
+
+        <Revelar>
+          <Contato />
         </Revelar>
       </div>
     </>
