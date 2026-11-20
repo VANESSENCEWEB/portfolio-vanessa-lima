@@ -2,8 +2,8 @@
    Hero — a primeira tela da página Início
    ---------------------------------------------------------
    Três colunas no computador:
-     [rótulos, "Olá, eu sou", NOME, texto e botões]  [você]  [PORTFÓLIO na vertical]
-   e, embaixo, uma linha com números, residência e stack.
+     ["Olá, eu sou", NOME, texto e botões]  [você]  [PORTFÓLIO na vertical]
+   e, embaixo, uma linha com números, "disponível para estágio" e local.
    Tudo cabe numa tela, alinhado com o menu (mesmo --margem).
    No celular tudo empilha.
    Efeito protagonista: SÓ no nome. As letras sobem uma a uma,
@@ -56,19 +56,6 @@ export default function Hero() {
     <section className={styles.hero} aria-label="Apresentação">
       <div className={styles.palco}>
         <div className={styles.texto}>
-          <div className={`${styles.topo} ${styles.anima}`} style={atraso(0.1)}>
-            <p className="rotulo">
-              <span className="online" aria-hidden="true" />
-              {HERO.disponivel}
-            </p>
-            <p className="rotulo rotulo--suave">
-              <span aria-hidden="true" className={styles.alvo}>
-                ⌖
-              </span>
-              {HERO.local}
-            </p>
-          </div>
-
           <h1 className={styles.titulo}>
             <span className={`${styles.ola} ${styles.anima}`} style={atraso(0.1)}>
               {HERO.saudacao} {/* aria-hidden: o leitor de tela lê só "Olá, eu sou Vanessa Lima" */}
@@ -122,8 +109,16 @@ export default function Hero() {
               <span className="rotulo rotulo--suave">{legenda}</span>
             </li>
           ))}
-          <li className={`rotulo rotulo--suave ${styles.extra}`}>{HERO.residencia}</li>
-          <li className={`rotulo rotulo--suave ${styles.extra}`}>{HERO.stack}</li>
+          <li className={`rotulo ${styles.extra}`}>
+            <span className="online" aria-hidden="true" />
+            {HERO.disponivel}
+          </li>
+          <li className={`rotulo rotulo--suave ${styles.extra}`}>
+            <span aria-hidden="true" className={styles.alvo}>
+              ⌖
+            </span>
+            {HERO.local}
+          </li>
         </ul>
       </div>
     </section>

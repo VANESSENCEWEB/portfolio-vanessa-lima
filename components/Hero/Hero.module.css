@@ -76,19 +76,6 @@
   min-height: calc(var(--tam-palavra) * 3.76);
 }
 
-.topo {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem 1.4rem;
-  margin-bottom: min(2.2rem, 3.5vh);
-}
-.topo p {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0;
-}
 .alvo {
   color: var(--cor-destaque);
 }
@@ -99,7 +86,8 @@
 }
 .ola {
   display: block;
-  margin-bottom: 0.2rem;
+  /* respiro entre "Olá, eu sou" e o nome */
+  margin-bottom: clamp(0.6rem, 2vh, 1.2rem);
   font-family: var(--script);
   font-size: clamp(1.8rem, min(2.8vw, 4.6vh), 2.6rem);
   line-height: 1;
@@ -371,7 +359,7 @@
   user-select: none;
 }
 
-/* ---------- 5. Linha de baixo: números, residência e stack ---------- */
+/* ---------- 5. Linha de baixo: números, disponibilidade e local ---------- */
 .numeros {
   grid-column: 1 / -1;
   grid-row: 2;
@@ -404,6 +392,9 @@
   vertical-align: top;
 }
 .extra {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   margin: 0;
 }
 
@@ -552,9 +543,6 @@
   .nome {
     font-size: clamp(3.5rem, min(10.5vw, 14.5vh), 11rem);
   }
-  .topo {
-    margin-bottom: 1rem;
-  }
   .descricao {
     font-size: 0.95rem;
     line-height: 1.5;
@@ -583,7 +571,7 @@
 
 /* ---------- 8. Celular ----------
    A hero deixa de ficar parada (ela é mais alta que a tela) e
-   tudo empilha: rótulos → nome → você → texto → números. */
+   tudo empilha: nome → você → texto → números. */
 @media (max-width: 720px) {
   .hero {
     position: relative;
@@ -604,10 +592,6 @@
   .numeros {
     grid-column: 1;
     grid-row: auto;
-  }
-  .topo {
-    order: 1;
-    margin-bottom: 1.5rem;
   }
   .titulo {
     order: 2;

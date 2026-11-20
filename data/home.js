@@ -20,8 +20,6 @@ const totalCertificacoes = Number.parseInt(CERTIFICACOES.total, 10);
 
 /* ---------- 1. HERO ---------- */
 export const HERO = {
-  disponivel: "Disponível para estágio",
-  local: "Recife · PE — presencial ou híbrido",
   saudacao: "Olá, eu sou",
   palavra: "Portfólio", // na vertical, à direita (só enfeite: o leitor de tela não lê)
   nome: PESSOA.nome, // "Vanessa Lima": cada palavra vira uma linha
@@ -36,8 +34,8 @@ export const HERO = {
     { valor: totalCertificacoes, sufixo: "+", legenda: "Certificações" },
   ],
   // Fim da linha de baixo (ao lado dos números)
-  residencia: "Residência em Software e IA · Porto Digital",
-  stack: "React · Next.js · Figma · Supabase",
+  disponivel: "Disponível para estágio",
+  local: "Recife · PE — presencial ou híbrido",
 };
 
 /* ---------- 2. MIDIA ----------
