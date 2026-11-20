@@ -17,6 +17,7 @@ import PRINTS from "@/data/prints.json";
 import { buscarRepositorios } from "@/lib/github";
 import CabecalhoPagina from "@/components/CabecalhoPagina/CabecalhoPagina";
 import Mockup from "@/components/Mockup/Mockup";
+import AcoesProjeto from "@/components/AcoesProjeto/AcoesProjeto";
 import Botao from "@/components/ui/Botao/Botao";
 import Card from "@/components/ui/Card/Card";
 import Secao from "@/components/ui/Secao/Secao";
@@ -43,21 +44,15 @@ function Destaques() {
       <ul className={styles.grade}>
         {DESTAQUES.map(({ id, titulo, contexto, descricao, tags, site, codigo, nota }, i) => (
           <li key={id}>
-            {/* O cartão leva ao site; sem site, leva ao código; sem os dois, não é link */}
+            {/* Os links ficam nos botões do fim do cartão (AcoesProjeto) */}
             <Card
               titulo={titulo}
               rotulo={contexto}
               descricao={descricao}
               tags={tags}
-              href={site || codigo || undefined}
               midia={<Mockup titulo={titulo} prints={PRINTS[id]} prioridade={i < 2} />}
             >
-              {site && codigo && (
-                <Botao href={codigo} variante="fantasma" seta>
-                  Ver o código de {titulo}
-                </Botao>
-              )}
-              {nota && <p className={styles.nota}>{nota}</p>}
+              <AcoesProjeto titulo={titulo} site={site} codigo={codigo} nota={nota} />
             </Card>
           </li>
         ))}
@@ -95,14 +90,9 @@ async function RepositoriosDoGitHub() {
                 rotulo={atualizadoEm ? `Atualizado em ${atualizadoEm}` : undefined}
                 descricao={descricao || "Sem descrição no GitHub."}
                 tags={linguagem ? [linguagem] : []}
-                href={codigo}
                 midia={<Mockup titulo={nome} prints={PRINTS[chave]} />}
               >
-                {site && (
-                  <Botao href={site} variante="fantasma" seta>
-                    Ver {nome} no ar
-                  </Botao>
-                )}
+                <AcoesProjeto titulo={nome} site={site} codigo={codigo} />
               </Card>
             </li>
           ))}

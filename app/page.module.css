@@ -21,9 +21,3 @@
   padding: 0;
   list-style: none;
 }
-
-.nota {
-  margin: 0;
-  font-size: 0.85rem;
-  color: var(--cor-texto-suave);
-}

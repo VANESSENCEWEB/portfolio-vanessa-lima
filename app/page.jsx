@@ -19,6 +19,7 @@ import Contato from "@/components/Contato/Contato";
 import Hero from "@/components/Hero/Hero";
 import Mockup from "@/components/Mockup/Mockup";
 import Revelar from "@/components/Revelar/Revelar";
+import AcoesProjeto from "@/components/AcoesProjeto/AcoesProjeto";
 import Botao from "@/components/ui/Botao/Botao";
 import Card from "@/components/ui/Card/Card";
 import Secao from "@/components/ui/Secao/Secao";
@@ -58,10 +59,9 @@ export default function Inicio() {
                     rotulo={p.contexto}
                     descricao={p.descricao}
                     tags={p.tags}
-                    href={p.site || p.codigo || undefined}
                     midia={<Mockup titulo={p.titulo} prints={PRINTS[p.id]} />}
                   >
-                    {p.nota && <p className={styles.nota}>{p.nota}</p>}
+                    <AcoesProjeto titulo={p.titulo} site={p.site} codigo={p.codigo} nota={p.nota} />
                   </Card>
                 </li>
               ))}

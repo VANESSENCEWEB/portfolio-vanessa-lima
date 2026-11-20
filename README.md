@@ -10,7 +10,7 @@ Portfólio profissional feito com Next.js e React: do esboço no Figma ao site n
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES2023-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 [![CSS Modules](https://img.shields.io/badge/CSS-Modules-1572B6?logo=css&logoColor=white)](https://github.com/css-modules/css-modules)
-[![Vitest](https://img.shields.io/badge/testes-277_passando-6E9F18?logo=vitest&logoColor=white)](#-testes)
+[![Vitest](https://img.shields.io/badge/testes-282_passando-6E9F18?logo=vitest&logoColor=white)](#-testes)
 [![Playwright](https://img.shields.io/badge/prints-Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 [![ESLint](https://img.shields.io/badge/lint-ESLint-4B32C3?logo=eslint&logoColor=white)](https://eslint.org/)
 [![Prettier](https://img.shields.io/badge/código-Prettier-F7B93E?logo=prettier&logoColor=black)](https://prettier.io/)
@@ -65,7 +65,7 @@ Além de mostrar os projetos, o site mostra **como ele foi feito**:
 - a página **Sobre** lista cada tecnologia usada e o papel dela no site;
 - as **decisões técnicas**, com o porquê de cada uma, estão em [`docs/DECISOES.md`](docs/DECISOES.md);
 - o **diário** em [`docs/DIARIO.md`](docs/DIARIO.md) tem um print e o que aprendi em cada etapa;
-- **277 testes automatizados** conferem que tudo continua funcionando a cada mudança.
+- **282 testes automatizados** conferem que tudo continua funcionando a cada mudança.
 
 | Item        | Detalhe                                                                        |
 | ----------- | ------------------------------------------------------------------------------ |
@@ -357,7 +357,7 @@ Abra [http://localhost:3000](http://localhost:3000).
 Os testes ficam em `__tests__/`, espelhando as pastas do projeto. Nenhum acessa a internet: a API do GitHub é testada com dados de mentira.
 
 ```bash
-npm test          # 27 arquivos · 277 testes
+npm test          # 28 arquivos · 282 testes
 npm run coverage  # relatório em coverage/index.html
 ```
 
@@ -440,7 +440,7 @@ Coisas que eu sei que ainda não estão como eu quero, e por quê:
 - ✅ **Componentização** — design system próprio reaproveitado em todas as páginas, conteúdo separado do layout
 - ✅ **Acessibilidade medida** — WCAG 2.2 (contraste, pausa de animação, teclado, leitor de tela), Lighthouse 100
 - ✅ **SEO técnico** — metadados completos por página, sitemap, robots, Open Graph e JSON-LD
-- ✅ **Testes** — 277 testes com Vitest e Testing Library, incluindo testes que protegem o conteúdo
+- ✅ **Testes** — 282 testes com Vitest e Testing Library, incluindo testes que protegem o conteúdo
 - ✅ **Automação** — script com Playwright que gera os prints dos projetos sozinho
 - ✅ **Processo** — commits pequenos no padrão Conventional Commits, decisões documentadas e diário com prints de cada etapa
 - ✅ **Deploy contínuo** — Vercel publicando a cada push na `main`

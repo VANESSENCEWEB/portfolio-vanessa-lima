@@ -10,13 +10,6 @@
   list-style: none;
 }
 
-/* Aviso curto dentro do cartão (ex.: "código privado") */
-.nota {
-  margin: 0;
-  font-size: 0.85rem;
-  color: var(--cor-texto-suave);
-}
-
 /* Mensagem quando a API do GitHub não responde */
 .aviso {
   margin: 0 0 2rem;

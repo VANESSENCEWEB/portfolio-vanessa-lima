@@ -1,0 +1,27 @@
+/* AcoesProjeto — os botões dividem a largura do cartão e
+   descem um para baixo do outro quando não cabem lado a lado */
+.acoes {
+  display: grid;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--cor-linha);
+}
+.botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.botao {
+  flex: 1 1 9.5rem; /* largura mínima antes de quebrar a linha */
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.icone {
+  margin-right: 0.5rem;
+  vertical-align: -3px; /* alinha o ícone com o meio do texto */
+}
+.nota {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
