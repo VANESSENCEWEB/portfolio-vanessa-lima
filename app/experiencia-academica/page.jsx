@@ -16,7 +16,6 @@ import CabecalhoPagina from "@/components/CabecalhoPagina/CabecalhoPagina";
 import Timeline from "@/components/Timeline/Timeline";
 import Botao from "@/components/ui/Botao/Botao";
 import Secao from "@/components/ui/Secao/Secao";
-import styles from "./page.module.css";
 import { metadadosDaPagina } from "@/lib/metadados";
 
 /* SEO da página: metadados completos (lib/metadados.js). O layout completa o título → "Experiência Acadêmica — Vanessa Lima") */
@@ -38,21 +37,20 @@ function Certificacoes() {
       descricao={`São ${total} certificações em cursos de tecnologia e design. Estas são as que eu destaco: clique para ampliar ou em Verificar para conferir na página oficial. A lista completa está no LinkedIn.`}
     >
       {/* Miniaturas que ampliam ao clicar + link oficial de validação.
-          O LinkedIn fica na barra de cima, junto do Pausar. */}
+          Os dois botões ficam juntos na barra de cima, com o Pausar à direita. */}
       <Certificados
         itens={destaques}
         acoes={
-          <Botao href={linkTodas} seta>
-            Ver todas no LinkedIn
-          </Botao>
+          <>
+            <Botao href={linkTodas} seta>
+              Ver todas no LinkedIn
+            </Botao>
+            <Botao href="/experiencia-profissional" variante="secundario" seta>
+              Experiência profissional
+            </Botao>
+          </>
         }
       />
-
-      <div className={styles.acoes}>
-        <Botao href="/experiencia-profissional" variante="secundario" seta>
-          Experiência profissional
-        </Botao>
-      </div>
     </Secao>
   );
 }
