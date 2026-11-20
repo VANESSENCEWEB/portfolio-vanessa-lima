@@ -29,13 +29,14 @@
     box-shadow 0.15s ease;
 }
 
-/* Fundo que enche no hover */
+/* Fundo que enche no hover: AMARELO nos botões vazados (texto escuro
+   por cima). O primário enche com a cor do texto (ver Variantes). */
 .botao::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--cor-botao); /* texto branco por cima: ver --cor-botao no globals.css */
+  background: var(--cor-amarelo);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
@@ -46,8 +47,8 @@
 }
 .botao:hover,
 .botao:focus-visible {
-  border-color: var(--cor-texto);
-  color: #fff;
+  border-color: var(--cor-tinta);
+  color: var(--cor-tinta);
   transform: var(--levantar);
   box-shadow: var(--sombra-dura);
 }

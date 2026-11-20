@@ -171,7 +171,7 @@
 .ctaFundo {
   position: absolute;
   inset: 0;
-  background: var(--cor-botao); /* texto branco por cima: ver --cor-botao no globals.css */
+  background: var(--cor-amarelo); /* enche de amarelo, com o texto escuro por cima */
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
@@ -188,8 +188,8 @@
     color 0.3s;
 }
 .cta:hover {
-  border-color: var(--cor-texto);
-  color: #fff;
+  border-color: var(--cor-tinta);
+  color: var(--cor-tinta);
   transform: var(--levantar);
   box-shadow: var(--sombra-dura);
 }
@@ -201,7 +201,7 @@
   transform: scaleX(1);
 }
 .cta:hover .ctaSeta {
-  color: #fff;
+  color: var(--cor-tinta);
   transform: translate(3px, -3px);
 }
 

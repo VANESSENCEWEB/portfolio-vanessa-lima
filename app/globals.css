@@ -50,6 +50,10 @@
      o elemento sobe para a esquerda e aparece uma sombra DURA, sem
      desfoque, na cor do texto. Usado em botões e cartões. */
   --levantar: translate(-2px, -2px);
+  /* Amarelo dos botões vazados no hover e da seleção de texto.
+     Texto em cima dele é SEMPRE --cor-tinta (contraste ~13:1). */
+  --cor-amarelo: #ffd400;
+  --cor-tinta: #16110b;
   --sombra-dura: 4px 4px 0 var(--cor-texto);
   --levantar-grande: translate(-3px, -3px);
   --sombra-dura-grande: 6px 6px 0 var(--cor-texto);
@@ -211,4 +215,10 @@ button {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Texto selecionado: marca-texto amarelo (nos dois temas) */
+::selection {
+  background: var(--cor-amarelo);
+  color: var(--cor-tinta);
 }

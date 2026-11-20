@@ -180,7 +180,7 @@
 }
 
 /* "Como este site foi feito →": botão vazado (só a borda). No hover
-   ele levanta do papel como o "Ver projetos" e a seta anda */
+   enche de amarelo, levanta do papel e a seta anda */
 .caso {
   display: inline-flex;
   align-items: center;
@@ -196,11 +196,16 @@
   text-decoration: none;
   transition:
     color 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
     box-shadow 0.15s ease,
     transform 0.15s ease;
 }
 .caso:hover,
 .caso:focus-visible {
+  border-color: var(--cor-tinta);
+  background: var(--cor-amarelo);
+  color: var(--cor-tinta);
   transform: var(--levantar);
   box-shadow: var(--sombra-dura);
 }
@@ -211,10 +216,6 @@
 .casoSeta {
   display: inline-block;
   transition: transform 0.25s ease;
-}
-.caso:hover,
-.caso:focus-visible {
-  color: var(--cor-destaque);
 }
 .caso:hover .casoSeta,
 .caso:focus-visible .casoSeta {

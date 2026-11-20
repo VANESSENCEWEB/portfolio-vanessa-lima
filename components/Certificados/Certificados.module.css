@@ -61,14 +61,16 @@
   cursor: pointer;
   transition:
     border-color 0.15s ease,
+    background 0.15s ease,
     color 0.15s ease,
     transform 0.15s ease,
     box-shadow 0.15s ease;
 }
 .pausar:hover,
 .pausar:focus-visible {
-  border-color: var(--cor-texto);
-  color: var(--cor-texto);
+  border-color: var(--cor-tinta);
+  background: var(--cor-amarelo);
+  color: var(--cor-tinta);
   transform: var(--levantar);
   box-shadow: var(--sombra-dura);
 }
@@ -167,13 +169,16 @@
   text-decoration: none;
   transition:
     border-color 0.15s ease,
+    background 0.15s ease,
     color 0.15s ease,
     transform 0.15s ease,
     box-shadow 0.15s ease;
 }
 .verificar:hover,
 .verificar:focus-visible {
-  border-color: var(--cor-texto);
+  border-color: var(--cor-tinta);
+  background: var(--cor-amarelo);
+  color: var(--cor-tinta);
   transform: var(--levantar);
   box-shadow: var(--sombra-dura);
 }
