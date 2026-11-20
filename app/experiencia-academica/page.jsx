@@ -37,13 +37,18 @@ function Certificacoes() {
       titulo="Certificações"
       descricao={`São ${total} certificações em cursos de tecnologia e design. Estas são as que eu destaco: clique para ampliar ou em Verificar para conferir na página oficial. A lista completa está no LinkedIn.`}
     >
-      {/* Miniaturas que ampliam ao clicar + link oficial de validação */}
-      <Certificados itens={destaques} />
+      {/* Miniaturas que ampliam ao clicar + link oficial de validação.
+          O LinkedIn fica na barra de cima, junto do Pausar. */}
+      <Certificados
+        itens={destaques}
+        acoes={
+          <Botao href={linkTodas} seta>
+            Ver todas no LinkedIn
+          </Botao>
+        }
+      />
 
       <div className={styles.acoes}>
-        <Botao href={linkTodas} seta>
-          Ver todas no LinkedIn
-        </Botao>
         <Botao href="/experiencia-profissional" variante="secundario" seta>
           Experiência profissional
         </Botao>

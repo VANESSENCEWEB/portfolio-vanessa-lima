@@ -8,6 +8,7 @@
   --largura-cartao: 340px;
   --espaco: clamp(1rem, 2.5vw, 1.5rem);
   margin-inline: calc(var(--margem) * -1); /* vai de uma borda à outra da tela */
+  margin-bottom: 1.5rem;
   padding-block: 0.75rem 1.25rem; /* espaço para o cartão subir no hover */
   overflow: hidden;
   /* as pontas somem aos poucos, em vez de cortar o cartão seco */
@@ -43,20 +44,35 @@
   margin-right: var(--espaco); /* margem (não gap) para as cópias medirem igual */
 }
 
-/* Botão Pausar/Continuar */
+/* Barra acima da faixa: botões à esquerda, Pausar à direita */
+.barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.barraAcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* Botão Pausar/Continuar: pequeno, à direita */
 .pausar {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  min-height: 44px;
-  margin: 0 0 2.5rem;
-  padding: 0.5rem 1.1rem;
+  gap: 0.4rem;
+  min-height: 34px;
+  margin-left: auto;
+  padding: 0.3rem 0.8rem;
   border: var(--borda-botao) solid var(--cor-texto);
   border-radius: var(--raio-botao);
   background: transparent;
   color: var(--cor-texto);
   font: inherit;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;

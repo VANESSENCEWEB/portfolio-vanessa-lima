@@ -84,7 +84,9 @@ function Lista({ itens, onAbrir, copia = false }) {
   );
 }
 
-export default function Certificados({ itens }) {
+/* acoes (opcional): botões que ficam na barra ACIMA da faixa, à
+   esquerda (ex.: "Ver todas no LinkedIn"); o Pausar fica à direita */
+export default function Certificados({ itens, acoes }) {
   const dialogo = useRef(null);
   const [aberto, setAberto] = useState(null); // certificado mostrado no dialog
   const [pausado, setPausado] = useState(false);
@@ -103,6 +105,23 @@ export default function Certificados({ itens }) {
 
   return (
     <>
+      {/* Barra acima da faixa: assim os botões aparecem junto com o título,
+          sem precisar rolar. O Pausar vem ANTES da faixa também no Tab
+          (WCAG 2.2.2: o que se move sozinho por mais de 5 s precisa de um
+          jeito de parar). */}
+      <div className={styles.barra}>
+        {acoes && <div className={styles.barraAcoes}>{acoes}</div>}
+        <button
+          type="button"
+          className={styles.pausar}
+          onClick={() => setPausado((p) => !p)}
+          aria-label={`${pausado ? "Continuar" : "Pausar"} a passagem dos certificados`}
+        >
+          <span aria-hidden="true">{pausado ? "▶" : "❚❚"}</span>
+          {pausado ? "Continuar" : "Pausar"}
+        </button>
+      </div>
+
       {/* Faixa que passa sozinha (para no hover/foco e no botão Pausar).
           A lista aparece DUAS vezes em sequência: quando a primeira sai
           inteira da tela, a animação volta ao início sem "pulo".
@@ -117,17 +136,6 @@ export default function Certificados({ itens }) {
           <Lista itens={itens} onAbrir={abrir} copia />
         </div>
       </div>
-
-      {/* WCAG 2.2.2: o que se move sozinho por mais de 5 s precisa de um jeito de parar */}
-      <button
-        type="button"
-        className={styles.pausar}
-        onClick={() => setPausado((p) => !p)}
-        aria-label={`${pausado ? "Continuar" : "Pausar"} a passagem dos certificados`}
-      >
-        <span aria-hidden="true">{pausado ? "▶" : "❚❚"}</span>
-        {pausado ? "Continuar" : "Pausar"}
-      </button>
 
       {/* Visualização grande. Clicar fora da imagem (no fundo) também fecha. */}
       <dialog
