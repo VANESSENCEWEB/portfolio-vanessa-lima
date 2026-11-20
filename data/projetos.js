@@ -92,18 +92,17 @@ const EXCLUIR_SEMPRE = ["vanessenceweb", "fire-content-web"];
 export const GITHUB = {
   usuario: "VANESSENCEWEB",
   perfil: PESSOA.redes.github,
-  limite: 6,
+  limite: 4,
   exigirDescricao: true, // só aparece repositório com descrição no GitHub
   excluir: [...EXCLUIR_SEMPRE, ...DESTAQUES.map((p) => p.repositorio).filter(Boolean)],
   // Curadoria: só estes aparecem, nesta ordem (os dados vêm da API).
   // Lista vazia = volta a ser automática (os mais recentes primeiro).
-  somente: ["jogo-dados-unicap", "simulador-irpf", "click-shop-pdv", "mini-bio", "recife-flats-temporada"],
+  somente: ["jogo-dados-unicap", "simulador-irpf", "click-shop-pdv", "recife-flats-temporada"],
   // Nome do cartão (o repositório continua com o nome original no GitHub)
   titulos: {
     "jogo-dados-unicap": "Jogue Dados",
     "simulador-irpf": "Simulador IRPF",
     "click-shop-pdv": "Click Shop PDV",
-    "mini-bio": "Mini Bio",
     "recife-flats-temporada": "Recife Flats Temporada",
   },
 };
