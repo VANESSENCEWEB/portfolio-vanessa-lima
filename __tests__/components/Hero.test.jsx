@@ -57,7 +57,10 @@ describe("Hero", () => {
   it("os links levam para a página Projetos", () => {
     render(<HeroComTema />);
     expect(screen.getByRole("link", { name: /Ver projetos/ })).toHaveAttribute("href", "/projetos");
-    expect(screen.getByRole("link", { name: /Ver um caso por dentro/ })).toHaveAttribute("href", "/projetos");
+    expect(screen.getByRole("link", { name: /Como este site foi feito/ })).toHaveAttribute(
+      "href",
+      "/sobre#como-foi-feito",
+    );
   });
 
   it("os números vêm calculados (nenhum é zero ou inválido)", () => {

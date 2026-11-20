@@ -29,10 +29,10 @@ export const HERO = {
   descricao:
     "Estudante de Sistemas para Internet na UNICAP. Faço design e código no mesmo projeto: do esboço no Figma ao site no ar, com projetos reais em produção.",
   botao: { texto: "Ver projetos", href: "/projetos" },
-  caso: { texto: "Ver um caso por dentro", href: "/projetos" },
+  caso: { texto: "Como este site foi feito", href: "/sobre#como-foi-feito" },
   // Números calculados, não digitados: nunca ficam desatualizados
   numeros: [
-    { valor: Object.keys(PRINTS).length, sufixo: "", legenda: "Projetos no ar" },
+    { valor: Object.values(PRINTS).filter((p) => p.site).length, sufixo: "", legenda: "Projetos no ar" },
     { valor: totalCertificacoes, sufixo: "+", legenda: "Certificações" },
   ],
   // Fim da linha de baixo (ao lado dos números)

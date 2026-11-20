@@ -300,7 +300,6 @@ portfolio-vanessa-lima/
 │   ├── Hero/                   → primeira tela da Início (nome animado, vídeo)
 │   ├── Mockup/ · Revelar/      → prints em computador + celular; aparecer ao rolar
 │   ├── Timeline/ · CabecalhoPagina/ · ListaTecnologias/
-│   ├── EmConstrucao/           → página provisória
 │   └── TemaProvider.jsx        → controle do tema claro/escuro
 ├── data/                       → TODO o conteúdo do site
 │   ├── perfil.js · home.js · sobre.js · experiencias.js · projetos.js
@@ -471,7 +470,7 @@ Hospedado na **[Vercel](https://vercel.com/)**: a cada `git push` na branch `mai
 
 **Depois da v1.0.0**
 
-- [ ] Página de estudo de caso (ISAC Conecta) para o botão "Ver um caso por dentro"
+- [ ] Página de estudo de caso (ISAC Conecta)
 - [x] Prints do Sistema Recife Flats com dados fictícios
 - [ ] Currículo em PDF para baixar e formulário de contato
 - [ ] Preencher o ano das certificações da DIO e da Rocketseat
