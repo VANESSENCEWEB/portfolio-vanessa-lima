@@ -47,7 +47,7 @@ const TAMANHOS_FOTO = "(max-width: 899px) min(90vw, 420px), 420px";
 function Apresentacao() {
   return (
     <Container as="section" className={styles.apresentacao} aria-labelledby="sobre-titulo">
-      <TituloSecao id="sobre-titulo" nivel={1} rotulo="Sobre">
+      <TituloSecao id="sobre-titulo" nivel={1} rotulo="Sobre" className={styles.cabecalho}>
         Sobre mim
       </TituloSecao>
 

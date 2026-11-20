@@ -6,10 +6,16 @@
 
 /* ---------- 1. Apresentação ---------- */
 .apresentacao {
-  padding-block: clamp(3rem, 8vw, 6rem) clamp(4rem, 10vw, 8rem);
+  /* pouco espaço em cima: título e foto já aparecem ao abrir a página */
+  padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(4rem, 10vw, 8rem);
   /* corta a luz atrás da foto nas bordas (sem rolagem lateral no celular).
      "clip" e não "hidden": assim a foto continua podendo ficar sticky */
   overflow-x: clip;
+}
+
+/* Título mais perto da foto (o padrão das seções tem mais respiro) */
+.apresentacao .cabecalho {
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
 }
 
 .grade {
