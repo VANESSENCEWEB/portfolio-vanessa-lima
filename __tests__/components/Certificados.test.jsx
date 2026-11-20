@@ -33,6 +33,21 @@ describe("Certificados", () => {
     }
   });
 
+  it("a cópia da faixa (só visual) fica escondida do leitor de tela e do Tab", () => {
+    const { container } = render(<Certificados itens={ITENS} />);
+    const listas = container.querySelectorAll("ul");
+    expect(listas).toHaveLength(2);
+    expect(listas[1]).toHaveAttribute("aria-hidden", "true");
+    expect(listas[1]).toHaveAttribute("inert");
+  });
+
+  it("tem botão para pausar e continuar a passagem (WCAG 2.2.2)", () => {
+    render(<Certificados itens={ITENS} />);
+    const botao = screen.getByRole("button", { name: /Pausar a passagem/ });
+    fireEvent.click(botao);
+    expect(screen.getByRole("button", { name: /Continuar a passagem/ })).toBeInTheDocument();
+  });
+
   it("clicar na miniatura abre o certificado grande, com alt", () => {
     render(<Certificados itens={ITENS} />);
     const [primeiro] = ITENS;
