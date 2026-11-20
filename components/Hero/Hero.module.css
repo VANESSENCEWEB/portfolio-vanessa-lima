@@ -124,20 +124,25 @@
   gap: 1rem 1.75rem;
 }
 
-/* Botão retangular "Ver projetos ↓": sobe, ganha sombra, um brilho
-   atravessa e a seta quica (SÓ no hover) */
+/* Botão "Ver projetos ↓" (inspirado no portfólio anterior): cantos
+   arredondados, caixa alta e um brilho neon fraco em volta. No hover
+   ele sobe, o brilho cresce, um reflexo atravessa e a seta quica. */
 .botao {
   position: relative;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
-  gap: 1.6rem;
-  padding: 1rem 1.6rem;
+  gap: 1.4rem;
+  padding: 1rem 1.7rem;
+  border-radius: 12px;
   background: var(--cor-botao); /* texto branco por cima: ver --cor-botao no globals.css */
   color: #fff;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-decoration: none;
+  box-shadow: 0 0 18px -4px color-mix(in srgb, var(--cor-destaque) 70%, transparent);
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
@@ -145,7 +150,9 @@
 .botao:hover,
 .botao:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px -10px var(--cor-botao);
+  box-shadow:
+    0 0 26px 2px color-mix(in srgb, var(--cor-destaque) 55%, transparent),
+    0 12px 32px -10px var(--cor-botao);
 }
 .botao:active {
   transform: translateY(0) scale(0.97);
@@ -173,18 +180,32 @@
   animation: brilho-botao 0.7s ease-in-out;
 }
 
-/* "Ver um caso por dentro →": sublinhado; no hover fica vermelho e a seta anda */
+/* "Como este site foi feito →": botão vazado (só a borda). No hover
+   a borda e o texto ficam vermelhos, o brilho neon aparece e a seta anda */
 .caso {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding-bottom: 3px;
-  border-bottom: 1px solid currentColor;
+  padding: 1rem 1.4rem;
+  border: 1px solid color-mix(in srgb, var(--cor-destaque) 40%, var(--cor-linha));
+  border-radius: 12px;
   color: var(--cor-texto);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-decoration: none;
-  transition: color 0.25s ease;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+.caso:hover,
+.caso:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 22px -2px color-mix(in srgb, var(--cor-destaque) 50%, transparent);
 }
 .casoSeta {
   display: inline-block;
@@ -570,8 +591,14 @@
 }
 
 /* ---------- 8. Celular ----------
-   A hero deixa de ficar parada (ela é mais alta que a tela) e
-   tudo empilha: nome → você → texto → números. */
+   A hero deixa de ficar parada e tudo empilha, centralizado.
+   A PRIMEIRA TELA (sem rolar) mostra o essencial:
+     "Olá, eu sou" → você → NOME → cargo → botão Ver projetos
+   e, rolando: texto → "Como este site foi feito" → números.
+   A foto usa a altura que sobra na tela (svh), então o botão
+   fica visível em qualquer celular.
+   h1 e .acoes viram display: contents para os filhos entrarem
+   na ordem acima (a foto fica ENTRE o "Olá" e o nome). */
 @media (max-width: 720px) {
   .hero {
     position: relative;
@@ -581,11 +608,18 @@
     padding-top: 0.5rem;
   }
   .palco {
+    /* espaço que os textos da primeira tela ocupam (sem a foto) */
+    --sem-foto: calc(var(--nome-cel) * 1.8 + 15rem);
+    --nome-cel: min(20vw, 9svh);
     grid-template-columns: 1fr;
     grid-template-rows: none;
-    padding-top: 1.5rem;
+    justify-items: center;
+    padding-top: 1rem;
+    text-align: center;
   }
-  .texto {
+  .texto,
+  .titulo,
+  .acoes {
     display: contents;
   }
   .foto,
@@ -593,37 +627,51 @@
     grid-column: 1;
     grid-row: auto;
   }
-  .titulo {
-    order: 2;
-    margin-bottom: 1rem;
-  }
-  .nome {
-    font-size: 23vw;
+  .ola {
+    order: 1;
+    margin-bottom: 0.5rem;
+    transform-origin: center bottom;
   }
   .foto {
-    order: 3;
-    width: 82%;
-    justify-self: center;
-    margin-bottom: 1.5rem;
+    order: 2;
+    height: clamp(190px, calc(100svh - var(--altura-nav) - var(--sem-foto)), 360px);
+    margin: 0 0 0.75rem;
+    translate: none;
   }
   .midia {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
+  }
+  .nome {
+    order: 3;
+    margin-bottom: 0.9rem;
+    font-size: var(--nome-cel);
   }
   .cargo {
     order: 4;
-  }
-  .descricao {
-    order: 5;
+    margin-bottom: 1.1rem;
     font-size: 0.95rem;
   }
-  .acoes {
+  .botao {
+    order: 5;
+    justify-self: stretch;
+    justify-content: center;
+  }
+  .descricao {
     order: 6;
+    margin: 2.5rem auto 1.25rem;
+    font-size: 0.95rem;
+  }
+  .caso {
+    order: 7;
+    justify-self: stretch;
+    justify-content: center;
     margin-bottom: 2rem;
   }
   .numeros {
-    order: 7;
-    justify-content: flex-start;
+    order: 8;
+    justify-self: stretch;
+    justify-content: center;
     gap: 0.75rem 1.75rem;
   }
 }
