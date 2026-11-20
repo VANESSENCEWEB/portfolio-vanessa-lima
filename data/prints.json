@@ -65,6 +65,12 @@
     "celular": "/images/projetos/recife-flats-temporada-celular.jpg",
     "data": "2026-11-14"
   },
+  "simulador-irpf": {
+    "site": "https://vanessenceweb.github.io/simulador-irpf",
+    "computador": "/images/projetos/simulador-irpf-computador.jpg",
+    "celular": "/images/projetos/simulador-irpf-celular.jpg",
+    "data": "2026-11-20"
+  },
   "sistema-recife-flats": {
     "site": null,
     "computador": "/images/projetos/sistema-recife-flats-computador.jpg",
