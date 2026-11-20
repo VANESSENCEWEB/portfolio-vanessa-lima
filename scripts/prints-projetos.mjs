@@ -55,6 +55,8 @@ async function repositoriosComSite() {
     excluir: GITHUB.excluir,
     limite: GITHUB.limite,
     exigirDescricao: GITHUB.exigirDescricao,
+    somente: GITHUB.somente,
+    titulos: GITHUB.titulos,
   });
   return repos.filter((r) => r.site).map((r) => ({ chave: r.chave, site: r.site }));
 }

@@ -110,3 +110,30 @@ describe("filtrarRepositorios com exigirDescricao", () => {
     expect(filtrarRepositorios(lista)).toHaveLength(2);
   });
 });
+
+describe("filtrarRepositorios com curadoria (somente + titulos)", () => {
+  const lista = [
+    repo("novo", { pushed_at: "2026-11-01T00:00:00Z" }),
+    repo("segundo", { pushed_at: "2025-01-01T00:00:00Z" }),
+    repo("primeiro", { pushed_at: "2024-01-01T00:00:00Z" }),
+  ];
+
+  it("mostra só os escolhidos, na ordem da lista (não na data)", () => {
+    const resultado = filtrarRepositorios(lista, { somente: ["primeiro", "Segundo"] });
+    expect(resultado.map((r) => r.nome)).toEqual(["primeiro", "segundo"]);
+  });
+
+  it("lista vazia mantém o modo automático (mais recente primeiro)", () => {
+    expect(filtrarRepositorios(lista, { somente: [] }).map((r) => r.nome)).toEqual([
+      "novo",
+      "segundo",
+      "primeiro",
+    ]);
+  });
+
+  it("usa o título de exibição quando existe; senão, o nome do repositório", () => {
+    const resultado = filtrarRepositorios(lista, { titulos: { primeiro: "Primeiro Projeto" } });
+    expect(resultado.find((r) => r.nome === "primeiro").titulo).toBe("Primeiro Projeto");
+    expect(resultado.find((r) => r.nome === "novo").titulo).toBe("novo");
+  });
+});

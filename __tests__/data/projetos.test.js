@@ -51,3 +51,18 @@ describe("GITHUB", () => {
     expect(GITHUB.excluir).toContain("vanessenceweb");
   });
 });
+
+describe("GITHUB: curadoria da lista", () => {
+  it("nenhum escolhido repete um destaque", () => {
+    const excluidos = GITHUB.excluir.map((nome) => nome.toLowerCase());
+    for (const nome of GITHUB.somente) {
+      expect(excluidos, nome).not.toContain(nome.toLowerCase());
+    }
+  });
+
+  it("todo escolhido tem título de exibição", () => {
+    for (const nome of GITHUB.somente) {
+      expect(GITHUB.titulos[nome], nome).toBeTruthy();
+    }
+  });
+});

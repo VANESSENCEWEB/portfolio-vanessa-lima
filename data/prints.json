@@ -5,6 +5,12 @@
     "celular": "/images/projetos/api-projeto-integrador-celular.jpg",
     "data": "2026-11-20"
   },
+  "click-shop-pdv": {
+    "site": "https://vanessenceweb.github.io/click-shop-pdv/?demo",
+    "computador": "/images/projetos/click-shop-pdv-computador.jpg",
+    "celular": "/images/projetos/click-shop-pdv-celular.jpg",
+    "data": "2026-11-20"
+  },
   "facial-harmony-clinic": {
     "site": "https://facial-harmony-clinic.vercel.app",
     "computador": "/images/projetos/facial-harmony-clinic-computador.jpg",
@@ -23,10 +29,10 @@
     "celular": "/images/projetos/jogo-dados-celular.jpg",
     "data": "2026-11-14"
   },
-  "jogue-dados": {
+  "jogo-dados-unicap": {
     "site": "https://joga-dados-unicap.vercel.app",
-    "computador": "/images/projetos/jogue-dados-computador.jpg",
-    "celular": "/images/projetos/jogue-dados-celular.jpg",
+    "computador": "/images/projetos/jogo-dados-unicap-computador.jpg",
+    "celular": "/images/projetos/jogo-dados-unicap-celular.jpg",
     "data": "2026-11-20"
   },
   "mini-bio": {

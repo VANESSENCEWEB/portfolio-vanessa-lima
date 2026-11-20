@@ -76,28 +76,6 @@ export const DESTAQUES = [
     codigo: "https://github.com/VANESSENCEWEB/nasa_explorer",
     repositorio: "nasa_explorer",
   },
-  {
-    id: "jogue-dados",
-    titulo: "Jogue Dados",
-    contexto: "Sistemas para Internet · UNICAP",
-    descricao:
-      "Duelo de dados para duas pessoas no mesmo aparelho: cinco rodadas, um botão Jogar por vez, dados 3D em CSS e skins. Tratado como produto, com decisões técnicas documentadas.",
-    tags: ["Next.js", "React", "CSS"],
-    site: "https://joga-dados-unicap.vercel.app",
-    codigo: "https://github.com/VANESSENCEWEB/jogo-dados-unicap",
-    repositorio: "jogo-dados-unicap",
-  },
-  {
-    id: "commitfacil",
-    titulo: "CommitFácil",
-    contexto: "Ferramenta própria",
-    descricao:
-      "CLI interativa em português que monta mensagens no padrão Conventional Commits fazendo perguntas simples. Sem nenhuma dependência: só Node.",
-    tags: ["Node.js", "CLI", "Git"],
-    site: null,
-    codigo: "https://github.com/VANESSENCEWEB/commitfacil",
-    repositorio: "commitfacil",
-  },
 ];
 
 /* ---------- 2. GITHUB (lista automática) ----------
@@ -107,13 +85,25 @@ export const DESTAQUES = [
    - o README do perfil (não é um projeto)
    - os repositórios que já estão nos DESTAQUES (não repetir)
    Para esconder mais algum, acrescente o nome em EXCLUIR_SEMPRE.
-   limite: quantos cartões mostrar (o resto fica no link do perfil). */
+   limite: quantos cartões mostrar (o resto fica no link do perfil).
+   somente/titulos: curadoria da lista (ver comentário no objeto). */
 const EXCLUIR_SEMPRE = ["vanessenceweb", "fire-content-web"];
 
 export const GITHUB = {
   usuario: "VANESSENCEWEB",
   perfil: PESSOA.redes.github,
-  limite: 12,
+  limite: 6,
   exigirDescricao: true, // só aparece repositório com descrição no GitHub
   excluir: [...EXCLUIR_SEMPRE, ...DESTAQUES.map((p) => p.repositorio).filter(Boolean)],
+  // Curadoria: só estes aparecem, nesta ordem (os dados vêm da API).
+  // Lista vazia = volta a ser automática (os mais recentes primeiro).
+  somente: ["jogo-dados-unicap", "simulador-irpf", "click-shop-pdv", "mini-bio", "recife-flats-temporada"],
+  // Nome do cartão (o repositório continua com o nome original no GitHub)
+  titulos: {
+    "jogo-dados-unicap": "Jogue Dados",
+    "simulador-irpf": "Simulador IRPF",
+    "click-shop-pdv": "Click Shop PDV",
+    "mini-bio": "Mini Bio",
+    "recife-flats-temporada": "Recife Flats Temporada",
+  },
 };

@@ -28,7 +28,7 @@ import { metadadosDaPagina } from "@/lib/metadados";
 export const metadata = metadadosDaPagina({
   titulo: "Projetos",
   descricao:
-    "Projetos de Vanessa Lima: ISAC Conecta, Sistema Recife Flats, API REST, NASA Explorer e os repositórios públicos do GitHub.",
+    "Projetos de Vanessa Lima: ISAC Conecta, Sistema Recife Flats, Click Shop PDV, API REST, NASA Explorer e os repositórios públicos do GitHub.",
   caminho: "/projetos",
 });
 
@@ -68,14 +68,16 @@ async function RepositoriosDoGitHub() {
     excluir: GITHUB.excluir,
     limite: GITHUB.limite,
     exigirDescricao: GITHUB.exigirDescricao,
+    somente: GITHUB.somente,
+    titulos: GITHUB.titulos,
   });
 
   return (
     <Secao
       id="github"
       rotulo="API do GitHub"
-      titulo="Outros repositórios"
-      descricao="Lista automática dos meus repositórios públicos, do mais recente para o mais antigo."
+      titulo="Mais projetos"
+      descricao="Escolhidos por mim e carregados direto da API do GitHub, com a data da última atualização."
     >
       {erro || repositorios.length === 0 ? (
         <p className={styles.aviso}>
@@ -83,16 +85,16 @@ async function RepositoriosDoGitHub() {
         </p>
       ) : (
         <ul className={styles.grade}>
-          {repositorios.map(({ id, chave, nome, descricao, linguagem, codigo, site, atualizadoEm }) => (
+          {repositorios.map(({ id, chave, titulo, descricao, linguagem, codigo, site, atualizadoEm }) => (
             <li key={id}>
               <Card
-                titulo={nome}
+                titulo={titulo}
                 rotulo={atualizadoEm ? `Atualizado em ${atualizadoEm}` : undefined}
                 descricao={descricao || "Sem descrição no GitHub."}
                 tags={linguagem ? [linguagem] : []}
-                midia={<Mockup titulo={nome} prints={PRINTS[chave]} />}
+                midia={<Mockup titulo={titulo} prints={PRINTS[chave]} />}
               >
-                <AcoesProjeto titulo={nome} site={site} codigo={codigo} />
+                <AcoesProjeto titulo={titulo} site={site} codigo={codigo} />
               </Card>
             </li>
           ))}
