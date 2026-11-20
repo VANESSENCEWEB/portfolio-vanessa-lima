@@ -3,7 +3,7 @@
    (endereço /experiencia-academica)
    ---------------------------------------------------------
    Seções, de cima para baixo:
-   1. Cabeçalho: título (h1), descrição e números (3º, 2 residências, 87+)
+   1. Cabeçalho: título (h1), descrição e números (3º, 2 residências, 90+)
    2. Trajetória: linha do tempo (UNICAP e residência)
    3. Certificações: galeria com os certificados (ampliar e
       verificar) + link para todos no LinkedIn
@@ -23,7 +23,7 @@ import { metadadosDaPagina } from "@/lib/metadados";
 export const metadata = metadadosDaPagina({
   titulo: "Experiência Acadêmica",
   descricao:
-    "Formação de Vanessa Lima: Sistemas para Internet na UNICAP, duas residências no Porto Digital e 87+ certificações.",
+    "Formação de Vanessa Lima: Sistemas para Internet na UNICAP, duas residências no Porto Digital e 90+ certificações.",
   caminho: "/experiencia-academica",
 });
 

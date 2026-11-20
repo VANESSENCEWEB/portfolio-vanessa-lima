@@ -34,7 +34,7 @@ import { PESSOA } from "@/data/perfil";
 export const RESUMO_ACADEMICO = [
   { valor: "3º", rotulo: "período de Sistemas para Internet" },
   { valor: "2", rotulo: "residências no Porto Digital" },
-  { valor: "87+", rotulo: "certificações" },
+  { valor: "90+", rotulo: "certificações" },
 ];
 
 /* ---------- 2. Formação (mais recente primeiro) ---------- */
@@ -54,7 +54,7 @@ export const FORMACAO = [
     destaques: [
       "Banco com regras de acesso (RLS) em todas as tabelas",
       "Edge Function com IA e plano B por regras quando a IA falha",
-      "Mais de 100 testes automatizados",
+      "Mais de 250 testes automatizados",
     ],
     tags: ["React", "Supabase", "PostgreSQL", "IA", "Figma"],
     links: [{ texto: "Ver o ISAC Conecta no ar", href: "https://isac-conecta-pi.vercel.app" }],
@@ -97,7 +97,7 @@ export const FORMACAO = [
 
 /* ---------- 3. Certificações ---------- */
 export const CERTIFICACOES = {
-  total: "87+",
+  total: "90+",
   // Página de certificações do LinkedIn (a lista completa fica lá)
   linkTodas: `${PESSOA.redes.linkedin}details/certifications/`,
   /* Destaques com a imagem do certificado (public/images/certificados,

@@ -15,7 +15,7 @@ import { CERTIFICACOES } from "@/data/experiencias";
 import PRINTS from "@/data/prints.json";
 import { FOTO } from "@/data/sobre";
 
-/* "87+" → 87 (o contador anima até esse número e põe o "+") */
+/* "90+" → 90 (o número da Hero, com o "+" ao lado) */
 const totalCertificacoes = Number.parseInt(CERTIFICACOES.total, 10);
 
 /* ---------- 1. HERO ---------- */

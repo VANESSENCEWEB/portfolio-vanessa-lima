@@ -50,7 +50,7 @@ export const FATOS = [
     valor: "Software e IA · GrowUp / Porto Digital (2026.2) · ISAC Conecta",
   },
   { titulo: "Empresa", valor: "Vanessenceweb · sites e sistemas desde 2025" },
-  { titulo: "Certificações", valor: "87+ (DIO Campus Expert, Origamid, Rocketseat...)" },
+  { titulo: "Certificações", valor: "90+ (DIO Campus Expert, Origamid, Rocketseat...)" },
   { titulo: "Idiomas", valor: "Português nativo · inglês intermediário" },
   {
     titulo: "Onde estou",

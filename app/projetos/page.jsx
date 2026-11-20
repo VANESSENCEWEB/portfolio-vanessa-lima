@@ -121,7 +121,7 @@ export default function PaginaProjetos() {
         descricao="Do sistema interno de uma empresa de hospedagem aos trabalhos da faculdade e da residência: o problema, o que eu fiz e as tecnologias de cada um."
         numeros={[
           { valor: String(DESTAQUES.length), rotulo: "projetos em destaque" },
-          { valor: "100+", rotulo: "testes no ISAC Conecta" },
+          { valor: "250+", rotulo: "testes no ISAC Conecta" },
           { valor: "40", rotulo: "telas no Sistema Recife Flats" },
         ]}
       />

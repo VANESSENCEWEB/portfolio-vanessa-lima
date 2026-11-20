@@ -35,7 +35,7 @@ export const DESTAQUES = [
     titulo: "ISAC Conecta",
     contexto: "Residência em Software e IA · GrowUp / Porto Digital · em andamento",
     descricao:
-      "App que usa IA para transformar os anúncios bagunçados dos grupos de WhatsApp do bairro numa vitrine organizada, com moderação e renda para o Instituto. Banco com regras de acesso (RLS) e mais de 100 testes automatizados.",
+      "App que usa IA para transformar os anúncios bagunçados dos grupos de WhatsApp do bairro numa vitrine organizada, com moderação e renda para o Instituto. Banco com regras de acesso (RLS) e mais de 250 testes automatizados.",
     tags: ["React", "Vite", "Supabase", "PostgreSQL", "Edge Functions", "IA"],
     site: "https://isac-conecta-pi.vercel.app",
     codigo: null,
