@@ -10,7 +10,7 @@ Portfólio profissional feito com Next.js e React: do esboço no Figma ao site n
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES2023-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 [![CSS Modules](https://img.shields.io/badge/CSS-Modules-1572B6?logo=css&logoColor=white)](https://github.com/css-modules/css-modules)
-[![Vitest](https://img.shields.io/badge/testes-290_passando-6E9F18?logo=vitest&logoColor=white)](#-testes)
+[![Vitest](https://img.shields.io/badge/testes-298_passando-6E9F18?logo=vitest&logoColor=white)](#-testes)
 [![Playwright](https://img.shields.io/badge/prints-Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 [![ESLint](https://img.shields.io/badge/lint-ESLint-4B32C3?logo=eslint&logoColor=white)](https://eslint.org/)
 [![Prettier](https://img.shields.io/badge/código-Prettier-F7B93E?logo=prettier&logoColor=black)](https://prettier.io/)
@@ -65,7 +65,7 @@ Além de mostrar os projetos, o site mostra **como ele foi feito**:
 - a página **Sobre** lista cada tecnologia usada e o papel dela no site;
 - as **decisões técnicas**, com o porquê de cada uma, estão em [`docs/DECISOES.md`](docs/DECISOES.md);
 - o **diário** em [`docs/DIARIO.md`](docs/DIARIO.md) tem um print e o que aprendi em cada etapa;
-- **290 testes automatizados** conferem que tudo continua funcionando a cada mudança.
+- **298 testes automatizados** conferem que tudo continua funcionando a cada mudança.
 
 | Item        | Detalhe                                                                        |
 | ----------- | ------------------------------------------------------------------------------ |
@@ -82,24 +82,24 @@ A imagem abaixo acompanha o tema do seu GitHub: no modo escuro aparece a Hero co
 
 <div align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/progresso/2026-11-17-etapa-08-hero-nova-escuro.png" />
-  <source media="(prefers-color-scheme: light)" srcset="docs/progresso/2026-11-17-etapa-08-hero-nova-claro.png" />
-  <img src="docs/progresso/2026-11-17-etapa-08-hero-nova-claro.png" width="100%" alt="Página Início no computador e no celular" />
+  <source media="(prefers-color-scheme: dark)" srcset="docs/progresso/2026-11-20-etapa-09-inicio-escuro.png" />
+  <source media="(prefers-color-scheme: light)" srcset="docs/progresso/2026-11-20-etapa-09-inicio-claro.png" />
+  <img src="docs/progresso/2026-11-20-etapa-09-inicio-claro.png" width="100%" alt="Página Início no computador e no celular" />
 </picture>
 </div>
 
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="docs/progresso/2026-11-17-etapa-08-sobre-enxuta.png" alt="Página Sobre no computador e no celular" />
+      <img src="docs/progresso/2026-11-20-etapa-09-sobre.png" alt="Página Sobre no computador e no celular" />
       <br /><sub><b>Sobre</b> · bio e todas as tecnologias do app</sub>
     </td>
     <td align="center" width="33%">
-      <img src="docs/progresso/2026-11-13-etapa-04-experiencias.png" alt="Página Experiência Acadêmica no computador e no celular" />
+      <img src="docs/progresso/2026-11-20-etapa-09-academica.png" alt="Página Experiência Acadêmica no computador e no celular" />
       <br /><sub><b>Experiências</b> · linha do tempo e certificações</sub>
     </td>
     <td align="center" width="33%">
-      <img src="docs/progresso/2026-11-14-etapa-05-projetos.png" alt="Página Projetos com cartões em mockup de computador e celular" />
+      <img src="docs/progresso/2026-11-20-etapa-09-projetos.png" alt="Página Projetos com cartões em mockup de computador e celular" />
       <br /><sub><b>Projetos</b> · destaques e API do GitHub</sub>
     </td>
   </tr>
@@ -357,7 +357,7 @@ Abra [http://localhost:3000](http://localhost:3000).
 Os testes ficam em `__tests__/`, espelhando as pastas do projeto. Nenhum acessa a internet: a API do GitHub é testada com dados de mentira.
 
 ```bash
-npm test          # 29 arquivos · 290 testes
+npm test          # 29 arquivos · 298 testes
 npm run coverage  # relatório em coverage/index.html
 ```
 
@@ -440,7 +440,7 @@ Coisas que eu sei que ainda não estão como eu quero, e por quê:
 - ✅ **Componentização** — design system próprio reaproveitado em todas as páginas, conteúdo separado do layout
 - ✅ **Acessibilidade medida** — WCAG 2.2 (contraste, pausa de animação, teclado, leitor de tela), Lighthouse 100
 - ✅ **SEO técnico** — metadados completos por página, sitemap, robots, Open Graph e JSON-LD
-- ✅ **Testes** — 290 testes com Vitest e Testing Library, incluindo testes que protegem o conteúdo
+- ✅ **Testes** — 298 testes com Vitest e Testing Library, incluindo testes que protegem o conteúdo
 - ✅ **Automação** — script com Playwright que gera os prints dos projetos sozinho
 - ✅ **Processo** — commits pequenos no padrão Conventional Commits, decisões documentadas e diário com prints de cada etapa
 - ✅ **Deploy contínuo** — Vercel publicando a cada push na `main`
