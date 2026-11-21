@@ -85,18 +85,22 @@ describe("Página Experiência Profissional", () => {
     }
   });
 
-  it("cada site de cliente tem o link do site e o do código", () => {
+  it("cada site de cliente tem os botões do site e do código (ou a nota, se for privado)", () => {
     render(<PaginaProfissional />);
     const secao = screen.getByRole("region", { name: "Sites para clientes" });
-    for (const { titulo, site, codigo } of PROJETOS_CLIENTES) {
-      expect(within(secao).getByRole("link", { name: new RegExp(`^${titulo}`) })).toHaveAttribute(
-        "href",
-        site,
-      );
-      expect(within(secao).getByRole("link", { name: new RegExp(`código de ${titulo}`) })).toHaveAttribute(
-        "href",
-        codigo,
-      );
+    for (const { titulo, site, codigo, nota } of PROJETOS_CLIENTES) {
+      expect(within(secao).getByRole("heading", { level: 3, name: titulo })).toBeInTheDocument();
+      if (site) {
+        expect(
+          within(secao).getByRole("link", { name: new RegExp(`^Ver online: ${titulo}`) }),
+        ).toHaveAttribute("href", site);
+      }
+      if (codigo) {
+        expect(
+          within(secao).getByRole("link", { name: new RegExp(`Ver código: ${titulo} no GitHub`) }),
+        ).toHaveAttribute("href", codigo);
+      }
+      if (!site && !codigo) expect(within(secao).getByText(nota)).toBeInTheDocument();
     }
   });
 

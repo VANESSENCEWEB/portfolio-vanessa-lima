@@ -15,6 +15,7 @@ import {
   RESUMO_ACADEMICO,
 } from "@/data/experiencias";
 import { camposPendentes, temValor } from "@/lib/experiencias";
+import PRINTS from "@/data/prints.json";
 
 const LINHAS_DO_TEMPO = { FORMACAO, EXPERIENCIA_PROFISSIONAL };
 const TODOS_OS_ITENS = [...FORMACAO, ...EXPERIENCIA_PROFISSIONAL, ...CERTIFICACOES.destaques];
@@ -52,7 +53,8 @@ describe("links", () => {
   it("todos usam HTTPS (segurança)", () => {
     const links = [
       ...[...FORMACAO, ...EXPERIENCIA_PROFISSIONAL].flatMap((item) => item.links.map((link) => link.href)),
-      ...PROJETOS_CLIENTES.flatMap((projeto) => [projeto.site, projeto.codigo]),
+      // site/codigo null = projeto privado (sem link)
+      ...PROJETOS_CLIENTES.flatMap((projeto) => [projeto.site, projeto.codigo]).filter(Boolean),
       CERTIFICACOES.linkTodas,
     ];
     for (const link of links) {
@@ -61,8 +63,15 @@ describe("links", () => {
   });
 
   it("o código dos clientes fica no GitHub da Vanessa", () => {
-    for (const projeto of PROJETOS_CLIENTES) {
+    for (const projeto of PROJETOS_CLIENTES.filter((p) => p.codigo)) {
       expect(projeto.codigo).toMatch(/^https:\/\/github\.com\/VANESSENCEWEB\//);
+    }
+  });
+
+  it("projeto de cliente sem link explica o motivo (nota) e todos têm prints", () => {
+    for (const projeto of PROJETOS_CLIENTES) {
+      if (!projeto.site && !projeto.codigo) expect(projeto.nota, projeto.id).toBeTruthy();
+      expect(PRINTS[projeto.prints], projeto.id).toBeDefined();
     }
   });
 });

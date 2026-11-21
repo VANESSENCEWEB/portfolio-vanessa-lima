@@ -1,13 +1,25 @@
 /* Página Experiência Profissional — mobile-first */
 
-/* Cartões dos sites: 1 coluna no celular; mais largos que os de certificação (têm descrição e tags) */
+/* Cartões dos sites (com mockup): 1 coluna no celular, 2 no tablet, 3 no computador */
 .grade {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  grid-template-columns: 1fr;
   gap: clamp(1rem, 2.5vw, 1.5rem);
   margin: 0 0 2.5rem;
   padding: 0;
   list-style: none;
+}
+
+@media (min-width: 760px) {
+  .grade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .grade {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .acoes {

@@ -307,27 +307,41 @@ export const EXPERIENCIA_PROFISSIONAL = [
   },
 ];
 
-/* ---------- 5. Sites feitos para clientes (Vanessenceweb) ----------
-   Dados do portfólio antigo (vanessenceweb.github.io/portfolio-2). */
+/* ---------- 5. Sites e sistemas feitos para clientes ----------
+   prints: chave em data/prints.json (os prints do mockup).
+   site/codigo: null quando o projeto é privado; aí entra a nota. */
 export const PROJETOS_CLIENTES = [
   {
     id: "recife-flats",
     titulo: "Recife Flats",
-    cliente: "Hospedagem por temporada · Recife",
+    cliente: "Site institucional · hospedagem por temporada",
     descricao:
-      "Site institucional com matching guiado por perguntas, galeria de apartamentos, avaliações de hóspedes e versão mobile.",
-    tags: ["HTML", "CSS", "JavaScript", "Responsivo"],
+      "Site com matching guiado por perguntas, galeria de apartamentos, avaliações de hóspedes e versão mobile.",
+    tags: ["HTML", "CSS", "JavaScript", "Web Components"],
     site: "https://vanessenceweb.github.io/recife-flats-temporada/",
     codigo: "https://github.com/VANESSENCEWEB/recife-flats-temporada",
+    prints: "recife-flats-temporada",
+  },
+  {
+    id: "sistema-recife-flats",
+    titulo: "Sistema Recife Flats",
+    cliente: "Sistema interno · em uso todos os dias",
+    descricao:
+      "Sistema com 40 telas para a equipe: reservas, caução, limpezas, financeiro e documentos em PDF, com conferência automática com a Booking e com a FNRH.",
+    tags: ["JavaScript", "Supabase", "PostgreSQL", "Edge Functions"],
+    site: null,
+    codigo: null,
+    nota: "Sistema privado: os prints usam dados fictícios.",
+    prints: "sistema-recife-flats",
   },
   {
     id: "dra-priscilla-barros",
     titulo: "Dra. Priscilla Barros",
-    cliente: "Cirurgiã bucomaxilofacial",
-    descricao:
-      "Site institucional com galeria de resultados, credenciais, vídeos, perguntas frequentes e agendamento.",
+    cliente: "Site institucional · cirurgiã bucomaxilofacial",
+    descricao: "Site com galeria de resultados, credenciais, vídeos, perguntas frequentes e agendamento.",
     tags: ["HTML", "CSS", "JavaScript"],
     site: "https://facial-harmony-clinic.vercel.app/",
     codigo: "https://github.com/VANESSENCEWEB/facial-harmony-clinic",
+    prints: "facial-harmony-clinic",
   },
 ];
